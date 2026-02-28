@@ -1,0 +1,36 @@
+{
+  "project": "Calistenia Feminina - Quiz MVP",
+  "squad": [
+    "frontend-design",
+    "interaction-design",
+    "responsive-design"
+  ],
+  "phases": {
+    "fase1_setup": {
+      "leader": "frontend-design",
+      "status": "pending",
+      "tasks": [
+        "Init Vite React TS App",
+        "Install Tailwind, Framer Motion, Lucide React",
+        "Configurar Design System Variables no CSS/Tailwind"
+      ]
+    },
+    "fase2_components": {
+      "leader": "frontend-design",
+      "support": "interaction-design",
+      "status": "pending",
+      "tasks": [
+        "Build UI base components (Button, OptionCard)",
+        "Build Step01_Gender to Step05_Motivation with Mock Images"
+      ]
+    },
+    "fase3_integration": {
+      "leader": "frontend-design",
+      "status": "pending",
+      "tasks": [
+        "Implement Step State Machine in App.tsx",
+        "Add Page Transitions (Framer Motion)"
+      ]
+    }
+  }
+}
