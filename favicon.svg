@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#2C7A7B"/>
+  <!-- Simplified human figure in motion (calistenia) -->
+  <circle cx="32" cy="14" r="7" fill="white"/>
+  <path d="M32 22 L32 42 M32 42 L22 56 M32 42 L42 56 M32 28 L20 36 M32 28 L44 36"
+        stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
