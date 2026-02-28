@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
 import { cn } from "../../lib/utils"
@@ -20,7 +19,7 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, clas
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={cn(
         "relative flex flex-col w-full text-left overflow-hidden transition-all duration-[350ms] border-2",
-        "rounded-[var(--radius-xl)]",
+        "rounded-xl",
         selected
           ? "border-primary bg-surface-subtle shadow-card-hover"
           : "border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50",

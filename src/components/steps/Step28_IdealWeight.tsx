@@ -4,25 +4,25 @@ import { Button } from "../ui/Button"
 import { SliderInput } from "../ui/SliderInput"
 import type { StepProps } from "../../types"
 
-export function Step28_Height({ onNext }: StepProps) {
-  const [unit, setUnit] = useState<"cm" | "pol">("cm")
+export function Step28_IdealWeight({ onNext }: StepProps) {
+  const [unit, setUnit] = useState<"kg" | "lb">("kg")
 
-  // Valores default razoáveis
-  const [valueCm, setValueCm] = useState(165)
-  const [valuePol, setValuePol] = useState(65)
+  // Usaremos os mesmos constraints razoáveis
+  const [valueKg, setValueKg] = useState(60)
+  const [valueLb, setValueLb] = useState(132)
 
   const units = [
-    { id: "cm", label: "cm" },
-    { id: "pol", label: "pol" }
+    { id: "kg", label: "kg" },
+    { id: "lb", label: "lb" }
   ]
 
-  const currentValue = unit === "cm" ? valueCm : valuePol
-  const min = unit === "cm" ? 120 : 47
-  const max = unit === "cm" ? 220 : 86
+  const currentValue = unit === "kg" ? valueKg : valueLb
+  const min = unit === "kg" ? 40 : 88
+  const max = unit === "kg" ? 180 : 396
 
   const handleChange = (val: number) => {
-    if (unit === "cm") setValueCm(val)
-    if (unit === "pol") setValuePol(val)
+    if (unit === "kg") setValueKg(val)
+    if (unit === "lb") setValueLb(val)
   }
 
   const handleNext = () => {
@@ -39,7 +39,7 @@ export function Step28_Height({ onNext }: StepProps) {
     >
       <header className="text-center">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Qual sua altura?
+          E qual é o seu objetivo de peso ideal?
         </h2>
       </header>
 
@@ -49,7 +49,7 @@ export function Step28_Height({ onNext }: StepProps) {
           onChange={handleChange}
           unit={unit}
           units={units}
-          onUnitChange={(u) => setUnit(u as "cm" | "pol")}
+          onUnitChange={(u) => setUnit(u as "kg" | "lb")}
           min={min}
           max={max}
         />

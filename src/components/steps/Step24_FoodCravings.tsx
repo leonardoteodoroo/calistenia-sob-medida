@@ -4,7 +4,7 @@ import { MultiOptionCard } from "../ui/MultiOptionCard"
 import { Button } from "../ui/Button"
 import type { StepProps } from "../../types"
 
-export function Step25_FoodCravings({ onNext }: StepProps) {
+export function Step24_FoodCravings({ onNext }: StepProps) {
   const [selected, setSelected] = useState<string[]>([])
 
   const options = [

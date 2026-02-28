@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { Button } from "../ui/Button"
 import type { StepProps } from "../../types"
 
-export function Step32_ProfileAnalysis({ onNext, answers }: StepProps) {
+export function Step31_ProfileAnalysis({ onNext, answers }: StepProps) {
 
   // Resgata os inputs do slider 29 e 30. Fallbacks caso pulem os passos em debug.
   const atual = answers?.peso_atual || "70 kg"
@@ -26,14 +26,14 @@ export function Step32_ProfileAnalysis({ onNext, answers }: StepProps) {
       <div className="flex gap-4 w-full">
         {/* Antes */}
         <div className="flex-1 flex flex-col gap-2">
-          <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-default relative shadow-sm border border-border-default">
+          <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-card relative shadow-sm border border-border">
             <img
               src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?auto=format&fit=crop&q=80&w=400"
               alt="Status Atual"
               className="w-full h-full object-cover grayscale-[30%]"
             />
             <div className="absolute bottom-2 left-0 right-0 text-center">
-              <span className="bg-surface-elevated/90 px-3 py-1 text-xs font-bold uppercase rounded-full shadow-sm">Atual</span>
+              <span className="bg-status-error px-3 py-1 text-xs font-bold uppercase rounded-full shadow-sm text-white">Atual</span>
             </div>
           </div>
           <div className="text-center p-3 bg-surface-subtle rounded-lg border border-border-subtle">
@@ -44,7 +44,7 @@ export function Step32_ProfileAnalysis({ onNext, answers }: StepProps) {
 
         {/* Depois */}
         <div className="flex-1 flex flex-col gap-2">
-          <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-default relative shadow-md border-2 border-primary/20">
+          <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-card relative shadow-md border-2 border-primary/20">
             <img
               src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80&w=400"
               alt="Status Objetivo"
@@ -62,25 +62,36 @@ export function Step32_ProfileAnalysis({ onNext, answers }: StepProps) {
       </div>
 
       {/* Indicadores */}
-      <div className="bg-surface-elevated rounded-xl p-5 shadow-sm border border-border-default space-y-4">
+      <div className="bg-surface-elevated rounded-xl p-5 shadow-sm border border-border space-y-5">
         {[
-          "Taxa de qualidade de vida",
-          "Satisfação com o corpo",
-          "Autoestima"
-        ].map((indicador, i) => (
-          <div key={i} className="flex flex-col gap-2">
-            <div className="flex justify-between items-end">
-              <span className="font-semibold text-text-primary text-sm">{indicador}</span>
-              <span className="text-xs font-bold text-primary">+85%</span>
+          { label: "Taxa de qualidade de vida", before: "Média", beforeSegs: 2, after: "Alta", afterSegs: 4, beforeColor: "bg-status-error", afterColor: "bg-status-success" },
+          { label: "Satisfação com o corpo", before: "Baixa", beforeSegs: 1, after: "Elevada", afterSegs: 5, beforeColor: "bg-status-error", afterColor: "bg-status-success" },
+          { label: "Autoestima", before: "Baixa", beforeSegs: 1, after: "Alta", afterSegs: 4, beforeColor: "bg-status-error", afterColor: "bg-status-success" },
+        ].map((item, i) => (
+          <div key={i} className="grid grid-cols-2 gap-4">
+            {/* Atual */}
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between text-[10px] font-bold text-text-secondary uppercase">
+                <span>{item.label}</span>
+              </div>
+              <span className="text-xs text-text-secondary">{item.before}</span>
+              <div className="flex gap-1">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <div key={j} className={`h-1.5 flex-1 rounded-full ${j < item.beforeSegs ? item.beforeColor : "bg-surface-subtle"}`} />
+                ))}
+              </div>
             </div>
-            {/* Barrinha preenchida simulando projeçao */}
-            <div className="h-1.5 w-full bg-surface-subtle rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: "20%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 1, delay: 0.5 + (i * 0.2) }}
-                className="h-full bg-primary"
-              />
+            {/* Objetivo */}
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between text-[10px] font-bold text-primary uppercase">
+                <span>{item.label}</span>
+              </div>
+              <span className="text-xs text-status-success font-medium">{item.after}</span>
+              <div className="flex gap-1">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <div key={j} className={`h-1.5 flex-1 rounded-full ${j < item.afterSegs ? item.afterColor : "bg-surface-subtle"}`} />
+                ))}
+              </div>
             </div>
           </div>
         ))}

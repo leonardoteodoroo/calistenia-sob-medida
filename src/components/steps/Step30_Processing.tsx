@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import type { StepProps } from "../../types"
 
-export function Step31_Processing({ onNext }: StepProps) {
+export function Step30_Processing({ onNext }: StepProps) {
   const [progress, setProgress] = useState(0)
+  const hasAdvanced = useRef(false)
 
   useEffect(() => {
     // Simula um carregamento de 100% ao longo de ~3 segundos
     const duration = 3000
     const interval = 30 // update a cada 30ms (~100 updates)
-    const step = 100 / (duration / interval)
+    const stepSize = 100 / (duration / interval)
 
     const timer = setInterval(() => {
       setProgress(p => {
         if (p >= 100) {
           clearInterval(timer)
-          setTimeout(() => onNext(), 300) // Aguarda um pouquinho no 100% e avança
+          if (!hasAdvanced.current) {
+            hasAdvanced.current = true
+            setTimeout(() => onNext(), 300) // Aguarda um pouquinho no 100% e avança
+          }
           return 100
         }
-        return p + step
+        return p + stepSize
       })
     }, interval)
 
@@ -40,7 +44,7 @@ export function Step31_Processing({ onNext }: StepProps) {
       </header>
 
       {/* Visual Component - Group of Women */}
-      <div className="w-full aspect-video bg-surface-default flex items-center justify-center rounded-xl overflow-hidden shadow-sm relative">
+      <div className="w-full aspect-video bg-surface-card flex items-center justify-center rounded-xl overflow-hidden shadow-sm relative">
         <img
           src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800"
           alt="Mulheres felizes de diferentes corpos"

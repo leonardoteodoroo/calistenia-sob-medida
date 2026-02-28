@@ -4,7 +4,7 @@ import { MultiOptionCard } from "../ui/MultiOptionCard"
 import { Button } from "../ui/Button"
 import type { StepProps } from "../../types"
 
-export function Step24_BadHabits({ onNext }: StepProps) {
+export function Step08_BadHabits({ onNext }: StepProps) {
   const [selected, setSelected] = useState<string[]>([])
 
   const options = [

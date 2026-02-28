@@ -68,7 +68,25 @@
     @apply bg-[var(--surface-page)] text-[var(--text-primary)] font-sans antialiased min-h-screen selection:bg-[var(--highlight)] selection:text-[var(--text-primary)];
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }

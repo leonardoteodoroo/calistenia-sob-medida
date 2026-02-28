@@ -3,7 +3,7 @@ import { Check, ChevronDown, CheckCircle2 } from "lucide-react"
 import { useState } from "react"
 import type { StepProps } from "../../types"
 
-export function Step33_SalesPage({ answers }: StepProps) {
+export function Step32_SalesPage({ answers }: StepProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const toggleFaq = (index: number) => {
@@ -19,9 +19,9 @@ export function Step33_SalesPage({ answers }: StepProps) {
   const checkoutUrl = `https://pay.kiwify.com.br/xxxxx?c=${ideal}` // Placeholder do link de pagamento
 
   return (
-    <div className="w-full flex justify-center bg-background min-h-screen pb-24">
+    <div className="w-full flex justify-center bg-background min-h-screen pb-8">
       {/* Container principal imitando mobile no desktop */}
-      <div className="w-full max-w-lg bg-surface-default shadow-xl overflow-hidden relative">
+      <div className="w-full max-w-lg bg-surface-card shadow-xl overflow-hidden relative flex flex-col">
 
         {/* =========================================
             BLOCO 1: Headline e Projeção (Hero Section)
@@ -42,9 +42,9 @@ export function Step33_SalesPage({ answers }: StepProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex-1 bg-surface-default rounded-xl border border-border-default overflow-hidden shadow-sm flex flex-col"
+              className="flex-1 bg-surface-card rounded-xl border border-border overflow-hidden shadow-sm flex flex-col"
             >
-              <div className="bg-surface-subtle text-center py-1.5 border-b border-border-default">
+              <div className="bg-surface-subtle text-center py-1.5 border-b border-border">
                 <span className="text-xs font-bold uppercase text-text-secondary tracking-wider">Hoje</span>
               </div>
               <div className="aspect-square relative">
@@ -61,7 +61,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
                     <span>Iniciante</span>
                   </div>
                   <div className="flex gap-1">
-                    <div className="h-1.5 flex-1 bg-primary rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-error rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
@@ -71,11 +71,11 @@ export function Step33_SalesPage({ answers }: StepProps) {
                 <div className="space-y-1">
                   <div className="flex justify-between text-[10px] font-bold text-text-secondary uppercase">
                     <span>Autoestima</span>
-                    <span className="text-error-default">Baixa</span>
+                    <span className="text-status-error">Baixa</span>
                   </div>
                   <div className="flex gap-1">
-                    <div className="h-1.5 flex-1 bg-error-default rounded-full"></div>
-                    <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-error rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-error rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
                     <div className="h-1.5 flex-1 bg-surface-subtle rounded-full"></div>
@@ -89,7 +89,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex-1 bg-surface-default rounded-xl border-2 border-primary overflow-hidden shadow-md flex flex-col"
+              className="flex-1 bg-surface-card rounded-xl border-2 border-primary overflow-hidden shadow-md flex flex-col"
             >
               <div className="bg-primary text-center py-1.5">
                 <span className="text-xs font-bold uppercase text-white tracking-wider">Depois</span>
@@ -118,14 +118,14 @@ export function Step33_SalesPage({ answers }: StepProps) {
                 <div className="space-y-1">
                   <div className="flex justify-between text-[10px] font-bold text-primary uppercase">
                     <span>Autoestima</span>
-                    <span className="text-success-default">Alta</span>
+                    <span className="text-status-success">Alta</span>
                   </div>
                   <div className="flex gap-1">
-                    <div className="h-1.5 flex-1 bg-success-default rounded-full"></div>
-                    <div className="h-1.5 flex-1 bg-success-default rounded-full"></div>
-                    <div className="h-1.5 flex-1 bg-success-default rounded-full"></div>
-                    <div className="h-1.5 flex-1 bg-success-default rounded-full"></div>
-                    <div className="h-1.5 flex-1 bg-success-default rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-success rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-success rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-success rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-success rounded-full"></div>
+                    <div className="h-1.5 flex-1 bg-status-success rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
         <section className="px-5 py-6">
           <h2 className="text-xl font-heading font-bold text-center mb-4">Adquira agora o seu plano</h2>
 
-          <div className="border border-primary rounded-xl overflow-hidden shadow-lg bg-surface-default transform hover:scale-[1.01] transition-transform">
+          <div className="border border-primary rounded-xl overflow-hidden shadow-lg bg-surface-card transform hover:scale-[1.01] transition-transform">
             <div className="bg-primary text-white text-center py-2 text-xs font-bold tracking-wider uppercase">
               Acesso para sempre + Atualizações
             </div>
@@ -171,7 +171,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
             O que você vai transformar em sua vida após iniciar os treinos
           </h3>
 
-          <div className="bg-surface-default rounded-2xl p-6 shadow-sm border border-border-default">
+          <div className="bg-surface-card rounded-2xl p-6 shadow-sm border border-border">
             <ul className="space-y-4">
               {[
                 "Perda de peso", "Alívio de dores nas costas", "Melhora da postura",
@@ -180,8 +180,8 @@ export function Step33_SalesPage({ answers }: StepProps) {
                 "Reduz dores menstruais", "Melhora da flexibilidade", "Aumento da autoestima"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded bg-success-default/20 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-success-default" strokeWidth={3} />
+                  <div className="flex-shrink-0 w-6 h-6 rounded bg-status-success/20 flex items-center justify-center">
+                    <Check className="w-4 h-4 text-status-success" strokeWidth={3} />
                   </div>
                   <span className="text-sm font-medium text-text-secondary">{item}</span>
                 </li>
@@ -196,7 +196,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
         <section className="px-5 py-10">
           <div className="grid grid-cols-2 gap-4">
 
-            <div className="bg-surface-elevated rounded-xl p-4 shadow-sm border border-border-default flex flex-col items-center text-center gap-3">
+            <div className="bg-surface-elevated rounded-xl p-4 shadow-sm border border-border flex flex-col items-center text-center gap-3">
               {/* Fake Donut SVG */}
               <div className="relative w-20 h-20">
                 <svg viewBox="0 0 36 36" className="w-full h-full circular-chart orange">
@@ -208,7 +208,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
               <p className="text-xs font-semibold uppercase text-text-secondary">das alunas perde mais de 7 quilos durante o programa</p>
             </div>
 
-            <div className="bg-surface-elevated rounded-xl p-4 shadow-sm border border-border-default flex flex-col items-center text-center gap-3">
+            <div className="bg-surface-elevated rounded-xl p-4 shadow-sm border border-border flex flex-col items-center text-center gap-3">
               <div className="relative w-20 h-20">
                 <svg viewBox="0 0 36 36" className="w-full h-full circular-chart orange">
                   <path className="text-surface-subtle" strokeWidth="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
@@ -225,7 +225,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
         {/* =========================================
             BLOCO 5: Destaques do Plano
             ========================================= */}
-        <section className="px-5 py-10 bg-surface-subtle border-y border-border-default">
+        <section className="px-5 py-10 bg-surface-subtle border-y border-border">
           <h3 className="text-2xl font-heading font-black text-center mb-8">
             Destaques do seu plano
           </h3>
@@ -238,7 +238,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
               <>Plano de <span className="font-bold">refeições personalizado</span> com receitas rápidas e saborosas</>,
               <><span className="font-bold">Dicas e truques</span> de especialistas para melhorar seu estilo de vida e manter a forma</>
             ].map((content, i) => (
-              <div key={i} className="flex gap-4 items-start bg-surface-default p-4 rounded-xl shadow-sm">
+              <div key={i} className="flex gap-4 items-start bg-surface-card p-4 rounded-xl shadow-sm">
                 <div className="mt-0.5 flex-shrink-0">
                   <CheckCircle2 className="w-6 h-6 text-primary fill-primary/10" />
                 </div>
@@ -262,7 +262,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
 
           <div className="grid grid-cols-1 gap-3 max-w-xs mx-auto">
             {["Pode ser feito dentro de casa", "Apenas 15 minutos por dia", "Pode ser sem aparelhos"].map((ft, i) => (
-              <div key={i} className="border border-border-default rounded-lg py-3 px-4 text-sm font-semibold text-text-primary shadow-sm">
+              <div key={i} className="border border-border rounded-lg py-3 px-4 text-sm font-semibold text-text-primary shadow-sm">
                 {ft}
               </div>
             ))}
@@ -315,7 +315,7 @@ export function Step33_SalesPage({ answers }: StepProps) {
                 a: "Não, você paga apenas essa taxinha e tem acesso às aulas para sempre com direito as atualizações de novas aulas que adicionamos!"
               }
             ].map((faq, i) => (
-              <div key={i} className="border border-border-default rounded-xl overflow-hidden bg-surface-default">
+              <div key={i} className="border border-border rounded-xl overflow-hidden bg-surface-card">
                 <button
                   onClick={() => toggleFaq(i)}
                   className="w-full flex justify-between items-center p-4 text-left font-semibold text-sm"
@@ -333,21 +333,18 @@ export function Step33_SalesPage({ answers }: StepProps) {
           </div>
         </section>
 
-      </div>
-
-      {/* =========================================
-          BLOCO 9: Footer de Oferta Otimizada e Call To Action Final (STICKY BOTTOM)
-          ========================================= */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <div className="w-full max-w-lg bg-surface-default border-t border-border-default shadow-[0_-10px_40px_rgba(0,0,0,0.1)] pt-0 pb-5 px-5 pointer-events-auto flex flex-col items-center">
+        {/* =========================================
+            BLOCO 9: Footer de Oferta Otimizada e Call To Action Final (INLINE)
+            ========================================= */}
+        <section className="w-full bg-surface-card border-t border-border pt-0 pb-8 px-5 flex flex-col items-center">
 
           {/* Scarce header */}
-          <div className="bg-error-default text-white w-full text-center py-1.5 text-[10px] font-black tracking-widest uppercase mb-3 -mt-3 rounded-b-lg shadow-md max-w-[200px]">
+          <div className="bg-status-error text-white w-full text-center py-1.5 text-[10px] font-black tracking-widest uppercase mb-6 -mt-3 rounded-b-lg shadow-md max-w-[200px]">
             ÚLTIMAS 7 VAGAS DISPONÍVEIS!
           </div>
 
           {/* Box Recap Lite */}
-          <div className="w-full flex items-center justify-between mb-3 px-2">
+          <div className="w-full flex items-center justify-between mb-4 px-2">
             <div>
               <div className="text-[10px] font-bold text-text-secondary uppercase">Pagamento Único</div>
               <div className="font-heading font-black text-sm text-text-primary leading-tight">TREINOS EM VÍDEO</div>
@@ -371,7 +368,8 @@ export function Step33_SalesPage({ answers }: StepProps) {
             </span>
           </a>
 
-        </div>
+        </section>
+
       </div>
     </div>
   )
