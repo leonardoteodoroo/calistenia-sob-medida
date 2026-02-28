@@ -44,12 +44,28 @@
   <meta name="theme-color" content="#2C7A7B" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Fontes -->
+  <!-- Preconnects críticos (antes de tudo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+  <!-- Preload imagem LCP (MULHER - primeira tela visível) -->
+  <link rel="preload" as="image"
+    href="https://images.unsplash.com/photo-1548690312-e3b507d8c110?auto=format&fit=crop&q=80&w=400&h=300"
+    fetchpriority="high" />
+
+  <!-- Fontes: non-blocking (não bloqueia o FCP/LCP) -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap"
-    rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+  </noscript>
+
 </head>
 
 <body>

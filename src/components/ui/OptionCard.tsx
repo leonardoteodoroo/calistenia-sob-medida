@@ -8,9 +8,11 @@ interface OptionCardProps extends Omit<HTMLMotionProps<"button">, "onSelect"> {
   imageSrc?: string
   selected?: boolean
   onSelect: () => void
+  fetchPriority?: 'high' | 'low' | 'auto'
+  loading?: 'lazy' | 'eager'
 }
 
-export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, className, ...props }: OptionCardProps) {
+export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetchPriority, loading = 'lazy', className, ...props }: OptionCardProps) {
   return (
     <motion.button
       onClick={onSelect}
@@ -32,14 +34,19 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, clas
           <img
             src={imageSrc}
             alt={title}
+            width={400}
+            height={300}
+            loading={loading}
+            decoding="async"
+            fetchPriority={fetchPriority}
             className="w-full h-full object-cover mix-blend-multiply opacity-90 transition-transform duration-700 hover:scale-105"
           />
         </div>
       )}
       <div className="p-5 flex flex-col gap-1 w-full relative z-10">
-        <h3 className={cn("font-heading font-bold text-lg", selected ? "text-primary" : "text-text-primary")}>
+        <p className={cn("font-heading font-bold text-lg", selected ? "text-primary" : "text-text-primary")}>
           {title}
-        </h3>
+        </p>
         {subtitle && (
           <p className="text-text-muted text-sm leading-relaxed">{subtitle}</p>
         )}

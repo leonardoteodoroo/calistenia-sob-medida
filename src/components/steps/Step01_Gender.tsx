@@ -30,11 +30,14 @@ export function Step01_Gender({ onNext }: StepProps) {
           title="MULHER"
           imageSrc="https://images.unsplash.com/photo-1548690312-e3b507d8c110?auto=format&fit=crop&q=80&w=400&h=300"
           onSelect={() => onNext("mulher")}
+          fetchPriority="high"
+          loading="eager"
         />
         <OptionCard
           title="HOMEM"
           imageSrc="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=400&h=300"
           onSelect={() => onNext("homem")}
+          loading="lazy"
         />
       </div>
     </motion.div>
