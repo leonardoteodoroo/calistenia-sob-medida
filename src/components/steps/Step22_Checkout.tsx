@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Check, ChevronDown, CheckCircle2, Gift, MessageCircle, Dumbbell, Star, MessageSquare } from "lucide-react"
+import { ChevronDown, CheckCircle2, Gift, MessageCircle, Dumbbell, Star, MessageSquare } from "lucide-react"
 import type { StepProps } from "../../types"
 import imgHoje from "../../assets/images/Mulher brasileira 41 anos com sobrepeso em casa ao entardecer - realidade atual hoje.webp"
 import imgDepois from "../../assets/images/Mulher brasileira 41 anos mais firme e confiante em casa ao entardecer objetivo depois.webp"
@@ -368,7 +368,18 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
             <span className="text-xs font-black uppercase tracking-widest text-primary">Bônus Exclusivos</span>
           </div>
           <h3 className="text-2xl font-heading font-black text-center mb-2 leading-tight">
-            Você também recebe GRÁTIS
+            Você também recebe{" "}
+            <span className="relative inline-block" style={{ color: '#38A169' }}>
+              GRÁTIS
+              <svg
+                className="absolute w-full h-3 -bottom-1 left-0"
+                style={{ color: '#38A16988' }}
+                preserveAspectRatio="none"
+                viewBox="0 0 100 10"
+              >
+                <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="3" />
+              </svg>
+            </span>
           </h3>
           <p className="text-center text-sm text-text-secondary mb-8">Incluso no seu plano sem nenhum custo extra</p>
 
