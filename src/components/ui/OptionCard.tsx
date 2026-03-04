@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import type { HTMLMotionProps } from "framer-motion";
+import React from "react"
+import { motion } from "framer-motion"
+import type { HTMLMotionProps } from "framer-motion"
 import { cn } from "../../lib/utils"
 
 interface OptionCardProps extends Omit<HTMLMotionProps<"button">, "onSelect"> {
@@ -10,9 +11,11 @@ interface OptionCardProps extends Omit<HTMLMotionProps<"button">, "onSelect"> {
   onSelect: () => void
   fetchPriority?: 'high' | 'low' | 'auto'
   loading?: 'lazy' | 'eager'
+  hideIndicator?: boolean
+  children?: React.ReactNode
 }
 
-export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetchPriority, loading = 'lazy', className, ...props }: OptionCardProps) {
+export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetchPriority, loading = 'lazy', hideIndicator = false, children, className, ...props }: OptionCardProps) {
   return (
     <motion.button
       onClick={onSelect}
@@ -29,6 +32,14 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
       )}
       {...props}
     >
+      {/* Placeholder customizado (children) — usado quando não há imageSrc */}
+      {children && !imageSrc && (
+        <div className="w-full bg-surface-section relative overflow-hidden">
+          {children}
+        </div>
+      )}
+
+      {/* Imagem externa */}
       {imageSrc && (
         <div className="w-full h-40 bg-surface-section relative overflow-hidden">
           <img
@@ -43,6 +54,7 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
           />
         </div>
       )}
+
       <div className="p-5 flex flex-col gap-1 w-full relative z-10">
         <p className={cn("font-heading font-bold text-lg", selected ? "text-primary" : "text-text-primary")}>
           {title}
@@ -52,19 +64,21 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
         )}
       </div>
 
-      {/* Indicador interativo do botão selected */}
-      <div className={cn(
-        "absolute right-4 top-4 h-6 w-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center bg-surface-card",
-        selected ? "border-primary bg-primary" : "border-border-subtle"
-      )}>
-        {selected && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="w-2.5 h-2.5 bg-white rounded-full"
-          />
-        )}
-      </div>
+      {/* Indicador de seleção — opcional via hideIndicator */}
+      {!hideIndicator && (
+        <div className={cn(
+          "absolute right-4 top-4 h-6 w-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center bg-surface-card",
+          selected ? "border-primary bg-primary" : "border-border-subtle"
+        )}>
+          {selected && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="w-2.5 h-2.5 bg-white rounded-full"
+            />
+          )}
+        </div>
+      )}
     </motion.button>
   )
 }

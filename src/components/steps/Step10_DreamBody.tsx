@@ -16,7 +16,7 @@ export function Step10_DreamBody({ onNext }: StepProps) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col gap-8 w-full max-w-lg mx-auto py-6"
+      className="flex flex-col gap-8 w-full max-w-lg mx-auto pt-2 pb-8"
     >
       <header className="text-center">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
@@ -30,7 +30,7 @@ export function Step10_DreamBody({ onNext }: StepProps) {
             key={opt.id}
             title={opt.label}
             onSelect={() => onNext(opt.id)}
-            className="md:p-4 p-4"
+            hideIndicator
           />
         ))}
       </div>

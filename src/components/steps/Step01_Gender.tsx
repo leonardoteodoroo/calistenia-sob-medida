@@ -1,6 +1,8 @@
 
 import { motion } from "framer-motion"
 import { OptionCard } from "../ui/OptionCard"
+import imgMulher from "../../assets/images/Mulher adulta em casa, com roupa de treino discreta, sorrindo com confiança em uma sala iluminada por luz natural- step01.webp"
+import imgHomem from "../../assets/images/Homem adulto em casa, com roupa esportiva simples, expressão amigável e confiante em uma sala clara- step01.webp"
 
 interface StepProps {
   onNext: (data: string) => void
@@ -13,7 +15,7 @@ export function Step01_Gender({ onNext }: StepProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="flex flex-col gap-8 w-full max-w-lg mx-auto py-6"
+      className="flex flex-col gap-8 w-full max-w-lg mx-auto pt-2 pb-8"
     >
       <header className="space-y-4 text-center">
         <h1 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
@@ -25,20 +27,41 @@ export function Step01_Gender({ onNext }: StepProps) {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Grid sempre 2 colunas em mobile */}
+      <div className="grid grid-cols-2 gap-4">
         <OptionCard
           title="MULHER"
-          imageSrc="https://images.unsplash.com/photo-1548690312-e3b507d8c110?auto=format&fit=crop&q=80&w=400&h=300"
           onSelect={() => onNext("mulher")}
+          hideIndicator
           fetchPriority="high"
-          loading="eager"
-        />
+        >
+          <img
+            src={imgMulher}
+            alt="Mulher adulta em casa com roupa de treino, sorrindo com confiança"
+            width={320}
+            height={400}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="w-full object-cover aspect-[4/5]"
+          />
+        </OptionCard>
         <OptionCard
           title="HOMEM"
-          imageSrc="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=400&h=300"
           onSelect={() => onNext("homem")}
-          loading="lazy"
-        />
+          hideIndicator
+        >
+          <img
+            src={imgHomem}
+            alt="Homem adulto em casa com roupa esportiva, expressão amigável e confiante"
+            width={320}
+            height={400}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="w-full object-cover aspect-[4/5]"
+          />
+        </OptionCard>
       </div>
     </motion.div>
   )

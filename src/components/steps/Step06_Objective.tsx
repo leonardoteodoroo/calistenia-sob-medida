@@ -9,7 +9,7 @@ export function Step06_Objective({ onNext }: StepProps) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col gap-8 w-full max-w-lg mx-auto py-6"
+      className="flex flex-col gap-8 w-full max-w-lg mx-auto pt-2 pb-8"
     >
       <header className="space-y-4 text-center">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
@@ -21,10 +21,12 @@ export function Step06_Objective({ onNext }: StepProps) {
         <OptionCard
           title="Perder peso"
           onSelect={() => onNext("perder_peso")}
+          hideIndicator
         />
         <OptionCard
           title="Mantenha o peso e fique em forma"
           onSelect={() => onNext("manter_peso")}
+          hideIndicator
         />
       </div>
     </motion.div>

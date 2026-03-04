@@ -2,12 +2,13 @@ import { motion } from "framer-motion"
 import { OptionCard } from "../ui/OptionCard"
 import type { StepProps } from "../../types"
 
-export function Step07_SecondaryGoals({ onNext }: StepProps) {
+export function Step18_MainReason({ onNext }: StepProps) {
+
   const options = [
-    { id: "forca", label: "Construir força muscular" },
-    { id: "postura", label: "Melhorar a postura" },
-    { id: "estresse", label: "Reduzir o estresse e a preocupação" },
-    { id: "flexibilidade", label: "Desenvolver flexibilidade" },
+    { id: "confianca", label: "Me sentir mais confiante com meu corpo" },
+    { id: "saudavel_energia", label: "Me sentir mais saudável e com energia" },
+    { id: "roupas", label: "Vestir melhor minhas roupas" },
+    { id: "pos_parto", label: "Voltar a forma após o parto" },
     { id: "outro", label: "Outro" },
   ]
 
@@ -19,9 +20,9 @@ export function Step07_SecondaryGoals({ onNext }: StepProps) {
       transition={{ duration: 0.3 }}
       className="flex flex-col gap-8 w-full max-w-lg mx-auto py-6"
     >
-      <header className="space-y-3 text-center">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Que mais espera alcançar com este plano?
+      <header className="text-center">
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary mb-2">
+          Qual é o seu principal motivo para entrar em forma?
         </h2>
       </header>
 

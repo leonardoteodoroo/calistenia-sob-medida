@@ -1,6 +1,8 @@
 
 import { motion } from "framer-motion"
 import { Button } from "../ui/Button"
+import imgSocialProof from "../../assets/images/mosaico_editorial_com_mulheres_diversas_em_casa__sorrindo_e_confiantes__com_espa__o_livre_para_inserir_mensagem_de_prova_social.webp"
+import imgEditorial from "../../assets/images/calistenia_sob_media_editorial.webp"
 
 interface StepProps {
   onNext: () => void
@@ -22,8 +24,12 @@ export function Step03_SocialProof({ onNext }: StepProps) {
         className="w-full rounded-3xl overflow-hidden shadow-lg border-4 border-surface-subtle"
       >
         <img
-          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800&h=500"
-          alt="Mulheres sorrindo juntas"
+          src={imgSocialProof}
+          alt="Mosaico editorial com mulheres diversas em casa, sorrindo e confiantes"
+          width={800}
+          height={256}
+          loading="lazy"
+          decoding="async"
           className="w-full h-64 object-cover object-center"
         />
       </motion.div>
@@ -51,6 +57,23 @@ export function Step03_SocialProof({ onNext }: StepProps) {
         <Button size="lg" variant="strong" fullWidth onClick={onNext} className="mt-4 shadow-cta">
           CONTINUAR
         </Button>
+
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 w-full rounded-3xl overflow-hidden shadow-md border-2 border-surface-subtle"
+        >
+          <img
+            src={imgEditorial}
+            alt="Editorial da Calistenia Sob Medida"
+            width={800}
+            height={256}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto object-cover object-center bg-surface-section"
+          />
+        </motion.div>
       </motion.div>
     </motion.div>
   )
