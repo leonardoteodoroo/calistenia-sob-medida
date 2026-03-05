@@ -234,8 +234,6 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
     <StepShell
       title="Suas Medidas"
       subtitle="Deslize cada régua para calibrar seu plano personalizado."
-      onPrimary={() => onNext(JSON.stringify({ altura: height, peso: weight, peso_ideal: idealWeight }))}
-      primaryCta="Processar Dados"
     >
       <div className="flex flex-col gap-6">
 
@@ -268,7 +266,17 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
           showHint={!hasInteracted}
         />
 
-        {/* Painel de Projeção */}
+        {/* ── BOTÃO sobe aqui — visível sem scroll na maioria dos celulares ── */}
+        <button
+          type="button"
+          onClick={() => onNext(JSON.stringify({ altura: height, peso: weight, peso_ideal: idealWeight }))}
+          className="w-full rounded-2xl font-extrabold px-6 py-4 text-white transition-all shadow-lg"
+          style={{ background: DS.teal, boxShadow: '0 8px 20px -4px rgba(44,122,123,0.3)' }}
+        >
+          Processar Dados
+        </button>
+
+        {/* Painel de Projeção — fica abaixo do botão */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}

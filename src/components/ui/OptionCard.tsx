@@ -55,8 +55,8 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
         </div>
       )}
 
-      <div className="p-5 flex flex-col gap-1 w-full relative z-10">
-        <p className={cn("font-heading font-bold text-lg", selected ? "text-primary" : "text-text-primary")}>
+      <div className={`p-3 flex flex-col gap-0.5 w-full relative z-10 ${hideIndicator ? 'items-center text-center' : 'p-5'}`}>
+        <p className={`font-heading font-bold text-base ${selected ? "text-primary" : "text-text-primary"}`}>
           {title}
         </p>
         {subtitle && (
