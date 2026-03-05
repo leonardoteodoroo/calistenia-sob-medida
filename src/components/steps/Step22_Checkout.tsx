@@ -681,9 +681,9 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
 
           {/* Tag countdown estilo ÚLTIMAS VAGAS */}
           {!expired ? (
-            <div className="inline-flex items-center gap-2 bg-status-error text-white text-[11px] font-black uppercase tracking-wider rounded-full px-4 py-1.5 mb-5 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 bg-status-error text-white text-[10px] font-black uppercase tracking-wide rounded-full px-3 py-1.5 mb-5 shadow-sm whitespace-nowrap">
               <span>⚡ Preço promocional reservado por:</span>
-              <span className="bg-white/20 rounded-full px-2 py-0.5 tabular-nums font-black text-xs">{m}:{s}</span>
+              <span className="bg-white/20 rounded-full px-2 py-0.5 tabular-nums font-black">{m}:{s}</span>
             </div>
           ) : (
             <div className="inline-flex items-center gap-2 bg-text-secondary/30 text-text-primary text-[11px] font-black uppercase tracking-wider rounded-full px-4 py-1.5 mb-5">
