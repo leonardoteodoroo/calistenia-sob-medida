@@ -26,7 +26,7 @@ export function Step04_Experience({ onNext }: StepProps) {
         </h2>
       </header>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         {options.map((opt, i) => (
           <motion.button
             key={opt.id}
@@ -34,11 +34,20 @@ export function Step04_Experience({ onNext }: StepProps) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.3 }}
-            whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(44,122,123,0.14)" }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative w-full flex items-center justify-between rounded-xl border-2 border-border bg-surface-card px-6 py-5 text-left shadow-sm transition-all duration-200 hover:border-primary hover:bg-[#F0FAFA]"
+            whileHover={{
+              y: -3,
+              boxShadow: "0 8px 0px #285E61, 0 12px 20px rgba(44,122,123,0.22)",
+            }}
+            whileTap={{
+              y: 3,
+              boxShadow: "0 1px 0px #285E61, 0 2px 4px rgba(44,122,123,0.1)",
+            }}
+            style={{
+              boxShadow: "0 5px 0px #3a9a9b, 0 8px 16px rgba(44,122,123,0.15)",
+            }}
+            className="group relative w-full flex items-center justify-between rounded-xl border-2 border-primary/40 bg-surface-card px-6 py-5 text-left transition-colors duration-200 hover:border-primary hover:bg-[#F0FAFA]"
           >
-            {/* Barra de acento lateral — aparece no hover */}
+            {/* Barra de acento lateral */}
             <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-200 origin-center" />
 
             <span className="font-heading font-bold text-lg text-text-primary group-hover:text-primary transition-colors duration-200 pl-2">
