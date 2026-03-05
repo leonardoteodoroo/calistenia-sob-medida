@@ -222,7 +222,6 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               </div>
               <div className="text-right w-1/2">
                 <div className="text-xs text-text-secondary uppercase font-semibold mb-1">Por apenas</div>
-
                 <div className="text-3xl font-black text-primary leading-none">R$ 19<span className="text-lg">,90</span></div>
                 <div className="text-xs text-text-secondary mt-1">pagamento único</div>
               </div>
@@ -700,8 +699,9 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               <div className="text-[10px] text-text-secondary">+ 3 Bônus Inclusos</div>
             </div>
             <div className="text-right">
-              <div className="text-[10px] text-text-secondary uppercase font-semibold">À vista</div>
+              <div className="text-[10px] text-text-secondary line-through">De R$ 69,90</div>
               <div className="text-2xl font-black text-primary leading-none">R$ 19,90</div>
+              <div className="text-[10px] text-text-secondary uppercase font-semibold">à vista</div>
             </div>
           </div>
 
