@@ -51,11 +51,19 @@ export const StepShell: React.FC<StepShellProps> = ({
                 type="button"
                 onClick={onPrimary}
                 disabled={disablePrimary}
-                className={`inline-flex items-center justify-center rounded-2xl font-extrabold px-6 py-4 transition-all shadow-lg w-full sm:w-auto ${disablePrimary
-                  ? "bg-zinc-200 text-zinc-500 cursor-not-allowed shadow-none"
-                  : "text-white"
-                  }`}
-                style={!disablePrimary ? { background: '#2C7A7B', boxShadow: '0 8px 20px -4px rgba(44,122,123,0.3)' } : undefined}
+                className={`inline-flex items-center justify-center rounded-2xl font-extrabold px-6 py-4 transition-all shadow-lg w-full sm:w-auto ${
+                  disablePrimary
+                    ? "bg-zinc-200 text-zinc-500 cursor-not-allowed shadow-none"
+                    : "text-white"
+                }`}
+                style={
+                  !disablePrimary
+                    ? {
+                        background: "#2C7A7B",
+                        boxShadow: "0 8px 20px -4px rgba(44,122,123,0.3)",
+                      }
+                    : undefined
+                }
               >
                 {primaryCta}
               </button>

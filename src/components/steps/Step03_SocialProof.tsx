@@ -1,11 +1,10 @@
-
-import { motion } from "framer-motion"
-import { Button } from "../ui/Button"
-import imgSocialProof from "../../assets/images/mosaico_editorial_com_mulheres_diversas_em_casa__sorrindo_e_confiantes__com_espa__o_livre_para_inserir_mensagem_de_prova_social.webp"
-import imgEditorial from "../../assets/images/calistenia_sob_media_editorial.webp"
+import { motion } from "framer-motion";
+import { Button } from "../ui/Button";
+import imgSocialProof from "../../assets/images/mosaico_editorial_com_mulheres_diversas_em_casa__sorrindo_e_confiantes__com_espa__o_livre_para_inserir_mensagem_de_prova_social.webp";
+import imgEditorial from "../../assets/images/calistenia_sob_media_editorial.webp";
 
 interface StepProps {
-  onNext: () => void
+  onNext: () => void;
 }
 
 export function Step03_SocialProof({ onNext }: StepProps) {
@@ -54,7 +53,13 @@ export function Step03_SocialProof({ onNext }: StepProps) {
         transition={{ delay: 0.4 }}
         className="w-full"
       >
-        <Button size="lg" variant="strong" fullWidth onClick={onNext} className="mt-4 shadow-cta">
+        <Button
+          size="lg"
+          variant="strong"
+          fullWidth
+          onClick={onNext}
+          className="mt-4 shadow-cta"
+        >
           CONTINUAR
         </Button>
 
@@ -76,5 +81,5 @@ export function Step03_SocialProof({ onNext }: StepProps) {
         </motion.div>
       </motion.div>
     </motion.div>
-  )
+  );
 }

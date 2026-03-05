@@ -1,7 +1,7 @@
-import { motion } from "framer-motion"
-import { Button } from "../ui/Button"
-import type { StepProps } from "../../types"
-import imgEnergia from "../../assets/images/mulher_adulta_em_casa_com_luz_da_manh____respirando_fundo_e_sorrindo_ap__s_treino__com_tapete_e_garrafa_de___gua_ao_fundo_calestina_da_energia.webp"
+import { motion } from "framer-motion";
+import { Button } from "../ui/Button";
+import type { StepProps } from "../../types";
+import imgEnergia from "../../assets/images/mulher_adulta_em_casa_com_luz_da_manh____respirando_fundo_e_sorrindo_ap__s_treino__com_tapete_e_garrafa_de___gua_ao_fundo_calestina_da_energia.webp";
 
 export function Step19_EnergyBenefit({ onNext }: StepProps) {
   return (
@@ -12,7 +12,10 @@ export function Step19_EnergyBenefit({ onNext }: StepProps) {
       transition={{ duration: 0.5 }}
       className="flex flex-col w-full max-w-md mx-auto pt-2 pb-8 text-center"
     >
-      <div className="mb-8 rounded-2xl overflow-hidden shadow-card border border-border-subtle relative" style={{ aspectRatio: "1/1" }}>
+      <div
+        className="mb-8 rounded-2xl overflow-hidden shadow-card border border-border-subtle relative"
+        style={{ aspectRatio: "1/1" }}
+      >
         <img
           src={imgEnergia}
           alt="Mulher adulta em casa com luz da manhã, respirando fundo e sorrindo após treino, com tapete e garrafa d'água"
@@ -30,7 +33,8 @@ export function Step19_EnergyBenefit({ onNext }: StepProps) {
         </h2>
 
         <p className="text-text-secondary leading-relaxed">
-          Esses exercícios fortalecem seus músculos, núcleo e aumentam a consciência corporal.
+          Esses exercícios fortalecem seus músculos, núcleo e aumentam a
+          consciência corporal.
         </p>
 
         <p className="text-text-primary font-bold">
@@ -42,5 +46,5 @@ export function Step19_EnergyBenefit({ onNext }: StepProps) {
         CONTINUAR
       </Button>
     </motion.div>
-  )
+  );
 }

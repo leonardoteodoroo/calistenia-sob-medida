@@ -1,11 +1,10 @@
-
-import { motion } from "framer-motion"
-import { OptionCard } from "../ui/OptionCard"
-import imgMulher from "../../assets/images/Mulher adulta em casa, com roupa de treino discreta, sorrindo com confiança em uma sala iluminada por luz natural- step01.webp"
-import imgHomem from "../../assets/images/Homem adulto em casa, com roupa esportiva simples, expressão amigável e confiante em uma sala clara- step01.webp"
+import { motion } from "framer-motion";
+import { OptionCard } from "../ui/OptionCard";
+import imgMulher from "../../assets/images/Mulher adulta em casa, com roupa de treino discreta, sorrindo com confiança em uma sala iluminada por luz natural- step01.webp";
+import imgHomem from "../../assets/images/Homem adulto em casa, com roupa esportiva simples, expressão amigável e confiante em uma sala clara- step01.webp";
 
 interface StepProps {
-  onNext: (data: string) => void
+  onNext: (data: string) => void;
 }
 
 export function Step01_Gender({ onNext }: StepProps) {
@@ -19,11 +18,16 @@ export function Step01_Gender({ onNext }: StepProps) {
     >
       <header className="space-y-4 text-center">
         <h1 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Você está muito perto de descobrir qual o melhor tipo de treino para alcançar os resultados que você deseja.
+          Você está muito perto de descobrir qual o melhor tipo de treino para
+          alcançar os resultados que você deseja.
         </h1>
         <div className="space-y-1">
-          <p className="text-text-secondary text-base">Para isso, precisamos de algumas informações.</p>
-          <p className="text-text-secondary font-semibold text-lg">Para começar, você é:</p>
+          <p className="text-text-secondary text-base">
+            Para isso, precisamos de algumas informações.
+          </p>
+          <p className="text-text-secondary font-semibold text-lg">
+            Para começar, você é:
+          </p>
         </div>
       </header>
 
@@ -64,5 +68,5 @@ export function Step01_Gender({ onNext }: StepProps) {
         </OptionCard>
       </div>
     </motion.div>
-  )
+  );
 }

@@ -1,21 +1,33 @@
-import React from "react"
-import { motion } from "framer-motion"
-import type { HTMLMotionProps } from "framer-motion"
-import { cn } from "../../lib/utils"
+import React from "react";
+import { motion } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
+import { cn } from "../../lib/utils";
 
 interface OptionCardProps extends Omit<HTMLMotionProps<"button">, "onSelect"> {
-  title: string
-  subtitle?: string
-  imageSrc?: string
-  selected?: boolean
-  onSelect: () => void
-  fetchPriority?: 'high' | 'low' | 'auto'
-  loading?: 'lazy' | 'eager'
-  hideIndicator?: boolean
-  children?: React.ReactNode
+  title: string;
+  subtitle?: string;
+  imageSrc?: string;
+  selected?: boolean;
+  onSelect: () => void;
+  fetchPriority?: "high" | "low" | "auto";
+  loading?: "lazy" | "eager";
+  hideIndicator?: boolean;
+  children?: React.ReactNode;
 }
 
-export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetchPriority, loading = 'lazy', hideIndicator = false, children, className, ...props }: OptionCardProps) {
+export function OptionCard({
+  title,
+  subtitle,
+  imageSrc,
+  selected,
+  onSelect,
+  fetchPriority,
+  loading = "lazy",
+  hideIndicator = false,
+  children,
+  className,
+  ...props
+}: OptionCardProps) {
   return (
     <motion.button
       onClick={onSelect}
@@ -28,7 +40,7 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
         selected
           ? "border-primary bg-surface-subtle shadow-card-hover"
           : "border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50",
-        className
+        className,
       )}
       {...props}
     >
@@ -55,8 +67,12 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
         </div>
       )}
 
-      <div className={`p-3 flex flex-col gap-0.5 w-full relative z-10 ${hideIndicator ? 'items-center text-center' : 'p-5'}`}>
-        <p className={`font-heading font-bold text-base ${selected ? "text-primary" : "text-text-primary"}`}>
+      <div
+        className={`p-3 flex flex-col gap-0.5 w-full relative z-10 ${hideIndicator ? "items-center text-center" : "p-5"}`}
+      >
+        <p
+          className={`font-heading font-bold text-base ${selected ? "text-primary" : "text-text-primary"}`}
+        >
           {title}
         </p>
         {subtitle && (
@@ -66,10 +82,12 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
 
       {/* Indicador de seleção — opcional via hideIndicator */}
       {!hideIndicator && (
-        <div className={cn(
-          "absolute right-4 top-4 h-6 w-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center bg-surface-card",
-          selected ? "border-primary bg-primary" : "border-border-subtle"
-        )}>
+        <div
+          className={cn(
+            "absolute right-4 top-4 h-6 w-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center bg-surface-card",
+            selected ? "border-primary bg-primary" : "border-border-subtle",
+          )}
+        >
           {selected && (
             <motion.div
               initial={{ scale: 0 }}
@@ -80,5 +98,5 @@ export function OptionCard({ title, subtitle, imageSrc, selected, onSelect, fetc
         </div>
       )}
     </motion.button>
-  )
+  );
 }

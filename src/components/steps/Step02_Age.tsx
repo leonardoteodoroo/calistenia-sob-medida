@@ -1,13 +1,12 @@
-
-import { motion } from "framer-motion"
-import { OptionCard } from "../ui/OptionCard"
-import img1829 from "../../assets/images/mulher_jovem_em_casa_segurando_um_tapete_de_yoga__com_olhar_determinado_e_ambiente_minimalista_18_29_setp02.webp"
-import img2939 from "../../assets/images/mulher_adulta_em_sala_de_casa__com_roupa_de_treino_confort__vel__garrafa_de___gua_e_t__nis_ao_lado__pronta_para_come__ar_29_39_step02.webp"
-import img3959 from "../../assets/images/mulher_madura_em_casa__com_roupa_de_treino_discreta_e_express__o_serena__transmitindo_confian__a_e_bem-estar_39_59_step02.webp"
-import img60 from "../../assets/images/mulher_60__em_casa_fazendo_um_alongamento_leve_com_postura_segura__em_ambiente_claro_e_acolhedor_60_setp2.webp"
+import { motion } from "framer-motion";
+import { OptionCard } from "../ui/OptionCard";
+import img1829 from "../../assets/images/mulher_jovem_em_casa_segurando_um_tapete_de_yoga__com_olhar_determinado_e_ambiente_minimalista_18_29_setp02.webp";
+import img2939 from "../../assets/images/mulher_adulta_em_sala_de_casa__com_roupa_de_treino_confort__vel__garrafa_de___gua_e_t__nis_ao_lado__pronta_para_come__ar_29_39_step02.webp";
+import img3959 from "../../assets/images/mulher_madura_em_casa__com_roupa_de_treino_discreta_e_express__o_serena__transmitindo_confian__a_e_bem-estar_39_59_step02.webp";
+import img60 from "../../assets/images/mulher_60__em_casa_fazendo_um_alongamento_leve_com_postura_segura__em_ambiente_claro_e_acolhedor_60_setp2.webp";
 
 interface StepProps {
-  onNext: (data: string) => void
+  onNext: (data: string) => void;
 }
 
 const options = [
@@ -35,7 +34,7 @@ const options = [
     src: img60,
     alt: "Mulher com 60 anos fazendo alongamento leve em casa, postura segura em ambiente acolhedor",
   },
-]
+];
 
 export function Step02_Age({ onNext }: StepProps) {
   return (
@@ -50,7 +49,9 @@ export function Step02_Age({ onNext }: StepProps) {
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
           Desafio específico para sua idade e objetivo:
         </h2>
-        <p className="text-text-secondary text-base">Escolha uma opção abaixo:</p>
+        <p className="text-text-secondary text-base">
+          Escolha uma opção abaixo:
+        </p>
       </header>
 
       {/* Sempre 2 colunas — funciona bem em 390px */}
@@ -75,5 +76,5 @@ export function Step02_Age({ onNext }: StepProps) {
         ))}
       </div>
     </motion.div>
-  )
+  );
 }

@@ -1,16 +1,34 @@
+import { motion } from "framer-motion";
 
-import { motion } from "framer-motion"
-
-type OptionItem = { id: string; label: string }
+type OptionItem = {
+  id: string;
+  label: string;
+  icon?: string;
+  image?: string;
+};
 
 type QuizButtonsProps = {
-  title: string
-  options: OptionItem[]
-  onNext: (val: string) => void
-}
+  title: string;
+  options: OptionItem[];
+  onNext: (val: string) => void;
+  layout?: "list" | "grid";
+};
+
+const shadow = {
+  normal: "0 5px 0px rgba(100, 100, 110, 0.35), 0 8px 16px rgba(0,0,0,0.08)",
+  hover: "0 7px 0px rgba(100, 100, 110, 0.45), 0 12px 20px rgba(0,0,0,0.10)",
+  tap: "0 1px 0px rgba(100, 100, 110, 0.40), 0 2px 4px rgba(0,0,0,0.06)",
+};
 
 /** Botão 3D reutilizável para steps de pergunta simples */
-export function QuizButtons({ title, options, onNext }: QuizButtonsProps) {
+export function QuizButtons({
+  title,
+  options,
+  onNext,
+  layout = "list",
+}: QuizButtonsProps) {
+  const isGrid = layout === "grid";
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -25,7 +43,9 @@ export function QuizButtons({ title, options, onNext }: QuizButtonsProps) {
         </h2>
       </header>
 
-      <div className="flex flex-col gap-3">
+      <div
+        className={isGrid ? "grid grid-cols-2 gap-4" : "flex flex-col gap-6"}
+      >
         {options.map((opt, i) => (
           <motion.button
             key={opt.id}
@@ -33,25 +53,43 @@ export function QuizButtons({ title, options, onNext }: QuizButtonsProps) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06, duration: 0.3 }}
-            whileHover={{
-              y: -3,
-              boxShadow: "0 8px 0px #285E61, 0 12px 20px rgba(44,122,123,0.22)",
-            }}
+            whileHover={{ y: -3, boxShadow: shadow.hover }}
             whileTap={{
-              y: 3,
-              boxShadow: "0 1px 0px #285E61, 0 2px 4px rgba(44,122,123,0.1)",
+              y: 4,
+              boxShadow: shadow.tap,
+              transition: { duration: 0.07 },
             }}
-            style={{
-              boxShadow: "0 5px 0px #3a9a9b, 0 8px 16px rgba(44,122,123,0.15)",
-            }}
-            className="group w-full flex items-center justify-center rounded-xl border-2 border-primary/40 bg-surface-card px-6 py-5 text-center transition-colors duration-200 hover:border-primary hover:bg-[#F0FAFA]"
+            style={{ boxShadow: shadow.normal }}
+            className={`group w-full flex rounded-2xl border border-primary/30 bg-surface-card text-center cursor-pointer hover:border-primary/70 hover:bg-[#F2FAFA] active:bg-[#E8F6F6] ${
+              isGrid
+                ? "flex-col items-center gap-2 px-3 pt-3 pb-4"
+                : "flex-row items-center justify-center gap-3 px-6 py-6"
+            }`}
           >
-            <span className="font-heading font-bold text-lg text-text-primary group-hover:text-primary transition-colors duration-200">
+            {/* Imagem 3D (modo grid) */}
+            {opt.image && (
+              <img
+                src={opt.image}
+                alt={`Ilustração de corpo: ${opt.label}`}
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-square object-cover object-top rounded-xl pointer-events-none"
+              />
+            )}
+
+            {/* Ícone inline (modo lista) */}
+            {opt.icon && !opt.image && (
+              <span className="text-xl text-text-secondary group-hover:text-primary">
+                {opt.icon}
+              </span>
+            )}
+
+            <span className="font-heading font-bold text-base text-text-primary group-hover:text-primary leading-tight">
               {opt.label}
             </span>
           </motion.button>
         ))}
       </div>
     </motion.div>
-  )
+  );
 }

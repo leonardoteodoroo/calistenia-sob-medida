@@ -51,12 +51,17 @@ export const ChoiceGrid: React.FC<ChoiceGridProps> = ({
             key={opt.id}
             type="button"
             onClick={() => toggle(opt.id)}
-            className={`text-left rounded-2xl border p-3 transition-all bg-white hover:bg-zinc-50 ${selected ? 'border-transparent' : 'border-zinc-200'
-              }`}
-            style={selected ? {
-              borderColor: '#2C7A7B',
-              boxShadow: '0 0 0 2px rgba(44,122,123,0.2)',
-            } : undefined}
+            className={`text-left rounded-2xl border p-3 transition-all bg-white hover:bg-zinc-50 ${
+              selected ? "border-transparent" : "border-zinc-200"
+            }`}
+            style={
+              selected
+                ? {
+                    borderColor: "#2C7A7B",
+                    boxShadow: "0 0 0 2px rgba(44,122,123,0.2)",
+                  }
+                : undefined
+            }
             aria-pressed={selected}
           >
             {opt.image && (

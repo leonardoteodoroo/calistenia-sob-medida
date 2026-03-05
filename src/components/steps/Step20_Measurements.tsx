@@ -1,78 +1,87 @@
-import React, { useState, useRef } from 'react'
-import { StepShell } from '../ui/StepShell'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useRef } from "react";
+import { StepShell } from "../ui/StepShell";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Tokens do Design System ────────────────────────────
 const DS = {
-  teal: '#2C7A7B',
-  rose: '#D53F8C',
-  text: '#2D3748',
-  textSecondary: '#4A5568',
-  textMuted: '#A0AEC0',
-  surfaceSection: '#F3EFEA',
-  card: '#FFFFFF',
-  border: '#E2E8F0',
-}
+  teal: "#2C7A7B",
+  rose: "#D53F8C",
+  text: "#2D3748",
+  textSecondary: "#4A5568",
+  textMuted: "#A0AEC0",
+  surfaceSection: "#F3EFEA",
+  card: "#FFFFFF",
+  border: "#E2E8F0",
+};
 
-const MASK = 'linear-gradient(to right, transparent, black 14%, black 86%, transparent)'
+const MASK =
+  "linear-gradient(to right, transparent, black 14%, black 86%, transparent)";
 
 // ─── Ghost Finger (Opção A) — loop até interação ────────
 const GhostFinger: React.FC<{ color: string }> = ({ color }) => (
   <motion.div
     className="absolute pointer-events-none z-30 top-1/2 -translate-y-1/2"
     style={{
-      width: 42, height: 42,
-      borderRadius: '50%',
+      width: 42,
+      height: 42,
+      borderRadius: "50%",
       background: `${color}28`,
       border: `2px solid ${color}77`,
-      left: 'calc(50% - 20px)',
+      left: "calc(50% - 20px)",
     }}
     animate={{
-      x: ['-18px', '18px', '-18px'],
+      x: ["-18px", "18px", "-18px"],
       opacity: [0.25, 0.85, 0.25],
     }}
     transition={{
       duration: 1.8,
-      ease: 'easeInOut',
+      ease: "easeInOut",
       repeat: Infinity,
-      repeatType: 'loop',
+      repeatType: "loop",
     }}
   />
-)
+);
 
 // ─── RulerSlider ─────────────────────────────────────────
 interface RulerSliderProps {
-  label: string
-  value: number
-  unit: string
-  min: number
-  max: number
-  onChange: (v: number) => void
-  accentColor?: string
-  showHint?: boolean
-  showGhost?: boolean
+  label: string;
+  value: number;
+  unit: string;
+  min: number;
+  max: number;
+  onChange: (v: number) => void;
+  accentColor?: string;
+  showHint?: boolean;
+  showGhost?: boolean;
 }
 
 const RulerSlider: React.FC<RulerSliderProps> = ({
-  label, value, unit, min, max, onChange,
+  label,
+  value,
+  unit,
+  min,
+  max,
+  onChange,
   accentColor = DS.teal,
   showHint = false,
   showGhost = false,
 }) => {
   // ── Drag via PointerEvents — valor nunca salta ────────
-  const isDragging = useRef(false)
-  const startX = useRef(0)
-  const startValue = useRef(value)
-  const PX_PER_UNIT = 8 // pixels necessários para mudar 1 unidade
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startValue = useRef(value);
+  const PX_PER_UNIT = 8; // pixels necessários para mudar 1 unidade
 
-  const range = 18
-  const tickMin = Math.max(min, value - range)
-  const tickMax = Math.min(max, value + range)
-  const ticks = Array.from({ length: tickMax - tickMin + 1 }, (_, i) => tickMin + i)
+  const range = 18;
+  const tickMin = Math.max(min, value - range);
+  const tickMax = Math.min(max, value + range);
+  const ticks = Array.from(
+    { length: tickMax - tickMin + 1 },
+    (_, i) => tickMin + i,
+  );
 
   return (
     <div className="flex flex-col gap-2">
-
       {/* Label + valor numérico */}
       <div className="flex justify-between items-end">
         <span
@@ -88,7 +97,10 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
           >
             {value}
           </span>
-          <span className="text-xs font-bold uppercase" style={{ color: accentColor }}>
+          <span
+            className="text-xs font-bold uppercase"
+            style={{ color: accentColor }}
+          >
             {unit}
           </span>
         </div>
@@ -96,7 +108,6 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
 
       {/* Ruler container */}
       <div className="relative">
-
         {/* Ticks visuais (pointer-events: none) */}
         <div
           className="relative h-12 flex items-end pb-1 overflow-hidden pointer-events-none"
@@ -111,20 +122,29 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
           {/* Pino central */}
           <div
             className="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-full z-10"
-            style={{ background: accentColor, boxShadow: `0 0 8px ${accentColor}99` }}
+            style={{
+              background: accentColor,
+              boxShadow: `0 0 8px ${accentColor}99`,
+            }}
           />
           {/* Ticks */}
           <div className="flex items-end gap-[9px] w-full justify-center px-2">
             {ticks.map((t) => {
-              const isCurrent = t === value
-              const h = isCurrent ? 26 : t % 5 === 0 ? 18 : 10
+              const isCurrent = t === value;
+              const h = isCurrent ? 26 : t % 5 === 0 ? 18 : 10;
               return (
-                <div key={t} style={{
-                  width: 1.5, height: h, flexShrink: 0, borderRadius: 2,
-                  background: isCurrent ? accentColor : '#CBD5E0',
-                  opacity: isCurrent ? 1 : 0.55,
-                }} />
-              )
+                <div
+                  key={t}
+                  style={{
+                    width: 1.5,
+                    height: h,
+                    flexShrink: 0,
+                    borderRadius: 2,
+                    background: isCurrent ? accentColor : "#CBD5E0",
+                    opacity: isCurrent ? 1 : 0.55,
+                  }}
+                />
+              );
             })}
           </div>
         </div>
@@ -143,30 +163,38 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
           aria-valuenow={value}
           tabIndex={0}
           className="absolute inset-0 z-20"
-          style={{ touchAction: 'none', cursor: isDragging.current ? 'grabbing' : 'grab' }}
+          style={{
+            touchAction: "none",
+            cursor: isDragging.current ? "grabbing" : "grab",
+          }}
           onPointerDown={(e) => {
-            isDragging.current = true
-            startX.current = e.clientX
-            startValue.current = value
-            e.currentTarget.setPointerCapture(e.pointerId)
+            isDragging.current = true;
+            startX.current = e.clientX;
+            startValue.current = value;
+            e.currentTarget.setPointerCapture(e.pointerId);
           }}
           onPointerMove={(e) => {
-            if (!isDragging.current) return
-            const delta = Math.round((e.clientX - startX.current) / PX_PER_UNIT)
-            const next = Math.min(max, Math.max(min, startValue.current + delta))
-            onChange(next)
+            if (!isDragging.current) return;
+            const delta = Math.round(
+              (e.clientX - startX.current) / PX_PER_UNIT,
+            );
+            const next = Math.min(
+              max,
+              Math.max(min, startValue.current + delta),
+            );
+            onChange(next);
           }}
           onPointerUp={(e) => {
-            isDragging.current = false
-            e.currentTarget.releasePointerCapture(e.pointerId)
+            isDragging.current = false;
+            e.currentTarget.releasePointerCapture(e.pointerId);
           }}
           onPointerCancel={(e) => {
-            isDragging.current = false
-            e.currentTarget.releasePointerCapture(e.pointerId)
+            isDragging.current = false;
+            e.currentTarget.releasePointerCapture(e.pointerId);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'ArrowRight') onChange(Math.min(max, value + 1))
-            if (e.key === 'ArrowLeft') onChange(Math.max(min, value - 1))
+            if (e.key === "ArrowRight") onChange(Math.min(max, value + 1));
+            if (e.key === "ArrowLeft") onChange(Math.max(min, value - 1));
           }}
         />
       </div>
@@ -175,14 +203,28 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
       <div style={{ maskImage: MASK, WebkitMaskImage: MASK }}>
         <div className="flex gap-[9px] justify-center px-2">
           {ticks.map((t) => (
-            <div key={t} style={{ width: 1.5, flexShrink: 0, position: 'relative', height: 14 }}>
+            <div
+              key={t}
+              style={{
+                width: 1.5,
+                flexShrink: 0,
+                position: "relative",
+                height: 14,
+              }}
+            >
               {t % 10 === 0 && (
-                <span style={{
-                  position: 'absolute', left: '50%', transform: 'translateX(-50%)',
-                  fontSize: 9, lineHeight: 1, whiteSpace: 'nowrap',
-                  color: t === value ? accentColor : DS.textMuted,
-                  fontWeight: t === value ? 700 : 500,
-                }}>
+                <span
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    fontSize: 9,
+                    lineHeight: 1,
+                    whiteSpace: "nowrap",
+                    color: t === value ? accentColor : DS.textMuted,
+                    fontWeight: t === value ? 700 : 500,
+                  }}
+                >
                   {t}
                 </span>
               )}
@@ -199,36 +241,40 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.3 }}
             className="text-center text-[11px] font-medium select-none"
-            style={{ color: DS.textMuted, letterSpacing: '0.05em' }}
+            style={{ color: DS.textMuted, letterSpacing: "0.05em" }}
           >
             ‹ deslize para ajustar ›
           </motion.p>
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
 // ─── Componente principal ────────────────────────────────
-export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = ({ onNext }) => {
-  const [height, setHeight] = useState(165)
-  const [weight, setWeight] = useState(70)
-  const [idealWeight, setIdealWeight] = useState(60)
-  const [hasInteracted, setHasInteracted] = useState(false)
+export const Step20_Measurements: React.FC<{
+  onNext: (val: string) => void;
+}> = ({ onNext }) => {
+  const [height, setHeight] = useState(165);
+  const [weight, setWeight] = useState(70);
+  const [idealWeight, setIdealWeight] = useState(60);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const interact = (setter: (v: number) => void) => (v: number) => {
-    if (!hasInteracted) setHasInteracted(true)
-    setter(v)
-  }
+    if (!hasInteracted) setHasInteracted(true);
+    setter(v);
+  };
 
-  const delta = weight - idealWeight
+  const delta = weight - idealWeight;
   const deltaLabel =
-    delta > 0 ? `−${delta} kg até sua meta`
-      : delta === 0 ? 'Você já está na meta! 🎯'
-        : `+${Math.abs(delta)} kg abaixo da meta`
+    delta > 0
+      ? `−${delta} kg até sua meta`
+      : delta === 0
+        ? "Você já está na meta! 🎯"
+        : `+${Math.abs(delta)} kg abaixo da meta`;
 
-  const progressPct = Math.min(100, Math.max(5, (idealWeight / weight) * 100))
-  const imc = weight / (height / 100) ** 2
+  const progressPct = Math.min(100, Math.max(5, (idealWeight / weight) * 100));
+  const imc = weight / (height / 100) ** 2;
 
   return (
     <StepShell
@@ -236,10 +282,12 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
       subtitle="Deslize cada régua para calibrar seu plano personalizado."
     >
       <div className="flex flex-col gap-6">
-
         <RulerSlider
           label="Sua Altura"
-          value={height} unit="cm" min={140} max={220}
+          value={height}
+          unit="cm"
+          min={140}
+          max={220}
           onChange={interact(setHeight)}
           accentColor={DS.teal}
           showHint={!hasInteracted}
@@ -250,7 +298,10 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
 
         <RulerSlider
           label="Seu Peso Atual"
-          value={weight} unit="kg" min={40} max={180}
+          value={weight}
+          unit="kg"
+          min={40}
+          max={180}
           onChange={interact(setWeight)}
           accentColor={DS.teal}
           showHint={!hasInteracted}
@@ -260,7 +311,10 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
 
         <RulerSlider
           label="Peso Ideal"
-          value={idealWeight} unit="kg" min={40} max={150}
+          value={idealWeight}
+          unit="kg"
+          min={40}
+          max={150}
           onChange={interact(setIdealWeight)}
           accentColor={DS.rose}
           showHint={!hasInteracted}
@@ -269,9 +323,20 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
         {/* ── BOTÃO sobe aqui — visível sem scroll na maioria dos celulares ── */}
         <button
           type="button"
-          onClick={() => onNext(JSON.stringify({ altura: height, peso: weight, peso_ideal: idealWeight }))}
+          onClick={() =>
+            onNext(
+              JSON.stringify({
+                altura: height,
+                peso: weight,
+                peso_ideal: idealWeight,
+              }),
+            )
+          }
           className="w-full rounded-2xl font-extrabold px-6 py-4 text-white transition-all shadow-lg"
-          style={{ background: DS.teal, boxShadow: '0 8px 20px -4px rgba(44,122,123,0.3)' }}
+          style={{
+            background: DS.teal,
+            boxShadow: "0 8px 20px -4px rgba(44,122,123,0.3)",
+          }}
         >
           Processar Dados
         </button>
@@ -285,11 +350,14 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
           style={{
             background: DS.card,
             border: `1px solid ${DS.border}`,
-            boxShadow: '0 4px 12px rgba(44,122,123,0.07)',
+            boxShadow: "0 4px 12px rgba(44,122,123,0.07)",
           }}
         >
           <div className="flex justify-between items-center mb-3">
-            <p className="text-xs font-semibold" style={{ color: DS.textSecondary }}>
+            <p
+              className="text-xs font-semibold"
+              style={{ color: DS.textSecondary }}
+            >
               Jornada Atual → Meta
             </p>
             <span
@@ -300,22 +368,31 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
             </span>
           </div>
 
-          <div className="relative w-full h-2 rounded-full overflow-hidden mb-2" style={{ background: DS.border }}>
+          <div
+            className="relative w-full h-2 rounded-full overflow-hidden mb-2"
+            style={{ background: DS.border }}
+          >
             <motion.div
               className="absolute left-0 top-0 h-full rounded-full"
               animate={{ width: `${progressPct}%` }}
-              transition={{ type: 'spring', bounce: 0.25, duration: 0.5 }}
-              style={{ background: `linear-gradient(90deg, ${DS.teal}, ${DS.rose})` }}
+              transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+              style={{
+                background: `linear-gradient(90deg, ${DS.teal}, ${DS.rose})`,
+              }}
             />
           </div>
 
           <div className="flex justify-between items-center">
-            <span className="text-[11px] font-medium" style={{ color: DS.textMuted }}>
+            <span
+              className="text-[11px] font-medium"
+              style={{ color: DS.textMuted }}
+            >
               {weight} kg hoje
             </span>
             <motion.span
               key={deltaLabel}
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               className="text-[11px] font-bold"
               style={{ color: delta >= 0 ? DS.rose : DS.teal }}
             >
@@ -324,10 +401,13 @@ export const Step20_Measurements: React.FC<{ onNext: (val: string) => void }> = 
           </div>
         </motion.div>
 
-        <p className="text-center text-[11px] font-medium italic" style={{ color: DS.textMuted }}>
+        <p
+          className="text-center text-[11px] font-medium italic"
+          style={{ color: DS.textMuted }}
+        >
           Cálculos baseados em composição corporal padrão.
         </p>
       </div>
     </StepShell>
-  )
-}
+  );
+};

@@ -1,17 +1,23 @@
 # DESIGN SYSTEM + PERFORMANCE SYSTEM — TOKENS SEMÂNTICOS (Quiz Calistenia Feminina)
 
 ## TAREFA
+
 Este documento serve como a “Bíblia Visual e Técnica” do projeto: define nomenclatura semântica, padrões de UI, e guardrails de implementação para performance, estabilidade, acessibilidade, segurança e SEO.
 
 ## 🚨 IMPORTANTE: FILOSOFIA DE ADAPTAÇÃO
+
 Este sistema define a ESTRUTURA. Os valores foram preenchidos de acordo com a persona e o nicho de (Calistenia Feminina, 36-49 anos, foco em bem-estar, emagrecimento, autoconfiança, superação de frustrações e busca de rotina prática).
 
 O tom é **Acolhedor, Seguro, Elegante e Prático**. Rejeitamos a estética "neon/crossfit agressiva" e abraçamos o "Wellness Premium".
 
 ---
+
 ## 1) CORES (TOKENS SEMÂNTICOS)
+
 Observação: tokens definem papéis; os valores refletem a paleta "Confiança e Cuidado" (Blush Pink, Taupe, Ivory e Deep Teal).
+
 ### Texto
+
 text-primary: #2D3748 (Cinza chumbo profundo - legibilidade máxima sem a dureza do preto puro)
 text-secondary: #4A5568 (Cinza médio - elegante e calmo para leituras longas)
 text-muted: #A0AEC0 (Cinza claro - para hints e placeholders sutis)
@@ -20,6 +26,7 @@ text-on-brand: #FFFFFF (Branco puro - para alto contraste sobre botões primári
 text-on-strong: #FFFFFF (Branco puro)
 
 ### Superfícies (Backgrounds)
+
 surface-page: #FAF9F6 (Ivory / Marfim - traz aconchego e clareza mental, evitando o branco clínico)
 surface-section: #F3EFEA (Taupe ultra claro - para quebra de seção sutil e orgânica)
 surface-card: #FFFFFF (Branco puro - para destacar blocos de conteúdo com sombras leves)
@@ -27,6 +34,7 @@ surface-subtle: #FDF8F5 (Blush palest - toque feminino e acolhedor invisível)
 surface-elevated: #FFFFFF (Para modais e popups, foco total no conteúdo)
 
 ### Ações (Actions & Buttons)
+
 action-primary: #2C7A7B (Teal / Verde-azulado - confiança, calma, "vida sob controle")
 action-primary-hover: #285E61 (Teal escuro)
 action-primary-active: #234E52 (Teal extra escuro)
@@ -41,16 +49,19 @@ action-strong-active: #97266D (Rose profundo)
 action-strong-disabled: #FED7E2 (Rose pálido)
 
 ### Gradientes
+
 gradient-primary: linear-gradient(135deg, #FAF9F6 0%, #F3EFEA 100%) (Ivory para Taupe sutil)
 gradient-cta: linear-gradient(135deg, #D53F8C 0%, #B83280 100%) (Rose vibrante para Rose escuro para conversão no fim do Quiz)
 
 ### Bordas (Borders)
+
 border-default: #E2E8F0 (Cinza sutil - separações limpas)
 border-subtle: #EDF2F7 (Cinza ultra leve)
 border-focus: #319795 (Teal vibrante - anel de foco acessível)
 border-disabled: #CBD5E0 (Cinza médio claro)
 
 ### Status (cor + superfície)
+
 status-success: #38A169 (Verde seguro da saúde)
 status-success-surface: #F0FFF4 (Fundo verde menta)
 status-warning: #DD6B20 (Laranja terroso/motivação)
@@ -59,12 +70,15 @@ status-error: #E53E3E (Vermelho clássico)
 status-error-surface: #FFF5F5 (Fundo vermelho suave - sem trigger de pânico)
 
 ### Links e Destaques
+
 link-default: #2C7A7B (Teal da marca)
 link-hover: #285E61 (Teal Escuro e sublinhado grosso)
 highlight: #FEEBC8 (Amarelo/Laranja pálido - marca-texto sutil)
 
 ---
+
 ## 2) ESPAÇAMENTO (SPACING SCALE)
+
 space-1: 4px
 space-2: 8px
 space-3: 12px
@@ -77,11 +91,14 @@ space-20: 80px
 space-24: 96px
 
 ---
+
 ## 3) TIPOGRAFIA (TYPOGRAPHY)
+
 font-family-base: 'Open Sans', sans-serif (Quente, legível, robusta e amigável para celulares)
 font-family-heading: 'Merriweather', serif (Elegante, natural e traz credibilidade editorial/premium)
 
 ### Tamanhos
+
 text-xs: 12px
 text-sm: 14px
 text-base: 16px
@@ -94,24 +111,29 @@ text-5xl: 48px
 text-6xl: 56px
 
 ### Pesos
+
 font-normal: 400
 font-medium: 500
 font-semibold: 600
 font-bold: 700
 
 ### Line-height
+
 leading-tight: 1.15
 leading-snug: 1.25
 leading-normal: 1.5
 leading-relaxed: 1.65
 
 ### Legibilidade
+
 measure-sm: 52ch
 measure-md: 64ch
 measure-lg: 72ch
 
 ---
+
 ## 4) LAYOUT & GRID
+
 container-max: 800px (Max-width reduzido para manter a interface de Quiz focada e evitar dispersão visual em Desktop)
 container-padding-x-mobile: space-4
 container-padding-x-desktop: space-6
@@ -122,7 +144,9 @@ section-padding-y-desktop: space-16
 hero-padding-y-desktop: space-20
 
 ---
+
 ## 5) RADIUS & SHADOWS
+
 radius-sm: 6px (Arredondamento orgânico de pequenas tags)
 radius-md: 12px (Bordas de inputs/cards amigáveis e femininos)
 radius-lg: 16px (Cards principais)
@@ -137,7 +161,9 @@ shadow-card-hover: 0 8px 24px rgba(44, 122, 123, 0.12) (Elevação clara da opç
 shadow-cta: 0 8px 20px -4px rgba(213, 63, 140, 0.35) (Glow Rose para o botão de compra)
 
 ---
+
 ## 6) MOTION
+
 transition-fast: 200ms (Acentuamos um pouquinho a demora para passar sensação relaxante, menos abrupta e robótica)
 transition-normal: 350ms (Para transições de steps do quiz)
 transition-slow: 600ms (Para revelações da promessa / impacto de fade-in)
@@ -147,4 +173,5 @@ motion-distance-sm: 4px (Deslocamentos curtos em opções de quiz)
 motion-distance-md: 16px (Entradas suaves das perguntas no scroll)
 
 ---
+
 Demais seções (como Camada de Impacto e Padrões de implementação) seguem a diretriz estrutural padrão enviada no template neutro.

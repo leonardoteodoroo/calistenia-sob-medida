@@ -1,15 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // Base: '/' porque o deploy usa CNAME (domínio próprio), não subpath do GitHub Pages.
 export default defineConfig({
-  plugins: [
-    react(),
-  ],
+  plugins: [react()],
   build: {
-    target: 'es2015',
+    target: "es2015",
     cssCodeSplit: true,
-    minify: 'terser',
+    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
@@ -19,12 +17,12 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor'
+          if (id.includes("node_modules")) {
+            return "vendor";
           }
         },
       },
     },
   },
-  base: '/',
-})
+  base: "/",
+});

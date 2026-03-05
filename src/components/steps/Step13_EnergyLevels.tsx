@@ -1,14 +1,35 @@
-import { motion } from "framer-motion"
-import { BatteryLow, BatteryMedium, BatteryWarning, BatteryFull } from "lucide-react"
-import type { StepProps } from "../../types"
+import { motion } from "framer-motion";
+import {
+  BatteryLow,
+  BatteryMedium,
+  BatteryWarning,
+  BatteryFull,
+} from "lucide-react";
+import type { StepProps } from "../../types";
 
 export function Step13_EnergyLevels({ onNext }: StepProps) {
   const options = [
-    { id: "baixos", label: "Baixos, sinto-me cansada durante o dia", icon: <BatteryLow className="text-status-error" /> },
-    { id: "baixa_manha", label: "Baixa após o almoço", icon: <BatteryWarning className="text-status-warning" /> },
-    { id: "arrasto", label: "Arrasto-me entre refeições", icon: <BatteryMedium className="text-status-success/70" /> },
-    { id: "elevados", label: "Elevados e estáveis", icon: <BatteryFull className="text-status-success" /> },
-  ]
+    {
+      id: "baixos",
+      label: "Baixos, sinto-me cansada durante o dia",
+      icon: <BatteryLow className="text-status-error" />,
+    },
+    {
+      id: "baixa_manha",
+      label: "Baixa após o almoço",
+      icon: <BatteryWarning className="text-status-warning" />,
+    },
+    {
+      id: "arrasto",
+      label: "Arrasto-me entre refeições",
+      icon: <BatteryMedium className="text-status-success/70" />,
+    },
+    {
+      id: "elevados",
+      label: "Elevados e estáveis",
+      icon: <BatteryFull className="text-status-success" />,
+    },
+  ];
 
   return (
     <motion.div
@@ -25,7 +46,7 @@ export function Step13_EnergyLevels({ onNext }: StepProps) {
       </header>
 
       <div className="flex flex-col gap-3">
-        {options.map(opt => (
+        {options.map((opt) => (
           <motion.button
             key={opt.id}
             onClick={() => onNext(opt.id)}
@@ -43,5 +64,5 @@ export function Step13_EnergyLevels({ onNext }: StepProps) {
         ))}
       </div>
     </motion.div>
-  )
+  );
 }

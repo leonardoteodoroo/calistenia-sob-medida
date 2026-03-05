@@ -1,10 +1,9 @@
-
-import { motion } from "framer-motion"
-import { Button } from "../ui/Button"
-import imgVoceVaiArrasar from "../../assets/images/mulher_adulta_em_casa_sorrindo_ap__s_um_treino_leve_no_tapete__com_gesto_discreto_de_vit__ria voce vai arrasar.webp"
+import { motion } from "framer-motion";
+import { Button } from "../ui/Button";
+import imgVoceVaiArrasar from "../../assets/images/mulher_adulta_em_casa_sorrindo_ap__s_um_treino_leve_no_tapete__com_gesto_discreto_de_vit__ria voce vai arrasar.webp";
 
 interface StepProps {
-  onNext: () => void
+  onNext: () => void;
 }
 
 export function Step05_Motivation({ onNext }: StepProps) {
@@ -40,15 +39,23 @@ export function Step05_Motivation({ onNext }: StepProps) {
           Você vai arrasar!
         </h2>
         <p className="text-lg text-text-secondary leading-relaxed px-2">
-          Nosso programa de calistenia é uma opção de fitness fácil e eficaz para todos os níveis. Ajudamos você a entrar em forma usando nenhum equipamento em casa!
+          Nosso programa de calistenia é uma opção de fitness fácil e eficaz
+          para todos os níveis. Ajudamos você a entrar em forma usando nenhum
+          equipamento em casa!
         </p>
       </div>
 
       <div className="w-full">
-        <Button size="lg" variant="strong" fullWidth onClick={onNext} className="shadow-cta">
+        <Button
+          size="lg"
+          variant="strong"
+          fullWidth
+          onClick={onNext}
+          className="shadow-cta"
+        >
           CONTINUAR
         </Button>
       </div>
     </motion.div>
-  )
+  );
 }

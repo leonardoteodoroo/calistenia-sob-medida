@@ -1,14 +1,17 @@
-
-import { motion } from "framer-motion"
-import { cn } from "../../lib/utils"
+import { motion } from "framer-motion";
+import { cn } from "../../lib/utils";
 
 interface MultiOptionCardProps {
-  title: string
-  selected?: boolean
-  onToggle: () => void
+  title: string;
+  selected?: boolean;
+  onToggle: () => void;
 }
 
-export function MultiOptionCard({ title, selected, onToggle }: MultiOptionCardProps) {
+export function MultiOptionCard({
+  title,
+  selected,
+  onToggle,
+}: MultiOptionCardProps) {
   return (
     <motion.button
       onClick={onToggle}
@@ -18,18 +21,25 @@ export function MultiOptionCard({ title, selected, onToggle }: MultiOptionCardPr
         "relative flex flex-row items-center justify-between w-full p-5 text-left transition-all duration-300 border-2 rounded-[var(--radius-lg)]",
         selected
           ? "border-primary bg-surface-subtle shadow-card-hover"
-          : "border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50"
+          : "border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50",
       )}
     >
-      <span className={cn("font-heading font-semibold text-base", selected ? "text-primary" : "text-text-primary")}>
+      <span
+        className={cn(
+          "font-heading font-semibold text-base",
+          selected ? "text-primary" : "text-text-primary",
+        )}
+      >
         {title}
       </span>
 
       {/* Checkbox visual customizado */}
-      <div className={cn(
-        "h-6 w-6 rounded-md border-2 transition-all flex items-center justify-center bg-surface-card shrink-0 ml-4",
-        selected ? "border-primary bg-primary" : "border-border-subtle"
-      )}>
+      <div
+        className={cn(
+          "h-6 w-6 rounded-md border-2 transition-all flex items-center justify-center bg-surface-card shrink-0 ml-4",
+          selected ? "border-primary bg-primary" : "border-border-subtle",
+        )}
+      >
         {selected && (
           <motion.svg
             initial={{ scale: 0 }}
@@ -40,10 +50,14 @@ export function MultiOptionCard({ title, selected, onToggle }: MultiOptionCardPr
             stroke="currentColor"
             strokeWidth={3}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
           </motion.svg>
         )}
       </div>
     </motion.button>
-  )
+  );
 }

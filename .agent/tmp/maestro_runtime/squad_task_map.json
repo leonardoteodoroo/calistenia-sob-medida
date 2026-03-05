@@ -1,10 +1,6 @@
 {
   "project": "Calistenia Feminina - Quiz MVP",
-  "squad": [
-    "frontend-design",
-    "interaction-design",
-    "responsive-design"
-  ],
+  "squad": ["frontend-design", "interaction-design", "responsive-design"],
   "phases": {
     "fase1_setup": {
       "leader": "frontend-design",
