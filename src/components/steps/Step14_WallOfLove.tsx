@@ -264,6 +264,8 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
           </div>
         </div>
 
+      </div>
+
     </section>
   );
 }
