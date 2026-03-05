@@ -464,41 +464,165 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
           </h3>
           <p className="text-center text-sm text-text-secondary mb-8">Prints do nosso grupo de WhatsApp</p>
 
-          <div className="space-y-4">
-            {[
-              { name: "Ana C.", time: "10:34" },
-              { name: "Fernanda L.", time: "14:12" },
-              { name: "Juliana M.", time: "09:47" },
-            ].map((proof, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-surface-card rounded-2xl border border-border shadow-sm overflow-hidden"
-              >
-                {/* Cabeçalho estilo WhatsApp */}
-                <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                    {proof.name[0]}
-                  </div>
-                  <div>
-                    <div className="text-white font-bold text-sm">{proof.name}</div>
-                    <div className="text-white/70 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
+          <div className="space-y-5">
+
+            {/* ─── CARD 1: Com placeholder de foto ─── */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: 0 }}
+              className="rounded-2xl overflow-hidden shadow-md border border-border"
+            >
+              {/* Topo estilo WhatsApp */}
+              <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">C</div>
+                <div>
+                  <div className="text-white font-bold text-sm">Carla M.</div>
+                  <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
+                </div>
+              </div>
+              {/* Fundo chat */}
+              <div className="bg-[#e5ddd5] px-3 py-4 space-y-2" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3C/svg%3E\")" }}>
+
+                {/* Mensagem recebida */}
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[80%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Gente, 2ª semana e já sinto diferença 😭🙌</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">10:32</div>
                   </div>
                 </div>
-                {/* Placeholder do print */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-surface-subtle to-surface-card flex flex-col items-center justify-center gap-3 p-6 text-center">
-                  <div className="w-12 h-12 rounded-full bg-[#25d366]/20 flex items-center justify-center">
-                    <MessageSquare className="w-6 h-6 text-[#25d366]" />
-                  </div>
-                  <p className="text-xs text-text-secondary font-medium">📸 Print do WhatsApp — {proof.name}</p>
-                  <p className="text-[10px] text-text-secondary opacity-60">(Substituir pelo print real)</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    {[0, 1, 2, 3, 4].map(s => <Star key={s} className="w-3 h-3 text-yellow-400 fill-yellow-400" />)}
+
+                {/* Placeholder foto cliente */}
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm overflow-hidden shadow-sm max-w-[75%]">
+                    <div
+                      className="w-48 h-48 flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#25d366]/40 m-2 rounded-lg cursor-pointer"
+                      style={{ background: 'rgba(37,211,102,0.06)' }}
+                    >
+                      <span className="text-2xl">📸</span>
+                      <p className="text-[11px] text-zinc-400 text-center leading-tight px-2">
+                        Coloque aqui a foto da aluna<br />pós-treino
+                      </p>
+                      <span className="text-[10px] text-[#25d366] font-bold">Clique para substituir</span>
+                    </div>
+                    <div className="text-[10px] text-zinc-400 text-right px-3 pb-2">10:33 ✓✓</div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+
+                {/* Mensagem recebida 2 */}
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[82%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Fiz só 15 min hoje e to suada igual academia 😂 nunca pensei que em casa fosse assim</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">10:34 ✓✓</div>
+                  </div>
+                </div>
+
+                {/* Resposta do grupo */}
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[70%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Eu também!! To amando 😍🔥</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1 flex items-center justify-between gap-2">
+                      <span className="text-[10px] text-[#25d366] font-semibold">Fernanda</span>
+                      <span>10:35 ✓✓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ─── CARD 2: Conversa de dor → resultado ─── */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="rounded-2xl overflow-hidden shadow-md border border-border"
+            >
+              <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">P</div>
+                <div>
+                  <div className="text-white font-bold text-sm">Patrícia R.</div>
+                  <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
+                </div>
+              </div>
+              <div className="bg-[#e5ddd5] px-3 py-4 space-y-2">
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[85%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Preciso falar uma coisa… entrei aqui sem acreditar muito não</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">14:09</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[85%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Porque já tentei academia 3x e desisti toda vez por causa das dores nas costas 😔</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">14:10</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[90%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Fiz 3 semanas do plano e as dores sumiram. Meu marido perguntou o que tava acontecendo porque to mais disposta 😂❤️</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">14:11 ✓✓</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end">
+                  <div className="bg-[#dcf8c6] rounded-t-xl rounded-bl-xl rounded-br-sm px-3 py-2 max-w-[75%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Que demais Pati!! Fico tão feliz 🥹🙌</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">14:13 ✓✓</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ─── CARD 3: Conversa de resultado de peso ─── */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: 0.2 }}
+              className="rounded-2xl overflow-hidden shadow-md border border-border"
+            >
+              <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">J</div>
+                <div>
+                  <div className="text-white font-bold text-sm">Juliana S.</div>
+                  <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
+                </div>
+              </div>
+              <div className="bg-[#e5ddd5] px-3 py-4 space-y-2">
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[85%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Meninas, me pesando hoje 🙈</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">09:41</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[85%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">-5,2kg desde que comecei 🎉🎉🎉</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">09:42 ✓✓</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[90%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Nunca consegui isso com dieta. Com treino de 15 min em casa funcionou de verdade 😭</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1">09:43 ✓✓</div>
+                  </div>
+                </div>
+
+                <div className="flex justify-start">
+                  <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm px-3 py-2 max-w-[75%] shadow-sm">
+                    <p className="text-[13px] text-zinc-800 leading-snug">Que orgulho Ju!! 🥳🔥🔥</p>
+                    <div className="text-[10px] text-zinc-400 text-right mt-1 flex items-center justify-between gap-2">
+                      <span className="text-[10px] text-[#25d366] font-semibold">Carla</span>
+                      <span>09:44 ✓✓</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+
           </div>
         </section>
 
