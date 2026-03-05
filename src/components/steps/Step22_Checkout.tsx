@@ -474,14 +474,18 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
             >
               {/* Topo estilo WhatsApp */}
               <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">C</div>
+                <img
+                  src="/images/social-proof/mulher_em_casa_com_tapete_no_ch__o_segurando_garrafinha__com_express__o_de_cansa__o_bom_ap__s_um_treino_bruna_recife_rotina_solida_pos_treino_3.webp"
+                  alt="Bruna"
+                  className="w-9 h-9 rounded-full object-cover flex-shrink-0 border-2 border-white/30"
+                />
                 <div>
-                  <div className="text-white font-bold text-sm">Carla M.</div>
+                  <div className="text-white font-bold text-sm">Bruna R.</div>
                   <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
                 </div>
               </div>
               {/* Fundo chat */}
-              <div className="bg-[#e5ddd5] px-3 py-4 space-y-2" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3C/svg%3E\")" }}>
+              <div className="bg-[#e5ddd5] px-3 py-4 space-y-2">
 
                 {/* Mensagem recebida */}
                 <div className="flex justify-start">
@@ -491,19 +495,14 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
                   </div>
                 </div>
 
-                {/* Placeholder foto cliente */}
+                {/* Foto da Bruna pós-treino dentro do chat */}
                 <div className="flex justify-start">
                   <div className="bg-white rounded-t-xl rounded-br-xl rounded-bl-sm overflow-hidden shadow-sm max-w-[75%]">
-                    <div
-                      className="w-48 h-48 flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#25d366]/40 m-2 rounded-lg cursor-pointer"
-                      style={{ background: 'rgba(37,211,102,0.06)' }}
-                    >
-                      <span className="text-2xl">📸</span>
-                      <p className="text-[11px] text-zinc-400 text-center leading-tight px-2">
-                        Coloque aqui a foto da aluna<br />pós-treino
-                      </p>
-                      <span className="text-[10px] text-[#25d366] font-bold">Clique para substituir</span>
-                    </div>
+                    <img
+                      src="/images/social-proof/mulher_em_casa_com_tapete_no_ch__o_segurando_garrafinha__com_express__o_de_cansa__o_bom_ap__s_um_treino_bruna_recife_rotina_solida_pos_treino_3.webp"
+                      alt="Bruna R. pós-treino"
+                      className="w-full max-w-[200px] object-cover"
+                    />
                     <div className="text-[10px] text-zinc-400 text-right px-3 pb-2">10:33 ✓✓</div>
                   </div>
                 </div>
@@ -536,7 +535,11 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               className="rounded-2xl overflow-hidden shadow-md border border-border"
             >
               <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">P</div>
+                <img
+                  src="/images/social-proof/mulher_em_ambiente_dom__stico_usando_uma_cadeira_como_apoio_com_express__o_satisfeita__em_foto_simples_de_celular_patricia_curitiba_treino_cadeira_3.webp"
+                  alt="Patrícia"
+                  className="w-9 h-9 rounded-full object-cover flex-shrink-0 border-2 border-white/30"
+                />
                 <div>
                   <div className="text-white font-bold text-sm">Patrícia R.</div>
                   <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
@@ -581,7 +584,11 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               className="rounded-2xl overflow-hidden shadow-md border border-border"
             >
               <div className="bg-[#075e54] px-4 py-2.5 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#25d366] flex items-center justify-center text-white font-black text-sm flex-shrink-0">J</div>
+                <img
+                  src="/images/social-proof/mulher_em_espa__o_simples_de_casa_com_tapete_no_ch__o__preparando-se_para_treinar_sem_equipamentos_juliana_bh_treino_casa_3.webp"
+                  alt="Juliana"
+                  className="w-9 h-9 rounded-full object-cover flex-shrink-0 border-2 border-white/30"
+                />
                 <div>
                   <div className="text-white font-bold text-sm">Juliana S.</div>
                   <div className="text-white/60 text-[10px]">Grupo: Calistenia Sob Medida 💚</div>
