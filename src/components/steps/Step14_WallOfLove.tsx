@@ -139,139 +139,131 @@ function TickerRow({
 
 export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-    >
-      <section className="relative flex flex-col w-full min-w-0 max-w-full overflow-hidden" style={{ background: '#FAF9F6' }}>
+    <section className="relative flex flex-col w-full min-w-0 max-w-full overflow-hidden" style={{ background: '#FAF9F6' }}>
 
-        {/* ── Foto de fundo (ocupa toda a section) ─────────── */}
-        <div className="absolute inset-0 z-0 pointer-events-none select-none">
-          <img
-            src={bgMosaic}
-            alt=""
-            loading="eager"
-            decoding="async"
-            className="w-full h-full object-cover"
-            style={{ filter: 'blur(3px)', transform: 'scale(1.04)', opacity: 0.9 }}
-          />
-          {/* Camada levíssima para conforto visual dos cards e uniformidade */}
-          <div className="absolute inset-0" style={{ background: 'rgba(250,249,246,0.2)' }} />
-        </div>
+      {/* ── Foto de fundo (ocupa toda a section) ─────────── */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img
+          src={bgMosaic}
+          alt=""
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover"
+          style={{ filter: 'blur(3px)', transform: 'scale(1.04)', opacity: 0.9 }}
+        />
+        {/* Camada levíssima para conforto visual dos cards e uniformidade */}
+        <div className="absolute inset-0" style={{ background: 'rgba(250,249,246,0.2)' }} />
+      </div>
 
-        {/* ── Gradiente DE CIMA (Editorial long-fade) ──────────── */}
-        {/*
+      {/* ── Gradiente DE CIMA (Editorial long-fade) ──────────── */}
+      {/*
         - Afeta apenas o topo, chegando forte a 30% pra cobrir o texto
         - Para em 40% (justamente ONDE COMEÇAM OS TICKERS)
       */}
-        <div
-          className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
-          style={{
-            height: '42%',
-            background: 'linear-gradient(to bottom, rgba(250,249,246,1) 0%, rgba(250,249,246,0.95) 25%, rgba(250,249,246,0.6) 75%, rgba(250,249,246,0) 100%)',
-          }}
-        />
+      <div
+        className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
+        style={{
+          height: '42%',
+          background: 'linear-gradient(to bottom, rgba(250,249,246,1) 0%, rgba(250,249,246,0.95) 25%, rgba(250,249,246,0.6) 75%, rgba(250,249,246,0) 100%)',
+        }}
+      />
 
-        {/* ── Gradiente DE BAIXO (Editorial longo) ────────────── */}
-        {/*
+      {/* ── Gradiente DE BAIXO (Editorial longo) ────────────── */}
+      {/*
         - Chega forte até 20% para cobrir o texto do CTA
         - Para em 35% (justamente ONDE TERMINAM OS TICKERS em mobile)
       */}
-        <div
-          className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
-          style={{
-            height: '38%',
-            background: 'linear-gradient(to top, rgba(250,249,246,1) 0%, rgba(250,249,246,0.95) 30%, rgba(250,249,246,0.6) 75%, rgba(250,249,246,0) 100%)',
-          }}
-        />
+      <div
+        className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
+        style={{
+          height: '38%',
+          background: 'linear-gradient(to top, rgba(250,249,246,1) 0%, rgba(250,249,246,0.95) 30%, rgba(250,249,246,0.6) 75%, rgba(250,249,246,0) 100%)',
+        }}
+      />
 
-        {/* ── Conteúdo (acima de todos os overlays) ────────── */}
-        <div className="relative z-20 flex flex-col py-10 md:py-14 gap-8">
+      {/* ── Conteúdo (acima de todos os overlays) ────────── */}
+      <div className="relative z-20 flex flex-col py-10 md:py-14 gap-8">
 
-          {/* Cabeçalho — sobre zona branca → cores escuras */}
-          <div className="max-w-xl mx-auto px-4 w-full text-center">
-            <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-3 leading-tight">
-              Elas{" "}
-              <span className="relative inline-block" style={{ color: DS_ROSE }}>
-                começaram do zero
-                <svg
-                  className="absolute w-full h-3 -bottom-1 left-0"
-                  style={{ color: `${DS_ROSE}88` }}
-                  preserveAspectRatio="none"
-                  viewBox="0 0 100 10"
-                >
-                  <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="3" />
-                </svg>
-              </span>
-              . E continuaram.
-            </h2>
-            <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-              A cada etapa, você vai entender por que o seu plano precisa ser{" "}
-              <strong>simples</strong>, <strong>curto</strong> e <strong>progressivo</strong>.
-            </p>
-          </div>
-
-          {/* Tickers — zona onde a FOTO aparece */}
-          <div className="w-full flex flex-col gap-3 overflow-hidden">
-            <TickerRow reviews={ticker1} direction="left" speed={1.5} />
-            <TickerRow reviews={ticker2} direction="right" speed={1.5} />
-          </div>
-
-          {/* CTA Card — sobre zona branca → cores escuras */}
-          <div className="max-w-xl mx-auto px-4 w-full">
-            <div
-              className="rounded-xl p-5 text-center"
-              style={{
-                background: 'rgba(255,255,255,0.92)',
-                border: `1px solid rgba(44,122,123,0.2)`,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-              }}
-            >
-              <h3 className="text-base md:text-lg font-black text-zinc-900 mb-2">
-                A sacada mais importante:
-              </h3>
-
-              <p
-                className="text-zinc-600 mb-4 text-sm"
-                style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
+        {/* Cabeçalho — sobre zona branca → cores escuras */}
+        <div className="max-w-xl mx-auto px-4 w-full text-center">
+          <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-3 leading-tight">
+            Elas{" "}
+            <span className="relative inline-block" style={{ color: DS_ROSE }}>
+              começaram do zero
+              <svg
+                className="absolute w-full h-3 -bottom-1 left-0"
+                style={{ color: `${DS_ROSE}88` }}
+                preserveAspectRatio="none"
+                viewBox="0 0 100 10"
               >
-                Você não precisa de "motivação perfeita".{" "}
-                <span
-                  className="font-black"
-                  style={{ color: DS_TEAL, overflowWrap: 'break-word', wordBreak: 'break-word' }}
-                >
-                  Você precisa de um plano que caiba na sua vida.
-                </span>
-              </p>
-
-              <div className="flex flex-col gap-2 text-sm text-zinc-600 max-w-xs mx-auto text-left mb-5">
-                {[
-                  "Treino curto (10–20 min) pra você manter.",
-                  "Progressão simples pra você evoluir sem frustração.",
-                  "Sem equipamento pra você começar hoje.",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 shrink-0 mt-0.5" strokeWidth={3} style={{ color: DS_TEAL }} />
-                    <span style={{ overflowWrap: 'break-word' }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Button
-                variant="strong"
-                size="lg"
-                onClick={onContinue}
-                className="group rounded-xl flex items-center gap-2 mx-auto w-full md:w-auto"
-              >
-                <span>Ok. Quero continuar →</span>
-              </Button>
-            </div>
-          </div>
-
+                <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="3" />
+              </svg>
+            </span>
+            . E continuaram.
+          </h2>
+          <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
+            A cada etapa, você vai entender por que o seu plano precisa ser{" "}
+            <strong>simples</strong>, <strong>curto</strong> e <strong>progressivo</strong>.
+          </p>
         </div>
-      </section>
-    </motion.div>
+
+        {/* Tickers — zona onde a FOTO aparece */}
+        <div className="w-full flex flex-col gap-3 overflow-hidden">
+          <TickerRow reviews={ticker1} direction="left" speed={1.5} />
+          <TickerRow reviews={ticker2} direction="right" speed={1.5} />
+        </div>
+
+        {/* CTA Card — sobre zona branca → cores escuras */}
+        <div className="max-w-xl mx-auto px-4 w-full">
+          <div
+            className="rounded-xl p-5 text-center"
+            style={{
+              background: 'rgba(255,255,255,0.92)',
+              border: `1px solid rgba(44,122,123,0.2)`,
+              boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+            }}
+          >
+            <h3 className="text-base md:text-lg font-black text-zinc-900 mb-2">
+              A sacada mais importante:
+            </h3>
+
+            <p
+              className="text-zinc-600 mb-4 text-sm"
+              style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
+            >
+              Você não precisa de "motivação perfeita".{" "}
+              <span
+                className="font-black"
+                style={{ color: DS_TEAL, overflowWrap: 'break-word', wordBreak: 'break-word' }}
+              >
+                Você precisa de um plano que caiba na sua vida.
+              </span>
+            </p>
+
+            <div className="flex flex-col gap-2 text-sm text-zinc-600 max-w-xs mx-auto text-left mb-5">
+              {[
+                "Treino curto (10–20 min) pra você manter.",
+                "Progressão simples pra você evoluir sem frustração.",
+                "Sem equipamento pra você começar hoje.",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" strokeWidth={3} style={{ color: DS_TEAL }} />
+                  <span style={{ overflowWrap: 'break-word' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <Button
+              variant="strong"
+              size="lg"
+              onClick={onContinue}
+              className="group rounded-xl flex items-center gap-2 mx-auto w-full md:w-auto"
+            >
+              <span>Ok. Quero continuar →</span>
+            </Button>
+          </div>
+        </div>
+
+    </section>
   );
 }

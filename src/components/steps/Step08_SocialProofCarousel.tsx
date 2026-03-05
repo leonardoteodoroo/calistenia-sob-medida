@@ -412,192 +412,185 @@ export function Step08_SocialProofCarousel({
   }, [activeIndex, gap]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-    >
-      <section className="w-full py-4 lg:py-8 relative bg-[#f8f6f6]" style={{ overflowX: "hidden" }}>
-        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-emerald-50/60 to-transparent pointer-events-none -z-10" />
-        <div className="absolute -left-20 top-40 w-64 h-64 bg-emerald-200/30 rounded-full blur-3xl -z-10" />
-        <div className="absolute -right-20 top-20 w-80 h-80 bg-emerald-100/20 rounded-full blur-3xl -z-10" />
+    <section className="w-full py-4 lg:py-8 relative bg-[#f8f6f6]" style={{ overflowX: "hidden" }}>
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-emerald-50/60 to-transparent pointer-events-none -z-10" />
+      <div className="absolute -left-20 top-40 w-64 h-64 bg-emerald-200/30 rounded-full blur-3xl -z-10" />
+      <div className="absolute -right-20 top-20 w-80 h-80 bg-emerald-100/20 rounded-full blur-3xl -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-left space-y-6 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="text-left space-y-6 relative z-20">
 
-              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 leading-tight">
-                Gente comum, resultado real{" "}
-                <span className="text-[#ee2b5b] relative inline-block">
-                  sem drama
-                  <svg
-                    className="absolute w-full h-3 -bottom-1 left-0 text-rose-300"
-                    preserveAspectRatio="none"
-                    viewBox="0 0 100 10"
-                  >
-                    <path
-                      d="M0 5 Q 50 10 100 5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                    />
-                  </svg>
-                </span>
-              </h2>
-
-              <p className="text-lg text-gray-600 max-w-md">
-                Quando o treino respeita o seu nível e dura só 15 minutinhos na sala de casa, a consistência deixa de ser um sacrifício. Olha o que acontece na prática...
-              </p>
-
-              <div className="flex items-center gap-4 pt-2">
-                <div className="flex -space-x-3">
-                  {reviews.slice(0, 3).map((r) => (
-                    <div
-                      key={r.id}
-                      className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-emerald-100 flex-shrink-0"
-                    >
-                      {r.image ? (
-                        <img src={r.image} alt={r.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-emerald-100 text-emerald-700 font-bold">
-                          {r.initial}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <div className="text-sm text-gray-600">
-                  <span className="text-emerald-700 font-black">Depoimentos</span> de gente comum. Em casa. Sem equipamento.
-                </div>
-              </div>
-
-              <div className="hidden md:flex gap-4 mt-4 w-max">
-                <div className="flex gap-4 items-center">
-                  <button
-                    onClick={prevSlide}
-                    className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-emerald-50 hover:border-emerald-200 transition-all group shadow-sm active:scale-95"
-                    aria-label="Card anterior"
-                    type="button"
-                  >
-                    <ChevronLeft className="text-gray-500 group-hover:text-emerald-700" size={24} />
-                  </button>
-
-                  <div className="flex gap-2 items-center">
-                    {reviews.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => jumpTo(i)}
-                        aria-label={`Ir para depoimento ${i + 1}`}
-                        className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "w-6 bg-emerald-700" : "w-2 bg-gray-300 hover:bg-emerald-300"
-                          }`}
-                        type="button"
-                      />
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={nextSlide}
-                    className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-emerald-50 hover:border-emerald-200 transition-all group shadow-sm active:scale-95"
-                    aria-label="Próximo card"
-                    type="button"
-                  >
-                    <ChevronRight className="text-gray-500 group-hover:text-emerald-700" size={24} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="hidden md:flex flex-col items-start gap-2 mt-6">
-                <Button
-                  variant="strong"
-                  size="lg"
-                  onClick={onContinue}
-                  className="rounded-full w-max text-sm gap-2 uppercase tracking-wide"
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 leading-tight">
+              Gente comum, resultado real{" "}
+              <span className="text-[#ee2b5b] relative inline-block">
+                sem drama
+                <svg
+                  className="absolute w-full h-3 -bottom-1 left-0 text-rose-300"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 100 10"
                 >
-                  Ok. Quero continuar <MoveRight size={18} />
-                </Button>
-                <p className="text-xs text-gray-400 font-medium pl-1">
-                  Garantia de 7 dias — sem burocracia.
-                </p>
+                  <path
+                    d="M0 5 Q 50 10 100 5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  />
+                </svg>
+              </span>
+            </h2>
+
+            <p className="text-lg text-gray-600 max-w-md">
+              Quando o treino respeita o seu nível e dura só 15 minutinhos na sala de casa, a consistência deixa de ser um sacrifício. Olha o que acontece na prática...
+            </p>
+
+            <div className="flex items-center gap-4 pt-2">
+              <div className="flex -space-x-3">
+                {reviews.slice(0, 3).map((r) => (
+                  <div
+                    key={r.id}
+                    className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-emerald-100 flex-shrink-0"
+                  >
+                    {r.image ? (
+                      <img src={r.image} alt={r.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-emerald-100 text-emerald-700 font-bold">
+                        {r.initial}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="text-sm text-gray-600">
+                <span className="text-emerald-700 font-black">Depoimentos</span> de gente comum. Em casa. Sem equipamento.
               </div>
             </div>
 
-            <div className="relative flex flex-col items-center justify-center overflow-visible">
-              <div
-                className="relative h-[480px] md:h-[520px] w-full flex items-center justify-center touch-pan-y select-none"
-                style={{ perspective: 1000 }}
-              >
-                <motion.div
-                  className="absolute inset-0 z-50 cursor-grab active:cursor-grabbing touch-pan-y"
-                  onPan={handlePan}
-                  onPanEnd={handleDragEnd}
-                  whileTap={{ cursor: "grabbing" }}
-                />
+            <div className="hidden md:flex gap-4 mt-4 w-max">
+              <div className="flex gap-4 items-center">
+                <button
+                  onClick={prevSlide}
+                  className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-emerald-50 hover:border-emerald-200 transition-all group shadow-sm active:scale-95"
+                  aria-label="Card anterior"
+                  type="button"
+                >
+                  <ChevronLeft className="text-gray-500 group-hover:text-emerald-700" size={24} />
+                </button>
 
-                {reviews.map((review, i) => (
-                  <CarouselCard
-                    key={review.id}
-                    index={i}
-                    review={review}
-                    x={x}
-                    gap={gap}
-                    shouldReduceMotion={shouldReduceMotion}
-                    isMobile={isMobile}
-                  />
-                ))}
+                <div className="flex gap-2 items-center">
+                  {reviews.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => jumpTo(i)}
+                      aria-label={`Ir para depoimento ${i + 1} `}
+                      className={`h - 2 rounded - full transition - all duration - 300 ${i === activeIndex ? "w-6 bg-emerald-700" : "w-2 bg-gray-300 hover:bg-emerald-300"
+                        } `}
+                      type="button"
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextSlide}
+                  className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-emerald-50 hover:border-emerald-200 transition-all group shadow-sm active:scale-95"
+                  aria-label="Próximo card"
+                  type="button"
+                >
+                  <ChevronRight className="text-gray-500 group-hover:text-emerald-700" size={24} />
+                </button>
+              </div>
+            </div>
+
+            <div className="hidden md:flex flex-col items-start gap-2 mt-6">
+              <Button
+                variant="strong"
+                size="lg"
+                onClick={onContinue}
+                className="rounded-full w-max text-sm gap-2 uppercase tracking-wide"
+              >
+                Ok. Quero continuar <MoveRight size={18} />
+              </Button>
+              <p className="text-xs text-gray-400 font-medium pl-1">
+                Garantia de 7 dias — sem burocracia.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col items-center justify-center overflow-visible">
+            <div
+              className="relative h-[480px] md:h-[520px] w-full flex items-center justify-center touch-pan-y select-none"
+              style={{ perspective: 1000 }}
+            >
+              <motion.div
+                className="absolute inset-0 z-50 cursor-grab active:cursor-grabbing touch-pan-y"
+                onPan={handlePan}
+                onPanEnd={handleDragEnd}
+                whileTap={{ cursor: "grabbing" }}
+              />
+
+              {reviews.map((review, i) => (
+                <CarouselCard
+                  key={review.id}
+                  index={i}
+                  review={review}
+                  x={x}
+                  gap={gap}
+                  shouldReduceMotion={shouldReduceMotion}
+                  isMobile={isMobile}
+                />
+              ))}
+            </div>
+
+            <div className="flex md:hidden flex-col items-center mt-6 gap-4 relative z-50 pointer-events-none w-full px-4">
+              <div className="flex justify-between items-center w-full max-w-xs pointer-events-auto">
+                <button
+                  onClick={prevSlide}
+                  aria-label="Card anterior"
+                  className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/90 backdrop-blur-sm transition-all hover:bg-white shadow-sm active:scale-95 text-emerald-700"
+                  type="button"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                <div className="flex gap-1.5 items-center">
+                  {reviews.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => jumpTo(i)}
+                      aria-label={`Ir para depoimento ${i + 1} `}
+                      className={`h - 1.5 rounded - full transition - all duration - 300 ${i === activeIndex ? "w-5 bg-emerald-700" : "w-1.5 bg-gray-300"
+                        } `}
+                      type="button"
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextSlide}
+                  aria-label="Próximo card"
+                  className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/90 backdrop-blur-sm transition-all hover:bg-white shadow-sm active:scale-95 text-emerald-700"
+                  type="button"
+                >
+                  <ChevronRight size={20} />
+                </button>
               </div>
 
-              <div className="flex md:hidden flex-col items-center mt-6 gap-4 relative z-50 pointer-events-none w-full px-4">
-                <div className="flex justify-between items-center w-full max-w-xs pointer-events-auto">
-                  <button
-                    onClick={prevSlide}
-                    aria-label="Card anterior"
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/90 backdrop-blur-sm transition-all hover:bg-white shadow-sm active:scale-95 text-emerald-700"
-                    type="button"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-
-                  <div className="flex gap-1.5 items-center">
-                    {reviews.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => jumpTo(i)}
-                        aria-label={`Ir para depoimento ${i + 1}`}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-5 bg-emerald-700" : "w-1.5 bg-gray-300"
-                          }`}
-                        type="button"
-                      />
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={nextSlide}
-                    aria-label="Próximo card"
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/90 backdrop-blur-sm transition-all hover:bg-white shadow-sm active:scale-95 text-emerald-700"
-                    type="button"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-
-                <div className="flex flex-col items-center gap-2 mt-2 pointer-events-auto w-full">
-                  <Button
-                    variant="strong"
-                    size="lg"
-                    fullWidth
-                    onClick={onContinue}
-                    className="rounded-full gap-2 uppercase tracking-wide text-sm"
-                  >
-                    Ok. Quero continuar <MoveRight size={18} />
-                  </Button>
-                  <p className="text-xs text-gray-400 font-medium">Garantia de 7 dias — sem burocracia.</p>
-                </div>
+              <div className="flex flex-col items-center gap-2 mt-2 pointer-events-auto w-full">
+                <Button
+                  variant="strong"
+                  size="lg"
+                  fullWidth
+                  onClick={onContinue}
+                  className="rounded-full gap-2 uppercase tracking-wide text-sm"
+                >
+                  Ok. Quero continuar <MoveRight size={18} />
+                </Button>
+                <p className="text-xs text-gray-400 font-medium">Garantia de 7 dias — sem burocracia.</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </motion.div>
+      </div>
+    </section>
   );
 }
