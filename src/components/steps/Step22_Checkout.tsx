@@ -222,7 +222,7 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               </div>
               <div className="text-right w-1/2">
                 <div className="text-xs text-text-secondary uppercase font-semibold mb-1">Por apenas</div>
-                <div className="text-[11px] text-text-secondary line-through mb-0.5">De R$ 69,90</div>
+
                 <div className="text-3xl font-black text-primary leading-none">R$ 19<span className="text-lg">,90</span></div>
                 <div className="text-xs text-text-secondary mt-1">pagamento único</div>
               </div>
@@ -680,21 +680,17 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
             ═══════════════════════════════════════════════════ */}
         <section className="w-full bg-surface-card border-t border-border pt-6 pb-8 px-5 flex flex-col items-center">
 
-          {/* Countdown de preço promocional */}
-          <div className="w-full mb-5 text-center">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-status-error mb-2">
-              ⚡ Preço promocional reservado por:
-            </p>
-            {expired ? (
-              <p className="text-sm font-bold text-text-secondary">Promoção encerrada</p>
-            ) : (
-              <div className="flex items-center justify-center gap-3">
-                <div className="bg-surface-subtle border border-border rounded-lg px-4 py-2 text-text-primary font-black text-2xl leading-none tabular-nums">{m}</div>
-                <span className="text-text-primary font-black text-2xl">:</span>
-                <div className="bg-surface-subtle border border-border rounded-lg px-4 py-2 text-text-primary font-black text-2xl leading-none tabular-nums">{s}</div>
-              </div>
-            )}
-          </div>
+          {/* Tag countdown estilo ÚLTIMAS VAGAS */}
+          {!expired ? (
+            <div className="inline-flex items-center gap-2 bg-status-error text-white text-[11px] font-black uppercase tracking-wider rounded-full px-4 py-1.5 mb-5 shadow-sm">
+              <span>⚡ Preço promocional reservado por:</span>
+              <span className="bg-white/20 rounded-full px-2 py-0.5 tabular-nums font-black text-xs">{m}:{s}</span>
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-2 bg-text-secondary/30 text-text-primary text-[11px] font-black uppercase tracking-wider rounded-full px-4 py-1.5 mb-5">
+              Promoção encerrada
+            </div>
+          )}
 
           {/* Box Recap Lite */}
           <div className="w-full flex items-center justify-between mb-4 px-2">
@@ -703,11 +699,8 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
               <div className="font-heading font-black text-sm text-text-primary leading-tight">PLANO PASSO A PASSO</div>
               <div className="text-[10px] text-text-secondary">+ 3 Bônus Inclusos</div>
             </div>
-            <div className="text-right flex items-end gap-2">
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] text-text-secondary line-through">De R$ 69,90</span>
-                <span className="text-[10px] text-text-secondary uppercase font-semibold -mb-1">à vista</span>
-              </div>
+            <div className="text-right">
+              <div className="text-[10px] text-text-secondary uppercase font-semibold">À vista</div>
               <div className="text-2xl font-black text-primary leading-none">R$ 19,90</div>
             </div>
           </div>
