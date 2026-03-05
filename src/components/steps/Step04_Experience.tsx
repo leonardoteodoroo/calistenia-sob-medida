@@ -1,10 +1,14 @@
 
 import { motion } from "framer-motion"
-import { OptionCard } from "../ui/OptionCard"
 
 interface StepProps {
   onNext: (data: string) => void
 }
+
+const options = [
+  { id: "sim", label: "Sim" },
+  { id: "nao", label: "Não" },
+]
 
 export function Step04_Experience({ onNext }: StepProps) {
   return (
@@ -22,16 +26,20 @@ export function Step04_Experience({ onNext }: StepProps) {
       </header>
 
       <div className="flex flex-col gap-4">
-        <OptionCard
-          title="Sim"
-          onSelect={() => onNext("sim")}
-          hideIndicator
-        />
-        <OptionCard
-          title="Não"
-          onSelect={() => onNext("nao")}
-          hideIndicator
-        />
+        {options.map((opt) => (
+          <motion.button
+            key={opt.id}
+            onClick={() => onNext(opt.id)}
+            whileHover={{ y: -3, scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="w-full rounded-xl border-2 border-border bg-surface-card shadow-sm hover:shadow-md hover:border-primary/60 transition-all duration-300 py-5 px-6 text-center"
+          >
+            <span className="font-heading font-bold text-lg text-text-primary">
+              {opt.label}
+            </span>
+          </motion.button>
+        ))}
       </div>
     </motion.div>
   )
