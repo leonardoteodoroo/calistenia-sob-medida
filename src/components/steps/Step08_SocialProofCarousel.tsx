@@ -558,8 +558,7 @@ export function Step08_SocialProofCarousel({
                       key={i}
                       onClick={() => jumpTo(i)}
                       aria-label={`Ir para depoimento ${i + 1} `}
-                      className={`h - 1.5 rounded - full transition - all duration - 300 ${i === activeIndex ? "w-5 bg-emerald-700" : "w-1.5 bg-gray-300"
-                        } `}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-5 bg-emerald-700" : "w-1.5 bg-gray-300"}`}
                       type="button"
                     />
                   ))}
