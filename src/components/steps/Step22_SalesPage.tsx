@@ -57,7 +57,7 @@ function useCountdown(minutesTotal: number) {
 }
 
 // ─── Componente Principal ─────────────────────────────────────────────────────
-export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
+export const Step22_SalesPage: React.FC<StepProps> = ({ answers }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { m, s, expired } = useCountdown(PROMO_MINUTES);
 
@@ -75,7 +75,38 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
     /* ignore */
   }
 
-  const checkoutUrl = CHECKOUT_URL + `?peso_ideal=${ideal}`;
+  const queryParams = new URLSearchParams();
+  queryParams.append("peso_ideal", ideal);
+  if (answers?.idade) queryParams.append("idade", answers.idade);
+  if (answers?.objetivo_principal)
+    queryParams.append("objetivo", answers.objetivo_principal);
+  if (answers?.genero) queryParams.append("genero", answers.genero);
+
+  // Repassar UTMs e Tracking
+  const currentUrlParams = new URLSearchParams(window.location.search);
+  const trackKeys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "src",
+    "sck",
+    "fbclid",
+    "gclid",
+  ];
+  trackKeys.forEach((k) => {
+    if (currentUrlParams.has(k))
+      queryParams.set(k, currentUrlParams.get(k) as string);
+  });
+
+  // Preserva a base da CHECKOUT_URL e amarra as variáveis extras
+  const baseUrl = CHECKOUT_URL.split("?")[0];
+  const existingParams = new URLSearchParams(CHECKOUT_URL.split("?")[1] || "");
+  for (const [key, val] of queryParams.entries()) {
+    existingParams.set(key, val);
+  }
+  const checkoutUrl = `${baseUrl}?${existingParams.toString()}`;
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const btn = e.currentTarget as HTMLElement;
@@ -93,7 +124,7 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
     if (typeof window.fbq === "function") {
       window.fbq(
         "track",
-        "AddToCart",
+        "InitiateCheckout",
         {
           value: PRODUCT_VALUE,
           currency: PRODUCT_CURRENCY,
@@ -106,7 +137,7 @@ export const Step22_Checkout: React.FC<StepProps> = ({ answers }) => {
     const w = window as unknown as { dataLayer: object[] };
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({
-      event: "add_to_cart",
+      event: "begin_checkout",
       product_name: "Calistenia Sob Medida",
       value: PRODUCT_VALUE,
       currency: PRODUCT_CURRENCY,

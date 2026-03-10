@@ -7,7 +7,8 @@ export const WEBHOOK_URL =
   "https://script.google.com/macros/s/AKfycbz6wXIkSpSeklBlvpAA2cRMde9GK2gYKzUkQ43dQPXeZIJaixKIYXQtuDlzrN7i2yt8/exec";
 
 // ⚠️ TODO: cole a URL do checkout (Kwify ou Hotmart)
-export const CHECKOUT_URL = "https://TODO_SUBSTITUIR_PELA_URL_DO_CHECKOUT";
+export const CHECKOUT_URL =
+  "https://lastlink.com/p/C5E253BBF/checkout-payment/";
 
 export const PRODUCT_VALUE = 19.9;
 export const PRODUCT_CURRENCY = "BRL";
@@ -144,7 +145,7 @@ export function sendCtaClick(answers: Record<string, string>) {
   post(
     basePayload({
       sheet_target: "hashed",
-      event_type: "AddToCart",
+      event_type: "InitiateCheckout",
       order_id: getVisitorId(),
       conversion_value: PRODUCT_VALUE,
       currency_code: PRODUCT_CURRENCY,

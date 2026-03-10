@@ -67,7 +67,8 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
   showGhost = false,
 }) => {
   // ── Drag via PointerEvents — valor nunca salta ────────
-  const isDragging = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
   const startX = useRef(0);
   const startValue = useRef(value);
   const PX_PER_UNIT = 8; // pixels necessários para mudar 1 unidade
@@ -165,16 +166,17 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
           className="absolute inset-0 z-20"
           style={{
             touchAction: "none",
-            cursor: isDragging.current ? "grabbing" : "grab",
+            cursor: isDragging ? "grabbing" : "grab",
           }}
           onPointerDown={(e) => {
-            isDragging.current = true;
+            isDraggingRef.current = true;
+            setIsDragging(true);
             startX.current = e.clientX;
             startValue.current = value;
             e.currentTarget.setPointerCapture(e.pointerId);
           }}
           onPointerMove={(e) => {
-            if (!isDragging.current) return;
+            if (!isDraggingRef.current) return;
             const delta = Math.round(
               (e.clientX - startX.current) / PX_PER_UNIT,
             );
@@ -185,11 +187,13 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
             onChange(next);
           }}
           onPointerUp={(e) => {
-            isDragging.current = false;
+            isDraggingRef.current = false;
+            setIsDragging(false);
             e.currentTarget.releasePointerCapture(e.pointerId);
           }}
           onPointerCancel={(e) => {
-            isDragging.current = false;
+            isDraggingRef.current = false;
+            setIsDragging(false);
             e.currentTarget.releasePointerCapture(e.pointerId);
           }}
           onKeyDown={(e) => {

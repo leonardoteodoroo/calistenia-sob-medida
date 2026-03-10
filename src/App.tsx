@@ -8,6 +8,9 @@ import {
   sendQuizComplete,
 } from "./lib/tracking";
 
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { WorkoutPlanPDF } from "./components/WorkoutPlanPDF";
+
 import { Step01_Gender } from "./components/steps/Step01_Gender";
 import { Step02_Age } from "./components/steps/Step02_Age";
 import { Step03_SocialProof } from "./components/steps/Step03_SocialProof";
@@ -29,7 +32,7 @@ import { Step18_MainReason } from "./components/steps/Step18_MainReason";
 import { Step19_EnergyBenefit } from "./components/steps/Step19_EnergyBenefit";
 import { Step20_Measurements } from "./components/steps/Step20_Measurements";
 import { Step21_Processing } from "./components/steps/Step21_Processing";
-import { Step22_Checkout } from "./components/steps/Step22_Checkout";
+import { Step22_SalesPage } from "./components/steps/Step22_SalesPage";
 import { ProgressBar } from "./components/ui/ProgressBar";
 
 // Tipagem global do Meta Pixel
@@ -86,7 +89,7 @@ function App() {
   useEffect(() => {
     if (typeof window.fbq !== "function") return;
     const eventId = `${getVisitorId()}_${step}_${Date.now()}`;
-    window.fbq("trackCustom", "QuizStep", { step }, { eventID: eventId });
+    // window.fbq("trackCustom", "QuizStep", { step }, { eventID: eventId }); // Removido para otimizar a inteligência do Pixel
     if (step === 1)
       window.fbq("trackCustom", "QuizStarted", {}, { eventID: eventId });
     if (step === 10)
@@ -144,21 +147,6 @@ function App() {
       )}
 
       <main className="w-full max-w-3xl mx-auto flex-1 flex flex-col items-center justify-start relative overflow-x-hidden min-h-[60vh]">
-        {/* DEV_ONLY — remover antes do lançamento */}
-        <div className="fixed bottom-4 right-4 flex items-center gap-2 z-50">
-          <div className="bg-black/80 text-white text-xs px-2 py-1 rounded font-mono pointer-events-none">
-            dev_{String(step).padStart(2, "0")}
-          </div>
-          <button
-            onClick={() => handleNext()}
-            className="bg-black/80 text-white text-xs px-2 py-1 rounded font-mono hover:bg-black transition-colors"
-            aria-label="Pular step (dev)"
-          >
-            ⏭ Pular
-          </button>
-        </div>
-        {/* /DEV_ONLY */}
-
         <AnimatePresence mode="wait">
           {step === 1 && (
             <Step01_Gender
@@ -272,7 +260,7 @@ function App() {
             <Step21_Processing key="step21" onNext={() => handleNext()} />
           )}
           {step === 22 && (
-            <Step22_Checkout
+            <Step22_SalesPage
               key="step22"
               onNext={() => {}}
               answers={quizData}
@@ -287,14 +275,37 @@ function App() {
               className="text-center space-y-4 w-full"
             >
               <h2 className="text-3xl font-heading font-bold text-primary">
-                Plano Otimizado!
+                Seu Plano Está Pronto!
               </h2>
-              <p className="text-text-secondary">
-                O seu quiz foi coletado com sucesso.
+              <p className="text-text-secondary mb-8">
+                Clique no botão abaixo para baixar seu Guia PDF Personalizado.
               </p>
-              <pre className="text-left bg-surface-section p-4 rounded-lg text-sm mt-6 overflow-auto w-full">
-                {JSON.stringify(quizData, null, 2)}
-              </pre>
+
+              <div className="flex justify-center mt-8">
+                <PDFDownloadLink
+                  document={
+                    <WorkoutPlanPDF
+                      userName={quizData.nome || "Aluna V.I.P"}
+                      targetWeight={
+                        quizData.objetivo_principal || "o peso ideal"
+                      }
+                      focusAreas={
+                        quizData.regioes_foco
+                          ? [quizData.regioes_foco]
+                          : ["Corpo Inteiro"]
+                      }
+                    />
+                  }
+                  fileName="Meu_Plano_Calistenia_Sob_Medida.pdf"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-bold py-4 px-8 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg"
+                >
+                  {({ loading }) =>
+                    loading
+                      ? "Gerando seu PDF personalizado..."
+                      : "Baixar Meu Plano"
+                  }
+                </PDFDownloadLink>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
