@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
 import { cn } from "../../lib/utils";
 
+const shadow = {
+  normal: "0 5px 0px rgba(100, 100, 110, 0.35), 0 8px 16px rgba(0,0,0,0.08)",
+  hover: "0 7px 0px rgba(100, 100, 110, 0.45), 0 12px 20px rgba(0,0,0,0.10)",
+  tap: "0 1px 0px rgba(100, 100, 110, 0.40), 0 2px 4px rgba(0,0,0,0.06)",
+};
+
 interface OptionCardProps extends Omit<HTMLMotionProps<"button">, "onSelect"> {
   title: string;
   subtitle?: string;
@@ -31,15 +37,20 @@ export function OptionCard({
   return (
     <motion.button
       onClick={onSelect}
-      whileHover={{ y: -4, scale: 1.01 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -3, boxShadow: shadow.hover }}
+      whileTap={{
+        y: 4,
+        boxShadow: shadow.tap,
+        transition: { duration: 0.07 },
+      }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      style={{ boxShadow: shadow.normal }}
       className={cn(
         "relative flex flex-col w-full text-left overflow-hidden transition-all duration-[350ms] border-2",
         "rounded-xl",
         selected
-          ? "border-primary bg-surface-subtle shadow-card-hover"
-          : "border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50",
+          ? "border-primary bg-surface-subtle"
+          : "border-border-subtle bg-surface-card hover:border-primary/50",
         className,
       )}
       {...props}

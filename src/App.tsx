@@ -32,6 +32,7 @@ import { Step18_MainReason } from "./components/steps/Step18_MainReason";
 import { Step19_EnergyBenefit } from "./components/steps/Step19_EnergyBenefit";
 import { Step20_Measurements } from "./components/steps/Step20_Measurements";
 import { Step21_Processing } from "./components/steps/Step21_Processing";
+import { Step22_ProcessingComplete } from "./components/steps/Step22_ProcessingComplete";
 import { Step22_SalesPage } from "./components/steps/Step22_SalesPage";
 import { ProgressBar } from "./components/ui/ProgressBar";
 
@@ -188,16 +189,16 @@ function App() {
     // window.fbq("trackCustom", "QuizStep", { step }, { eventID: eventId }); // Removido para otimizar a inteligência do Pixel
     if (step === 1)
       window.fbq("trackCustom", "QuizStarted", {}, { eventID: eventId });
-    if (step === 10)
+    if (step === 11)
       window.fbq("trackCustom", "QuizHalfway", {}, { eventID: eventId });
-    if (step === 22)
+    if (step === 23)
       window.fbq("trackCustom", "QuizSalesPage", {}, { eventID: eventId });
   }, [step]);
 
-  // Google Sheets — log nos marcos (step 3 = entrada, step 21 = conclusão)
+  // Google Sheets — log nos marcos (step 3 = entrada, step 23 = conclusão)
   useEffect(() => {
     if (step === 3) sendQuizEntry(quizData);
-    if (step === 22) sendQuizComplete(quizData);
+    if (step === 23) sendQuizComplete(quizData);
   }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Avança para o próximo step, salvando a resposta se houver
@@ -223,7 +224,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-text-primary px-4 pt-2 pb-8 md:pb-12 overflow-x-hidden flex flex-col items-center">
-      {step <= 21 && (
+      {step <= 22 && (
         <div className="w-full max-w-3xl flex items-center justify-between gap-2 sm:gap-4 mb-2 md:mb-4 px-4 z-20 sticky top-0 bg-background/90 backdrop-blur-sm py-2">
           <div className="w-8 sm:w-10 flex-shrink-0">
             {step > 1 && (
@@ -359,14 +360,21 @@ function App() {
             <Step21_Processing key="step21" onNext={() => handleNext()} />
           )}
           {step === 22 && (
+            <Step22_ProcessingComplete
+              key="step22-processing-complete"
+              onNext={() => handleNext()}
+              answers={quizData}
+            />
+          )}
+          {step === 23 && (
             <Step22_SalesPage
-              key="step22"
+              key="step23"
               onNext={() => {}}
               answers={quizData}
             />
           )}
 
-          {step > 22 && (
+          {step > 23 && (
             <motion.div
               key="finish"
               initial={{ opacity: 0, scale: 0.9 }}

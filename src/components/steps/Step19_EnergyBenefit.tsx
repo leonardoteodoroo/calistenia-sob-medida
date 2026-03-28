@@ -36,15 +36,15 @@ export function Step19_EnergyBenefit({ onNext }: StepProps) {
           Esses exercícios fortalecem seus músculos, núcleo e aumentam a
           consciência corporal.
         </p>
-
-        <p className="text-text-primary font-bold">
-          Queremos que você viva sua vida ao máximo!
-        </p>
       </header>
 
-      <Button onClick={() => onNext()} fullWidth size="lg">
+      <Button onClick={() => onNext()} fullWidth size="lg" className="mb-6">
         CONTINUAR
       </Button>
+
+      <p className="text-center text-text-primary font-bold">
+        Queremos que você viva sua vida ao máximo!
+      </p>
     </motion.div>
   );
 }

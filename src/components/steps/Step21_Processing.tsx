@@ -1,79 +1,112 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import type { StepProps } from "../../types";
-import imgProcessing from "../../assets/images/mulher_adulta_em_casa_com_luz_da_manh____respirando_fundo_e_sorrindo_ap__s_treino__com_tapete_e_garrafa_de___gua_ao_fundo_a_calesnenia_ajudar_sentir_mais_energia(Reserva).webp";
+import { ProcessingTestimonials3D } from "../ui/ProcessingTestimonials3D";
+import {
+  COMPLETE_DELAY_MS,
+  PROCESSING_AUTO_ADVANCE_ENABLED,
+  PROCESSING_STEPS,
+  STEP_DURATION_MS,
+} from "./step21ProcessingContent";
 
 export const Step21_Processing: React.FC<StepProps> = ({ onNext }) => {
-  const [progress, setProgress] = useState(0);
-  const hasAdvanced = useRef(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const hasTriggeredNextRef = useRef(false);
 
   useEffect(() => {
-    // Simula um carregamento de 100% ao longo de ~3 segundos
-    const duration = 3000;
-    const interval = 30; // update a cada 30ms (~100 updates)
-    const stepSize = 100 / (duration / interval);
+    if (currentStep >= PROCESSING_STEPS.length - 1) {
+      if (!PROCESSING_AUTO_ADVANCE_ENABLED) {
+        // Para religar depois:
+        // const completionTimer = window.setTimeout(() => onNext?.(), 1200);
+        return;
+      }
 
-    const timer = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) {
-          clearInterval(timer);
-          if (!hasAdvanced.current) {
-            hasAdvanced.current = true;
-            setTimeout(() => onNext(), 300); // Aguarda um pouquinho no 100% e avança
-          }
-          return 100;
-        }
-        return p + stepSize;
-      });
-    }, interval);
+      if (hasTriggeredNextRef.current) return;
 
-    return () => clearInterval(timer);
-  }, [onNext]);
+      hasTriggeredNextRef.current = true;
+      const completionTimer = window.setTimeout(
+        () => onNext?.(),
+        COMPLETE_DELAY_MS,
+      );
+      return () => window.clearTimeout(completionTimer);
+    }
+
+    const stepTimer = window.setTimeout(() => {
+      setCurrentStep((prev) => Math.min(prev + 1, PROCESSING_STEPS.length - 1));
+    }, STEP_DURATION_MS);
+
+    return () => window.clearTimeout(stepTimer);
+  }, [currentStep, onNext]);
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col items-center gap-8 w-full max-w-lg mx-auto py-10"
+      transition={{ duration: 0.4 }}
+      className="flex w-full max-w-xl flex-col gap-5 py-4"
     >
-      <header className="text-center space-y-4">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Analisando seus dados e finalizando seu plano
-        </h2>
-      </header>
+      <section className="relative overflow-hidden rounded-[32px] border border-primary/10 bg-surface-card px-6 py-8 shadow-[0_28px_90px_rgba(44,122,123,0.12)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(44,122,123,0.14),transparent_48%)]" />
 
-      {/* Visual Component - Group of Women */}
-      <div className="w-full aspect-video bg-surface-card flex items-center justify-center rounded-xl overflow-hidden shadow-sm relative">
-        <img
-          src={imgProcessing}
-          alt="Mulher adulta em casa com luz da manhã, respirando fundo e sorrindo após treino com tapete e garrafa d'água"
-          width={800}
-          height={450}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover opacity-80"
-        />
-      </div>
+        <motion.div
+          initial={{ scale: 0.86, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 flex flex-col items-center text-center"
+        >
+          <div className="relative mb-8 flex h-24 w-24 items-center justify-center">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 rounded-full border-4 border-primary/15 border-t-primary"
+            />
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
 
-      {/* Progress Indicator */}
-      <div className="w-full flex flex-col items-center gap-3">
-        <span className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
-          Taxa de carregamento
-        </span>
-        <div className="text-5xl font-heading font-black text-primary tabular-nums">
-          {Math.min(Math.round(progress), 100)}%
-        </div>
+          <h2 className="text-3xl font-heading font-bold text-text-primary">
+            Montando seu plano...
+          </h2>
 
-        {/* Barra de fake load fluida */}
-        <div className="w-full h-2 bg-surface-subtle rounded-full overflow-hidden mt-2">
-          <div
-            className="h-full bg-primary transition-all rounded-full ease-out"
-            style={{ width: `${progress}% `, transitionDuration: "30ms" }}
-          />
-        </div>
-      </div>
+          <div className="mt-8 w-full max-w-xs space-y-4 text-left">
+            {PROCESSING_STEPS.map((step, index) => {
+              const isCompleted = index < currentStep;
+              const isActive = index === currentStep;
+              const isPending = index > currentStep;
+
+              return (
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: isPending ? 0.35 : 1, y: 0 }}
+                  className="flex items-center gap-3"
+                >
+                  {isCompleted ? (
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                  ) : isActive ? (
+                    <div className="h-5 w-5 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                  ) : (
+                    <div className="h-5 w-5 rounded-full border-2 border-border" />
+                  )}
+
+                  <span
+                    className={`text-sm leading-relaxed ${
+                      isActive
+                        ? "font-semibold text-text-primary"
+                        : "text-text-secondary"
+                    }`}
+                  >
+                    {step}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      </section>
+
+      <ProcessingTestimonials3D />
     </motion.div>
   );
 };
