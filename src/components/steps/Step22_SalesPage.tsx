@@ -22,6 +22,20 @@ import {
 // ─── Countdown Timer hook ────────────────────────────────────────────────────
 const PROMO_MINUTES = 17;
 
+function parseAnswerList(value?: string) {
+  if (!value) return [];
+
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (Array.isArray(parsed)) return parsed.map((entry) => String(entry));
+    if (typeof parsed === "string") return [parsed];
+  } catch {
+    /* ignore */
+  }
+
+  return [value];
+}
+
 function useCountdown(minutesTotal: number) {
   const [seconds, setSeconds] = useState(() => {
     try {
@@ -65,14 +79,16 @@ export const Step22_SalesPage: React.FC<StepProps> = ({ answers }) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  let ideal = "60";
-  try {
-    if (answers?.medidas) {
-      const parsed = JSON.parse(answers.medidas);
-      if (parsed.peso_ideal) ideal = String(parsed.peso_ideal);
+  let ideal = answers?.peso_ideal || "60";
+  if (!answers?.peso_ideal) {
+    try {
+      if (answers?.medidas) {
+        const parsed = JSON.parse(answers.medidas);
+        if (parsed.peso_ideal) ideal = String(parsed.peso_ideal);
+      }
+    } catch {
+      /* ignore */
     }
-  } catch {
-    /* ignore */
   }
 
   const queryParams = new URLSearchParams();
@@ -147,12 +163,9 @@ export const Step22_SalesPage: React.FC<StepProps> = ({ answers }) => {
     sendCtaClick(answers ?? {});
   };
 
-  let parsedFocos: string[] = [];
-  try {
-    if (answers?.zonas_foco) parsedFocos = JSON.parse(answers.zonas_foco);
-  } catch {
-    /* ignore */
-  }
+  const parsedFocos = parseAnswerList(
+    answers?.regioes_foco ?? answers?.zonas_foco,
+  );
 
   return (
     <div className="w-full flex justify-center bg-background min-h-screen pb-8">

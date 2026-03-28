@@ -47,6 +47,102 @@ declare global {
   }
 }
 
+type QuizAnswers = Record<string, string>;
+
+function parseSerializedRecord(value?: string): QuizAnswers | null {
+  if (!value) return null;
+
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return null;
+    }
+
+    return Object.fromEntries(
+      Object.entries(parsed as Record<string, unknown>).map(([key, entry]) => [
+        key,
+        String(entry),
+      ]),
+    );
+  } catch {
+    return null;
+  }
+}
+
+function parseSerializedList(value?: string): string[] {
+  if (!value) return [];
+
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (Array.isArray(parsed)) return parsed.map((entry) => String(entry));
+    if (typeof parsed === "string") return [parsed];
+  } catch {
+    /* ignore */
+  }
+
+  return value
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
+function normalizeAnswerUpdate(key: string, value: string): QuizAnswers {
+  const nextAnswers: QuizAnswers = { [key]: value };
+
+  if (key === "objetivo_principal") {
+    nextAnswers.mudanca_de_peso = value;
+  }
+
+  if (key === "objetivos_secundarios") {
+    const selections = new Set(parseSerializedList(value));
+    nextAnswers.flexibilidade = selections.has("flexibilidade") ? "sim" : "nao";
+  }
+
+  if (key === "nível_atividade") {
+    const parsed = parseSerializedRecord(value);
+    if (parsed?.exercicio) {
+      nextAnswers.frequencia_exercicios = parsed.exercicio;
+      nextAnswers.frequencia_caminhadas = parsed.exercicio;
+    }
+    if (parsed?.rotina) {
+      nextAnswers.dia_tipico = parsed.rotina;
+    }
+  }
+
+  if (key === "sono_e_dieta") {
+    const parsed = parseSerializedRecord(value);
+    if (parsed?.sono) {
+      nextAnswers.frequencia_sono = parsed.sono;
+    }
+  }
+
+  if (key === "obstaculos") {
+    const parsed = parseSerializedRecord(value);
+    if (parsed?.maus_habitos) {
+      nextAnswers.maus_habitos = parsed.maus_habitos;
+    }
+    if (parsed?.motivos_ganho_peso || parsed?.eventos_ganho_peso) {
+      nextAnswers.motivos_ganho_peso =
+        parsed.motivos_ganho_peso ?? parsed.eventos_ganho_peso;
+    }
+  }
+
+  if (key === "medidas") {
+    const parsed = parseSerializedRecord(value);
+    if (parsed?.altura) {
+      nextAnswers.altura = parsed.altura;
+    }
+    if (parsed?.peso_atual || parsed?.peso) {
+      nextAnswers.peso_atual = parsed.peso_atual ?? parsed.peso;
+    }
+    if (parsed?.peso_ideal) {
+      nextAnswers.peso_ideal = parsed.peso_ideal;
+    }
+  }
+
+  return nextAnswers;
+}
+
 function App() {
   const getInitialStep = () => {
     const hash = window.location.hash.replace("#", "");
@@ -107,7 +203,10 @@ function App() {
   // Avança para o próximo step, salvando a resposta se houver
   const handleNext = (key?: string, value?: string) => {
     if (key && value) {
-      setQuizData((prev) => ({ ...prev, [key]: value }));
+      setQuizData((prev) => ({
+        ...prev,
+        ...normalizeAnswerUpdate(key, value),
+      }));
     }
     setStep((prev) => prev + 1);
   };
