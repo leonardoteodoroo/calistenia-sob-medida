@@ -1,9 +1,10 @@
+import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   PROCESSING_MARQUEE_LAYOUT,
   PROCESSING_TESTIMONIAL_COLUMNS,
   type ProcessingTestimonial,
-} from "../steps/step21ProcessingContent";
+} from "../steps/Step21_ProcessingContent";
 
 type TestimonialCardProps = {
   testimonial: ProcessingTestimonial;
@@ -129,47 +130,49 @@ export function ProcessingTestimonials3D() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section
-      aria-label="Resultados reais de quem começou com treinos curtos em casa"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
-    >
-      <div
-        className="relative w-full overflow-hidden py-1"
-        style={{
-          paddingLeft: "max(env(safe-area-inset-left), 4px)",
-          paddingRight: "max(env(safe-area-inset-right), 4px)",
-        }}
+    <React.Fragment>
+      <section
+        aria-label="Resultados reais de quem começou com treinos curtos em casa"
+        className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       >
-        <div className="flex justify-center [perspective:1280px]">
-          <div
-            className={`flex w-max items-start gap-2.5 sm:gap-3 ${PROCESSING_MARQUEE_LAYOUT.stackScaleClassName}`}
-            style={{
-              transform:
-                "translateY(0px) translateZ(-120px) rotateX(10deg) rotateY(-5deg) rotateZ(3deg)",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {PROCESSING_TESTIMONIAL_COLUMNS.map((column, index) => (
-              <MarqueeColumn
-                key={`processing-column-${index}`}
-                testimonials={column}
-                duration={COLUMN_DURATIONS[index] ?? 24}
-                reverse={index % 2 === 1}
-                staticMode={Boolean(shouldReduceMotion)}
-                offsetClassName={COLUMN_OFFSETS[index] ?? ""}
-                hiddenOnMobile={
-                  index >= PROCESSING_MARQUEE_LAYOUT.mobileVisibleColumns
-                }
-              />
-            ))}
+        <div
+          className="relative w-full overflow-hidden py-1"
+          style={{
+            paddingLeft: "max(env(safe-area-inset-left), 4px)",
+            paddingRight: "max(env(safe-area-inset-right), 4px)",
+          }}
+        >
+          <div className="flex justify-center [perspective:1280px]">
+            <div
+              className={`flex w-max items-start gap-2.5 sm:gap-3 ${PROCESSING_MARQUEE_LAYOUT.stackScaleClassName}`}
+              style={{
+                transform:
+                  "translateY(0px) translateZ(-120px) rotateX(10deg) rotateY(-5deg) rotateZ(3deg)",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {PROCESSING_TESTIMONIAL_COLUMNS.map((column, index) => (
+                <MarqueeColumn
+                  key={`processing-column-${index}`}
+                  testimonials={column}
+                  duration={COLUMN_DURATIONS[index] ?? 24}
+                  reverse={index % 2 === 1}
+                  staticMode={Boolean(shouldReduceMotion)}
+                  offsetClassName={COLUMN_OFFSETS[index] ?? ""}
+                  hiddenOnMobile={
+                    index >= PROCESSING_MARQUEE_LAYOUT.mobileVisibleColumns
+                  }
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[var(--surface-page)] via-[rgba(250,249,246,0.78)] to-transparent sm:h-16" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[var(--surface-page)] via-[rgba(250,249,246,0.78)] to-transparent sm:h-16" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-[var(--surface-page)] via-[rgba(250,249,246,0.84)] to-transparent sm:w-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-[var(--surface-page)] via-[rgba(250,249,246,0.84)] to-transparent sm:w-10" />
-      </div>
-    </section>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[var(--surface-page)] via-[rgba(250,249,246,0.78)] to-transparent sm:h-16" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[var(--surface-page)] via-[rgba(250,249,246,0.78)] to-transparent sm:h-16" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-[var(--surface-page)] via-[rgba(250,249,246,0.84)] to-transparent sm:w-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-[var(--surface-page)] via-[rgba(250,249,246,0.84)] to-transparent sm:w-10" />
+        </div>
+      </section>
+    </React.Fragment>
   );
 }

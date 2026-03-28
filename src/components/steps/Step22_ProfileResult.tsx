@@ -7,7 +7,7 @@ import {
   TrendingDown,
   Zap,
 } from "lucide-react";
-import { Button } from "../ui/Button";
+import { StickyButton } from "../ui/StickyButton";
 import type { StepProps } from "../../types";
 
 function getGoalText(value?: string) {
@@ -122,7 +122,7 @@ function getProjectionText(currentWeight?: string, idealWeight?: string) {
   return `Projeção inicial de ${delta} kg até sua meta de ${ideal} kg.`;
 }
 
-export const Step22_ProcessingComplete: React.FC<StepProps> = ({
+export const Step22_ProfileResult: React.FC<StepProps> = ({
   onNext,
   answers,
 }) => {
@@ -158,7 +158,7 @@ export const Step22_ProcessingComplete: React.FC<StepProps> = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4 }}
-      className="flex w-full max-w-lg flex-col gap-6 py-8"
+      className="flex w-full max-w-lg flex-col gap-6 py-8 pb-[calc(env(safe-area-inset-bottom,0px)+12rem)]"
     >
       <div className="rounded-[32px] border border-primary/10 bg-gradient-to-br from-primary/10 via-white to-strong/10 px-6 py-8 text-center shadow-[0_24px_80px_rgba(44,122,123,0.12)]">
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
@@ -302,16 +302,16 @@ export const Step22_ProcessingComplete: React.FC<StepProps> = ({
         </ul>
       </div>
 
-      <Button
+      <StickyButton
+        helperText="Próximo passo"
         variant="strong"
         size="lg"
-        fullWidth
         onClick={() => onNext?.()}
         className="gap-2 uppercase tracking-wide"
       >
         Ver Meu Plano Completo
         <ArrowRight className="h-5 w-5" />
-      </Button>
+      </StickyButton>
     </motion.div>
   );
 };

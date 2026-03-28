@@ -32,8 +32,8 @@ import { Step18_MainReason } from "./components/steps/Step18_MainReason";
 import { Step19_EnergyBenefit } from "./components/steps/Step19_EnergyBenefit";
 import { Step20_Measurements } from "./components/steps/Step20_Measurements";
 import { Step21_Processing } from "./components/steps/Step21_Processing";
-import { Step22_ProcessingComplete } from "./components/steps/Step22_ProcessingComplete";
-import { Step22_SalesPage } from "./components/steps/Step22_SalesPage";
+import { Step22_ProfileResult } from "./components/steps/Step22_ProfileResult";
+import { Step23_SalesPage } from "./components/steps/Step23_SalesPage";
 import { ProgressBar } from "./components/ui/ProgressBar";
 
 // Tipagem global do Meta Pixel
@@ -360,14 +360,14 @@ function App() {
             <Step21_Processing key="step21" onNext={() => handleNext()} />
           )}
           {step === 22 && (
-            <Step22_ProcessingComplete
+            <Step22_ProfileResult
               key="step22-processing-complete"
               onNext={() => handleNext()}
               answers={quizData}
             />
           )}
           {step === 23 && (
-            <Step22_SalesPage
+            <Step23_SalesPage
               key="step23"
               onNext={() => {}}
               answers={quizData}

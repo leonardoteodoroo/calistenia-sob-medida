@@ -1,19 +1,29 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import {
+  COMPLETE_DELAY_MS,
   PROCESSING_AUTO_ADVANCE_ENABLED,
   PROCESSING_MARQUEE_LAYOUT,
   PROCESSING_STEPS,
   PROCESSING_TESTIMONIAL_COLUMNS,
+  PROCESSING_TOTAL_DURATION_MS,
   STEP_DURATION_MS,
-} from "../src/components/steps/step21ProcessingContent.ts";
+} from "../src/components/steps/Step21_ProcessingContent.ts";
+import { Step21_Processing } from "../src/components/steps/Step21_Processing.tsx";
 
-test("step 21 keeps four processing stages with auto redirect disabled for now", () => {
+test("step 21 keeps four processing stages with auto redirect enabled again", () => {
   assert.equal(PROCESSING_STEPS.length, 4);
-  assert.equal(PROCESSING_AUTO_ADVANCE_ENABLED, false);
+  assert.equal(PROCESSING_AUTO_ADVANCE_ENABLED, true);
   assert.ok(STEP_DURATION_MS >= 1400);
   assert.ok(STEP_DURATION_MS <= 1600);
+  assert.equal(
+    PROCESSING_TOTAL_DURATION_MS,
+    STEP_DURATION_MS * (PROCESSING_STEPS.length - 1) + COMPLETE_DELAY_MS,
+  );
 });
 
 test("step 21 exposes image-based testimonial columns for the 3d marquee", () => {
@@ -47,5 +57,26 @@ test("step 21 keeps the marquee layout open enough to show a denser social-proof
   assert.equal(
     PROCESSING_MARQUEE_LAYOUT.stackScaleClassName,
     "origin-top scale-[0.62] sm:scale-[0.92]",
+  );
+});
+
+test("step 21 renders a visible progress bar between processing and the mosaic", () => {
+  const markup = renderToStaticMarkup(
+    createElement(Step21_Processing, { onNext: () => {} }),
+  );
+
+  assert.match(markup, /Progresso do processamento/);
+  assert.match(markup, />0%</);
+});
+
+test("step 21 restores a soft card treatment for the processing checklist", () => {
+  const source = readFileSync(
+    "src/components/steps/Step21_Processing.tsx",
+    "utf8",
+  );
+
+  assert.match(
+    source,
+    /rounded-\[28px\] border border-primary\/10 bg-white\/70/,
   );
 });

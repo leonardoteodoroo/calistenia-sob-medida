@@ -71,7 +71,7 @@ function useCountdown(minutesTotal: number) {
 }
 
 // ─── Componente Principal ─────────────────────────────────────────────────────
-export const Step22_SalesPage: React.FC<StepProps> = ({ answers }) => {
+export const Step23_SalesPage: React.FC<StepProps> = ({ answers }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { m, s, expired } = useCountdown(PROMO_MINUTES);
 

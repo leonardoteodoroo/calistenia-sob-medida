@@ -16,8 +16,10 @@ export const PROCESSING_STEPS = [
 ] as const;
 
 export const STEP_DURATION_MS = 1600;
-export const PROCESSING_AUTO_ADVANCE_ENABLED = false;
-export const COMPLETE_DELAY_MS = 1200; // lembrar deste valor quando religar o redirect automático
+export const PROCESSING_AUTO_ADVANCE_ENABLED = true;
+export const COMPLETE_DELAY_MS = 1200;
+export const PROCESSING_TOTAL_DURATION_MS =
+  STEP_DURATION_MS * (PROCESSING_STEPS.length - 1) + COMPLETE_DELAY_MS;
 export const PROCESSING_MARQUEE_LAYOUT = {
   mobileVisibleColumns: 4,
   desktopVisibleColumns: 4,
