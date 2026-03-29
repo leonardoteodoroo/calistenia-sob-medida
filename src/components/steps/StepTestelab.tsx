@@ -4,13 +4,13 @@ import { Check } from "lucide-react";
 import type { StepProps } from "../../types";
 
 const BODY_PARTS = [
-  { id: "peito", label: "Peito" },
-  { id: "bracos", label: "Braços" },
-  { id: "costas", label: "Costas" },
-  { id: "barriga", label: "Barriga" },
-  { id: "gluteos", label: "Glúteos" },
-  { id: "quadris", label: "Quadris" },
-  { id: "pernas", label: "Pernas" },
+  { id: "peito", label: "Peito", marker: { x: "26%", y: "22%" } },
+  { id: "bracos", label: "Braços", marker: { x: "53%", y: "26%" } },
+  { id: "costas", label: "Costas", marker: { x: "56%", y: "33%" } },
+  { id: "barriga", label: "Barriga", marker: { x: "24%", y: "42%" } },
+  { id: "gluteos", label: "Glúteos", marker: { x: "49%", y: "48%" } },
+  { id: "quadris", label: "Quadris", marker: { x: "25%", y: "57%" } },
+  { id: "pernas", label: "Pernas", marker: { x: "26%", y: "77%" } },
 ];
 
 export function StepTestelab({ onNext }: StepProps) {
@@ -95,15 +95,47 @@ export function StepTestelab({ onNext }: StepProps) {
         <div className="relative flex justify-between items-stretch mt-4">
           {/* Image Side */}
           <div className="w-[45%] relative flex justify-center items-end">
-            <motion.img
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              src="/woman-body-areas.webp"
-              alt="Áreas do corpo"
-              className="w-full h-auto object-contain object-bottom drop-shadow-2xl"
-              style={{ maxHeight: "400px" }}
-            />
+            <div className="relative w-full">
+              <motion.img
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                src="/woman-body-areas.webp"
+                alt="Áreas do corpo"
+                className="w-full h-auto object-contain object-bottom drop-shadow-2xl"
+                style={{ maxHeight: "400px" }}
+              />
+
+              <div className="pointer-events-none absolute inset-0">
+                {BODY_PARTS.map((part) => {
+                  const checked = isChecked(part.id);
+
+                  return (
+                    <motion.div
+                      key={`${part.id}-marker`}
+                      initial={false}
+                      animate={{
+                        scale: checked ? 1 : 0.75,
+                        opacity: checked ? 1 : 0.35,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                      }}
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 ${checked ? "scale-100 opacity-100" : "scale-75 opacity-35"}`}
+                      style={{ left: part.marker.x, top: part.marker.y }}
+                    >
+                      <div className="relative flex h-7 w-7 items-center justify-center">
+                        <div className="absolute h-7 w-7 rounded-full bg-[#FFB000]/35 blur-[2px]" />
+                        <div className="relative h-[18px] w-[18px] rounded-full bg-[#FFB000] ring-4 ring-[#FFB000]/20 shadow-[0_0_18px_rgba(255,176,0,0.8)]" />
+                        <div className="absolute h-1.5 w-1.5 rounded-full bg-white/80" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           {/* Buttons Side */}

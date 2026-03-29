@@ -18,6 +18,10 @@ const options = [
     id: "energia",
     label: "⚡  Isso pesa mais na minha energia e autoestima diária",
   },
+  {
+    id: "neutro",
+    label: "🙂  Não sinto um grande impacto hoje",
+  },
 ];
 
 export function Step13_Impact({ onNext }: StepProps) {

@@ -1,6 +1,6 @@
 # 🤸‍♀️ Copy do Quiz: Calistenia Sob Medida
 
-> **Última atualização:** 28/03/2026 — experiência/motivação cedo e 3 novos steps de rotina/hábito/gatilhos
+> **Última atualização:** 28/03/2026 — 23h35 (Brasília) — Hero + 5 novos steps: ExerciseFrequency, HabitBlockers, WeightGainTriggers, Impact, Hero
 
 Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 steps**, com foco em `venda direta + sensação de diagnóstico premium`.
 
@@ -16,7 +16,9 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 **Subcopy:** `Uma análise pensada para mulheres que querem emagrecer, definir e voltar a gostar do que veem no espelho sem depender de academia.`
 
-**Bullets:**
+**Subcopy 2:** `Responda rápido e veja a sua leitura personalizada no final.`
+
+**Bullets (card):**
 
 - Diagnóstico com foco em emagrecimento e firmeza
 - Treinos curtos para rotina corrida e sem equipamento
@@ -125,6 +127,11 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 **Título:** `Como você descreveria seu físico?`
 
+- [ ] Ilustração de corpo: Magra
+- [ ] Ilustração de corpo: Falsa magra
+- [ ] Ilustração de corpo: Acima do peso
+- [ ] Ilustração de corpo: Muito acima do peso
+
 ---
 
 ## 💭 Step 10 — Corpo Desejado (`Step10_DreamBody`)
@@ -132,6 +139,11 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 **Tipo:** Grid visual
 
 **Título:** `Qual é o seu "corpo dos sonhos"?`
+
+- [ ] Ilustração de corpo: Magra
+- [ ] Ilustração de corpo: Tonificada
+- [ ] Ilustração de corpo: Com curvas
+- [ ] Ilustração de corpo: Média
 
 ---
 
@@ -150,9 +162,15 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 ## 🛑 Step 12 — Maior Trava (`Step16_Obstacles`)
 
-**Tipo:** QuizButtons
+**Tipo:** QuizButtons (seleção única)
 
 **Título:** `O que mais te trava hoje?`
+
+- [ ] ⏰ Minha rotina é corrida demais
+- [ ] 🔁 Eu começo e não consigo manter
+- [ ] 🧭 Não sei qual treino realmente seguir
+- [ ] 😮‍💨 Me sinto sem energia para treinar
+- [ ] 🫥 Falta motivação e confiança
 
 **Key salva:** `maior_trava`
 
@@ -164,6 +182,11 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 **Título:** `Quais são suas regiões de foco?`
 
+- [ ] Ilustração de corpo: Barriga
+- [ ] Ilustração de corpo: Glúteos
+- [ ] Ilustração de corpo: Pernas
+- [ ] Ilustração de corpo: Peito
+
 **Key salva:** `regioes_foco`
 
 ---
@@ -172,12 +195,22 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 **Tipo:** QuizButtons em 2 etapas
 
-**Perguntas:**
+**Sub-etapa A — Rotina:**
+**Título:** `Como é sua rotina de movimento no dia a dia?`
 
-- `Como é sua rotina de movimento no dia a dia?`
-- `Quanto tempo você consegue dedicar de verdade?`
+- [ ] 🪑 Passo a maior parte do tempo sentada
+- [ ] 🚶‍♀️ Faço pausas ativas / subo escadas
+- [ ] ⏱️ Fico de pé o dia todo
 
-**Keys salvas:** `dia_tipico` + `tempo_disponivel`
+**Sub-etapa B — Tempo disponível:**
+**Título:** `Quanto tempo você consegue dedicar de verdade?`
+
+- [ ] ⌛ Tenho 10 min por dia
+- [ ] ⚡ Consigo 15 min por dia
+- [ ] 🔥 Consigo 20 min por dia
+- [ ] 🗓️ Tenho 30 min ou mais
+
+**Keys salvas:** `nível_atividade` → `dia_tipico` + `tempo_disponivel`
 
 ---
 
@@ -227,9 +260,14 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 ## 😴 Step 18 — Sono (`Step15_SleepAndDiet`)
 
-**Tipo:** QuizButtons
+**Tipo:** QuizButtons (seleção única)
 
-**Título:** `Com quantas horas de sono você costuma acordar descansada?`
+**Título:** `Quantas horas você costuma dormir por noite?`
+
+- [ ] 😩 Menos de 5 horas
+- [ ] 😪 5-6 horas
+- [ ] 😌 7-8 horas
+- [ ] 😴 Mais de 8 horas
 
 **Key salva:** `frequencia_sono`
 
@@ -257,6 +295,11 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 **Perguntas:**
 
 - `Em qual momento sua alimentação mais pesa contra você?`
+  - [ ] 🍫 Doces
+  - [ ] 🧂 Salgados
+  - [ ] 🍕 Uma mistura dos dois
+  - [ ] 🙅‍♀️ Não tenho desejos
+
 - `Você costuma pular alguma refeição?`
 
 **Keys salvas:** `vontade_comer` + `padrao_refeicoes`
@@ -265,9 +308,14 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 ## 💥 Step 21 — Impacto Emocional (`Step13_Impact`)
 
-**Tipo:** QuizButtons
+**Tipo:** QuizButtons (seleção única)
 
 **Título:** `Como isso mais impacta sua vida hoje?`
+
+- [ ] 📷 Evito fotos ou espelho porque não gosto do que vejo
+- [ ] 👗 Minhas roupas não vestem como eu gostaria
+- [ ] 😶 Evito sair ou me expor porque não me sinto bem
+- [ ] ⚡ Isso pesa mais na minha energia e autoestima diária
 
 **Key salva:** `impacto_principal`
 
@@ -293,6 +341,12 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 **Tipo:** QuizButtons
 
 **Título:** `Qual é o seu principal motivo para entrar em forma?`
+
+- [ ] 🌟 Me sentir mais confiante com meu corpo
+- [ ] ⚡ Me sentir mais saudável e com energia
+- [ ] 👗 Vestir melhor minhas roupas
+- [ ] 🤱 Voltar a forma após o parto
+- [ ] ✨ Outro
 
 **Key salva:** `motivo_entrar_forma`
 
@@ -329,7 +383,16 @@ Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 step
 
 **Tipo:** Loading animado com checklist visual
 
-**Mensagem:** `Montando seu plano...`
+**Mensagens na tela de processo:**
+
+- Mensagem: Montando seu plano...
+- Análise em andamento
+- Montando seu plano...
+- Cruzando seu objetivo, energia e ritmo atual para liberar a trilha inicial que faz sentido para o seu momento.
+- Analisando seu perfil...
+- Calculando grade de adaptação...
+- Ajustando treinos para 15 minutos...
+- Personalizando sua trilha inicial...
 
 ---
 
