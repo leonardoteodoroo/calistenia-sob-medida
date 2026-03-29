@@ -7,65 +7,58 @@ interface StepProps {
   onNext: (data: string) => void;
 }
 
+const options = [
+  {
+    value: "mulher",
+    label: "MULHER",
+    src: imgMulher,
+    alt: "Mulher adulta em casa com roupa de treino, sorrindo com confiança",
+  },
+  {
+    value: "homem",
+    label: "HOMEM",
+    src: imgHomem,
+    alt: "Homem adulto em casa com roupa esportiva, expressão amigável e confiante",
+  },
+];
+
 export function Step01_Gender({ onNext }: StepProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="flex flex-col gap-8 w-full max-w-lg mx-auto pt-2 pb-8"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col gap-8 w-full max-w-2xl mx-auto pt-2 pb-8"
     >
-      <header className="space-y-4 text-center">
-        <h1 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Você está muito perto de descobrir qual o melhor tipo de treino para
-          alcançar os resultados que você deseja.
-        </h1>
-        <div className="space-y-1">
-          <p className="text-text-secondary text-base">
-            Para isso, precisamos de algumas informações.
-          </p>
-          <p className="text-text-secondary font-semibold text-lg">
-            Para começar, você é:
-          </p>
-        </div>
+      <header className="space-y-3 text-center">
+        <p className="text-base text-text-secondary">
+          Para isso, precisamos de algumas informações.
+        </p>
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
+          Para começar, você é:
+        </h2>
       </header>
 
-      {/* Grid sempre 2 colunas em mobile */}
       <div className="grid grid-cols-2 gap-4">
-        <OptionCard
-          title="MULHER"
-          onSelect={() => onNext("mulher")}
-          hideIndicator
-          fetchPriority="high"
-        >
-          <img
-            src={imgMulher}
-            alt="Mulher adulta em casa com roupa de treino, sorrindo com confiança"
-            width={320}
-            height={400}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="w-full object-cover aspect-[4/5]"
-          />
-        </OptionCard>
-        <OptionCard
-          title="HOMEM"
-          onSelect={() => onNext("homem")}
-          hideIndicator
-        >
-          <img
-            src={imgHomem}
-            alt="Homem adulto em casa com roupa esportiva, expressão amigável e confiante"
-            width={320}
-            height={400}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="w-full object-cover aspect-[4/5]"
-          />
-        </OptionCard>
+        {options.map((option) => (
+          <OptionCard
+            key={option.value}
+            title={option.label}
+            onSelect={() => onNext(option.value)}
+            hideIndicator
+          >
+            <img
+              src={option.src}
+              alt={option.alt}
+              width={480}
+              height={320}
+              loading="eager"
+              decoding="async"
+              className="w-full object-cover aspect-[4/3]"
+            />
+          </OptionCard>
+        ))}
       </div>
     </motion.div>
   );

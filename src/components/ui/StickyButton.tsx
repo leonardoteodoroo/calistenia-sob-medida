@@ -3,7 +3,6 @@ import { Button, type ButtonProps } from "./Button";
 import { cn } from "../../lib/utils";
 
 export interface StickyButtonProps extends ButtonProps {
-  helperText?: React.ReactNode;
   shellClassName?: string;
 }
 
@@ -12,31 +11,46 @@ const StickyButton = React.forwardRef<HTMLButtonElement, StickyButtonProps>(
     {
       children,
       className,
-      helperText,
       shellClassName,
       fullWidth = true,
+      animate,
+      transition,
       ...props
     },
     ref,
   ) => {
     return (
-      <div className="fixed inset-x-0 bottom-0 z-30 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)] pt-3 pointer-events-none">
+      <div className="fixed inset-x-0 bottom-0 z-30 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] pt-3 pointer-events-none sm:px-0">
         <div
           className={cn(
-            "pointer-events-auto w-full rounded-t-[28px] border border-primary/10 border-x-0 border-b-0 bg-white/95 px-4 pb-4 pt-3 shadow-[0_-12px_40px_rgba(44,122,123,0.16)] backdrop-blur-md sm:mx-auto sm:max-w-3xl sm:rounded-[28px] sm:border sm:p-3",
+            "pointer-events-auto mx-auto w-full sm:max-w-3xl",
             shellClassName,
           )}
         >
-          {helperText && (
-            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted">
-              {helperText}
-            </p>
-          )}
-
           <Button
             ref={ref}
             fullWidth={fullWidth}
-            className={cn("min-h-[56px] rounded-2xl", className)}
+            animate={
+              animate ?? {
+                scale: [1, 1.008, 1],
+                boxShadow: [
+                  "0 12px 30px rgba(44,122,123,0.18)",
+                  "0 14px 34px rgba(44,122,123,0.24)",
+                  "0 12px 30px rgba(44,122,123,0.18)",
+                ],
+              }
+            }
+            transition={
+              transition ?? {
+                duration: 2.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+            }
+            className={cn(
+              "min-h-[56px] rounded-2xl shadow-[0_12px_30px_rgba(44,122,123,0.22)]",
+              className,
+            )}
             {...props}
           >
             {children}

@@ -24,6 +24,8 @@ type StitchReview = {
   isTop?: boolean;
 };
 
+const CAROUSEL_HEADLINE = "Gente comum, resultado real sem drama";
+
 const reviews: StitchReview[] = [
   {
     id: 1,
@@ -512,7 +514,10 @@ export function Step08_SocialProofCarousel({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-left space-y-6 relative z-20">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 leading-tight">
+            <h2
+              aria-label={CAROUSEL_HEADLINE}
+              className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 leading-tight"
+            >
               Gente comum, resultado real{" "}
               <span className="text-[#ee2b5b] relative inline-block">
                 sem drama

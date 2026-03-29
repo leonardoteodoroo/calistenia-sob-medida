@@ -96,7 +96,7 @@ function post(payload: Record<string, unknown>) {
 // FUNÇÕES PÚBLICAS
 // ============================================================
 
-/** Step 3 — captura gênero e idade → aba Quiz */
+/** Entrada consolidada após gênero, idade e objetivos → aba Quiz */
 export function sendQuizEntry(answers: Record<string, string>) {
   post(
     basePayload({
@@ -104,6 +104,37 @@ export function sendQuizEntry(answers: Record<string, string>) {
       event_type: "QuizEntry",
       genero: answers.genero || "",
       idade: answers.idade || "",
+      objetivo_principal: answers.objetivo_principal || "",
+      objetivos_secundarios: answers.objetivos_secundarios || "",
+    }),
+  );
+}
+
+export function sendQuizQuarter(answers: Record<string, string>) {
+  post(
+    basePayload({
+      sheet_target: "quiz",
+      event_type: "QuizQuarter",
+      genero: answers.genero || "",
+      idade: answers.idade || "",
+      objetivo_principal: answers.objetivo_principal || "",
+      objetivos_secundarios: answers.objetivos_secundarios || "",
+    }),
+  );
+}
+
+export function sendQuizResultView(answers: Record<string, string>) {
+  post(
+    basePayload({
+      sheet_target: "quiz",
+      event_type: "QuizResultViewed",
+      genero: answers.genero || "",
+      idade: answers.idade || "",
+      objetivo_principal: answers.objetivo_principal || "",
+      maior_trava: answers.maior_trava || "",
+      tempo_disponivel: answers.tempo_disponivel || "",
+      peso_atual: answers.peso_atual || "",
+      peso_ideal: answers.peso_ideal || "",
     }),
   );
 }
@@ -116,6 +147,7 @@ export function sendQuizComplete(answers: Record<string, string>) {
       event_type: "QuizComplete",
       genero: answers.genero || "",
       idade: answers.idade || "",
+      nome: answers.nome || "",
       experiencia: answers.experiencia || "",
       objetivo_principal: answers.objetivo_principal || "",
       objetivos_secundarios: answers.objetivos_secundarios || "",
@@ -123,15 +155,19 @@ export function sendQuizComplete(answers: Record<string, string>) {
       corpo_dos_sonhos: answers.corpo_dos_sonhos || "",
       mudanca_de_peso: answers.mudanca_de_peso || "",
       flexibilidade: answers.flexibilidade || "",
+      maior_trava: answers.maior_trava || "",
       regioes_foco: answers.regioes_foco || "",
       frequencia_exercicios: answers.frequencia_exercicios || "",
       frequencia_caminhadas: answers.frequencia_caminhadas || "",
       dia_tipico: answers.dia_tipico || "",
+      tempo_disponivel: answers.tempo_disponivel || "",
       nivel_energia: answers.nivel_energia || "",
       frequencia_sono: answers.frequencia_sono || "",
       maus_habitos: answers.maus_habitos || "",
       vontade_comer: answers.vontade_comer || "",
+      padrao_refeicoes: answers.padrao_refeicoes || "",
       motivos_ganho_peso: answers.motivos_ganho_peso || "",
+      impacto_principal: answers.impacto_principal || "",
       motivo_entrar_forma: answers.motivo_entrar_forma || "",
       altura: answers.altura || "",
       peso_atual: answers.peso_atual || "",

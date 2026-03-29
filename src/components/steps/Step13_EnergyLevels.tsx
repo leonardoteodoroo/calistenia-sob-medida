@@ -11,23 +11,23 @@ export function Step13_EnergyLevels({ onNext }: StepProps) {
   const options = [
     {
       id: "baixos",
-      label: "Baixos, sinto-me cansada durante o dia",
-      icon: <BatteryLow className="text-status-error" />,
+      label: "Baixa, vivo cansada ao longo do dia",
+      icon: <BatteryLow className="h-7 w-7 text-status-error" />,
     },
     {
       id: "baixa_manha",
-      label: "Baixa após o almoço",
-      icon: <BatteryWarning className="text-status-warning" />,
+      label: "Caio depois do almoço",
+      icon: <BatteryWarning className="h-7 w-7 text-status-warning" />,
     },
     {
       id: "arrasto",
-      label: "Arrasto-me entre refeições",
-      icon: <BatteryMedium className="text-status-success/70" />,
+      label: "Vou empurrando entre refeições",
+      icon: <BatteryMedium className="h-7 w-7 text-status-success/70" />,
     },
     {
       id: "elevados",
-      label: "Elevados e estáveis",
-      icon: <BatteryFull className="text-status-success" />,
+      label: "Boa e estável na maior parte do dia",
+      icon: <BatteryFull className="h-7 w-7 text-status-success" />,
     },
   ];
 
@@ -41,7 +41,7 @@ export function Step13_EnergyLevels({ onNext }: StepProps) {
     >
       <header className="text-center">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Como são os seus níveis de energia durante o dia?
+          Como está sua energia durante o dia?
         </h2>
       </header>
 
@@ -54,7 +54,7 @@ export function Step13_EnergyLevels({ onNext }: StepProps) {
             whileTap={{ scale: 0.98 }}
             className="relative flex flex-row items-center gap-4 w-full p-4 md:p-5 text-left transition-all duration-300 border-2 rounded-[var(--radius-lg)] border-border-subtle bg-surface-card shadow-sm hover:shadow-md hover:border-primary/50 group"
           >
-            <div className="w-10 h-10 shrink-0 bg-surface-subtle rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+            <div className="shrink-0 text-primary transition-transform group-hover:scale-105">
               {opt.icon}
             </div>
             <span className="font-heading font-semibold text-base text-text-primary">

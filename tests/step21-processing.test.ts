@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { createElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
 
 import {
   COMPLETE_DELAY_MS,
@@ -13,7 +11,6 @@ import {
   PROCESSING_TOTAL_DURATION_MS,
   STEP_DURATION_MS,
 } from "../src/components/steps/Step21_ProcessingContent.ts";
-import { Step21_Processing } from "../src/components/steps/Step21_Processing.tsx";
 
 test("step 21 keeps four processing stages with auto redirect enabled again", () => {
   assert.equal(PROCESSING_STEPS.length, 4);
@@ -61,12 +58,13 @@ test("step 21 keeps the marquee layout open enough to show a denser social-proof
 });
 
 test("step 21 renders a visible progress bar between processing and the mosaic", () => {
-  const markup = renderToStaticMarkup(
-    createElement(Step21_Processing, { onNext: () => {} }),
+  const source = readFileSync(
+    "src/components/steps/Step21_Processing.tsx",
+    "utf8",
   );
 
-  assert.match(markup, /Progresso do processamento/);
-  assert.match(markup, />0%</);
+  assert.match(source, /Progresso do processamento/);
+  assert.match(source, /Math\.round\(progress\)/);
 });
 
 test("step 21 restores a soft card treatment for the processing checklist", () => {

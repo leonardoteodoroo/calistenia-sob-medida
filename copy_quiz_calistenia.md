@@ -1,425 +1,407 @@
 # 🤸‍♀️ Copy do Quiz: Calistenia Sob Medida
 
-Aqui está a estruturação completa da copy do seu Funil/Quiz, minuciosamente separada e revisada em 32 passos (screens), conforme a divisão real das etapas.
+> **Última atualização:** 28/03/2026 — experiência/motivação cedo e 3 novos steps de rotina/hábito/gatilhos
+
+Estrutura atual do quiz baseada na implementação real em TSX. Total: **27 steps**, com foco em `venda direta + sensação de diagnóstico premium`.
 
 ---
 
-## 🎯 Passo 1: Gênero
+## 🎯 Step 1 — Hero (`step_Hero`)
 
-> _Você está muito perto de descobrir qual o melhor tipo de treino para alcançar os resultados que você deseja. Para isso, precisamos de algumas informações._
+**Tipo:** Hero women-first com imagem + promessa + CTA
 
-**Para começar, você é:**
+**Eyebrow:** `Análise Calistenia Sob Medida`
+
+**Headline:** `Descubra em 2 minutos qual perfil de treino vai destravar seu corpo em casa`
+
+**Subcopy:** `Uma análise pensada para mulheres que querem emagrecer, definir e voltar a gostar do que veem no espelho sem depender de academia.`
+
+**Bullets:**
+
+- Diagnóstico com foco em emagrecimento e firmeza
+- Treinos curtos para rotina corrida e sem equipamento
+- Resultado final com plano inicial mais indicado para o seu momento
+
+👉 **Botão:** `COMEÇAR ANÁLISE`
+
+> 📊 **Meta Pixel:** `QuizStarted`
+
+---
+
+## 👤 Step 2 — Gênero (`Step01_Gender`)
+
+**Tipo:** Seleção visual com 2 cards
+
+**Texto:** `Para isso, precisamos de algumas informações.`
+
+**Título:** `Para começar, você é:`
 
 - [ ] MULHER
 - [ ] HOMEM
 
 ---
 
-## 🎂 Passo 2: Idade
+## 🎂 Step 3 — Idade (`Step02_Age`)
 
-**Desafio específico para sua idade e objetivo: Escolha uma opção abaixo:**
+**Tipo:** Seleção visual com imagem
 
-- [ ] 18 - 29 anos
-- [ ] 29 - 39 anos
-- [ ] 39 - 59 anos
-- [ ] 60 anos ou mais
+**Título:** `Qual é a sua faixa de idade?`
+
+- [ ] 18 – 29 anos
+- [ ] 29 – 39 anos
+- [ ] 39 – 59 anos
+- [ ] - 60 anos
 
 ---
 
-## 🏆 Passo 3: Prova Social (Intersticial)
+## 🏆 Step 4 — Prova Social Numérica (`Step03_SocialProof`)
 
-> **Mais de 600 mil**
-> É o número de mulheres que nós já ajudamos através desse teste
+**Tipo:** Intersticial com número de impacto
+
+**Mensagem principal:**
+
+- `Mosaico editorial com mulheres diversas em casa, sorrindo e confiantes`
+- `Mais de 600 mil`
+- `É o número de mulheres que nós já ajudamos através desse teste`
+- `Editorial da Calistenia Sob Medida`
 
 👉 **Botão:** `CONTINUAR`
 
 ---
 
-## 🤔 Passo 4: Experiência Anterior
+## 🤔 Step 5 — Experiência (`Step04_Experience`)
 
-**Você já tentou treinos de calistenia antes?**
+**Tipo:** Seleção simples
 
-- [ ] Sim
-- [ ] Não
+**Título:** `Você já tentou treinos de calistenia antes?`
+
+- [ ] ✓ Sim
+- [ ] ✗ Não
 
 ---
 
-## 🎉 Passo 5: Motivação (Intersticial)
+## 🚀 Step 6 — Motivação (`Step05_Motivation`)
 
-> **Você vai arrasar!**
-> Nosso programa de calistenia é uma opção de fitness fácil e eficaz para todos os níveis. Ajudamos você a entrar em forma usando nenhum equipamento em casa!
+**Tipo:** Intersticial de encorajamento
+
+**Headline:** `Você vai arrasar!`
+
+**Texto:** `Nosso programa de calistenia é uma opção de fitness fácil e eficaz para todos os níveis. Ajudamos você a entrar em forma usando nenhum equipamento em casa!`
 
 👉 **Botão:** `CONTINUAR`
 
 ---
 
-## 🎯 Passo 6: Objetivo Principal
+## 🎯 Step 7 — Objetivo Principal (`Step06_Objective`)
 
-**Qual é o seu principal objetivo?**
+**Tipo:** QuizButtons
 
-- [ ] Perder peso
-- [ ] Mantenha o peso e fique em forma
+**Título:** `Qual é o seu principal objetivo?`
 
----
-
-## 🌟 Passo 7: Ganhos Secundários
-
-**Que mais espera alcançar com este plano?** _(Escolha todas que se aplicam)_
-
-- [ ] Construir força muscular
-- [ ] Melhorar a postura
-- [ ] Reduzir o estresse e a preocupação
-- [ ] Desenvolver flexibilidade
-- [ ] Nenhum dos itens acima
-
-👉 **Botão:** `PRÓXIMO PASSO`
+- [ ] 🔥 Perder peso
+- [ ] ⚖️ Mantenha o peso e fique em forma
 
 ---
 
-## 🪞 Passo 8: Descrição do Físico Atual
+## ✨ Step 8 — Objetivo Secundário (`Step07_SecondaryGoals`)
 
-**Como você descreveria seu físico?**
+**Tipo:** QuizButtons
 
-- [ ] Magra
-- [ ] Falsa magra
-- [ ] Acima do peso
-- [ ] Muito acima do peso
+**Título:** `Que mais espera alcançar com este plano?`
 
----
+- [ ] 💪 Construir força muscular
+- [ ] 🧍 Melhorar a postura
+- [ ] 🧘 Reduzir o estresse e a preocupação
+- [ ] 🤸 Desenvolver flexibilidade
+- [ ] ✨ Outro
 
-## 💭 Passo 9: Corpo dos Sonhos
-
-**Qual é o seu "corpo dos sonhos"?**
-
-- [ ] Magra
-- [ ] Tonificada
-- [ ] Com curvas
-- [ ] Média
+**Key salva:** `objetivos_secundarios`
 
 ---
 
-## ⚖️ Passo 10: Variação de Peso
+## 🪞 Step 9 — Físico Atual (`Step09_BodyType`)
 
-**Como seu peso muda tipicamente?**
+**Tipo:** Grid visual
 
-- [ ] Eu ganho peso rapidamente mas perco peso lentamente
-- [ ] Eu ganho e perco peso facilmente
-- [ ] Eu tenho dificuldade para ganhar peso ou músculos
+**Título:** `Como você descreveria seu físico?`
 
 ---
 
-## ⏳ Passo 11: Histórico Físico
+## 💭 Step 10 — Corpo Desejado (`Step10_DreamBody`)
 
-**Há quanto tempo você esteve no melhor físico de sua vida?**
+**Tipo:** Grid visual
 
-- [ ] Há menos de 1 ano
-- [ ] 1 a 2 anos atrás
-- [ ] Há mais de 3 anos
-- [ ] Nunca
+**Título:** `Qual é o seu "corpo dos sonhos"?`
 
 ---
 
-## 🧘‍♀️ Passo 12: Flexibilidade
+## 🎠 Step 11 — Carrossel de Depoimentos (`Step08_SocialProofCarousel`)
 
-**Você se considera uma mulher flexível?**
+**Tipo:** Carrossel editorial com reviews reais
 
-- [ ] Bastante flexível
-- [ ] Estou começando
-- [ ] Não muito
-- [ ] Não tenho certeza
+**Mensagem principal:** `Gente comum, resultado real sem drama`
 
----
+👉 **Botão:** `Ok. Quero continuar`
 
-## 🔍 Passo 13: Zonas de Foco
-
-**Quais são suas regiões de foco?** _(Escolha todas que se aplicam)_
-
-- [ ] Barriga
-- [ ] Glúteos
-- [ ] Pernas
-- [ ] Peito
-
-👉 **Botão:** `PRÓXIMO PASSO`
+> 📊 **Tracking:** `sendQuizEntry()` + `sendQuizQuarter()`
+> 📊 **Meta Pixel:** `QuizQuarter`
 
 ---
 
-## 🏃‍♀️ Passo 14: Frequência de Exercícios
+## 🛑 Step 12 — Maior Trava (`Step16_Obstacles`)
 
-**Quantas vezes faz exercício?**
+**Tipo:** QuizButtons
 
-- [ ] Quase todos os dias
-- [ ] Várias vezes por semana
-- [ ] Várias vezes por mês
-- [ ] Nunca
+**Título:** `O que mais te trava hoje?`
 
----
-
-## 🚶‍♀️ Passo 15: Caminhadas
-
-**Com que frequência você sai para caminhadas?**
-
-- [ ] Quase todos os dias
-- [ ] 3-4 vezes por semana
-- [ ] 1 a 2 vezes por semana
-- [ ] Uma vez por mês
+**Key salva:** `maior_trava`
 
 ---
 
-## 💼 Passo 16: Rotina Diária
+## 🔍 Step 13 — Regiões de Foco (`Step11_FocusAreas`)
 
-**Como você descreveria seu dia típico?**
+**Tipo:** Grid visual
 
-- [ ] Passo a maior parte do dia sentada
-- [ ] Eu faço pausas ativas
-- [ ] Fico de pé o dia todo
+**Título:** `Quais são suas regiões de foco?`
 
----
-
-## 🔋 Passo 17: Níveis de Energia
-
-**Como são os seus níveis de energia durante o dia?**
-
-- [ ] Baixos, sinto-me cansada durante o dia
-- [ ] Baixa após o almoço
-- [ ] Arrasto-me entre refeições
-- [ ] Elevados e estáveis
+**Key salva:** `regioes_foco`
 
 ---
 
-## ⚡ Passo 18: Benefício de Energia (Intersticial)
+## 🏃‍♀️ Step 14 — Rotina + Tempo (`Step12_ActivityLevel`)
 
-> **A calistenia vai te ajudar a se sentir com mais energia**
-> Esses exercícios fortalecem seus músculos, núcleo e aumentam a consciência corporal. Queremos que você viva sua vida ao máximo!
+**Tipo:** QuizButtons em 2 etapas
+
+**Perguntas:**
+
+- `Como é sua rotina de movimento no dia a dia?`
+- `Quanto tempo você consegue dedicar de verdade?`
+
+**Keys salvas:** `dia_tipico` + `tempo_disponivel`
+
+---
+
+## 🚶‍♀️ Step 15 — Frequência de Exercício ou Caminhada (`StepExerciseFrequency`)
+
+**Tipo:** QuizButtons
+
+**Título:** `Com que frequência você se exercita ou caminha?`
+
+- [ ] ❌ Nunca
+- [ ] 🌱 1 a 2 vezes por semana
+- [ ] 🔥 3 a 4 vezes por semana
+- [ ] ⚡ Quase todos os dias
+
+**Keys salvas:** `frequencia_exercicios` + `frequencia_caminhadas`
+
+---
+
+## 🔋 Step 16 — Energia (`Step13_EnergyLevels`)
+
+**Tipo:** Seleção simples com ícones de bateria
+
+**Título:** `Como está sua energia durante o dia?`
+
+**Opções:**
+
+- `Baixa, vivo cansada ao longo do dia`
+- `Caio depois do almoço`
+- `Vou empurrando entre refeições`
+- `Boa e estável na maior parte do dia`
+
+**Key salva:** `nivel_energia`
+
+---
+
+## ☀️ Step 17 — Benefício de Energia (`Step19_EnergyBenefit`)
+
+**Tipo:** Intersticial editorial
+
+**Headline:** `A calistenia vai te ajudar a se sentir com mais energia`
+
+**Texto:** `Esses exercícios fortalecem seus músculos, núcleo e aumentam a consciência corporal.`
 
 👉 **Botão:** `CONTINUAR`
 
 ---
 
-## 🛌 Passo 19: Qualidade do Sono
+## 😴 Step 18 — Sono (`Step15_SleepAndDiet`)
 
-**Com que frequência você dorme?**
+**Tipo:** QuizButtons
 
-- [ ] Menos de 5 horas
-- [ ] 5-6 horas
-- [ ] 7-8 horas
-- [ ] Mais de 8 horas
+**Título:** `Com quantas horas de sono você costuma acordar descansada?`
 
----
-
-## ☕ Passo 20: Café da Manhã
-
-**Quando você normalmente toma café da manhã?**
-
-- [ ] Entre as 6h e as 8h
-- [ ] Entre as 8h e as 10h
-- [ ] Entre as 10h e o meio dia
-- [ ] Eu normalmente salto o café da manhã
+**Key salva:** `frequencia_sono`
 
 ---
 
-## 🥗 Passo 21: Almoço
+## 🍽️ Step 19 — Hábito que Mais Atrapalha (`StepHabitBlockers`)
 
-**E o almoço?**
+**Tipo:** QuizButtons
 
-- [ ] Entre as 10h e o meio dia
-- [ ] Entre o meio dia e as 14h
-- [ ] Entre as 14h e 16h
-- [ ] Eu normalmente pulo o almoço
+**Título:** `Qual hábito mais te atrapalha?`
 
----
+- [ ] 💭 Comer por emoção ou tédio
+- [ ] 🍽️ Comer demais
+- [ ] 🌙 Lanches noturnos
+- [ ] 🔄 Outro
 
-## 🍽️ Passo 22: Jantar
-
-**A que horas você normalmente janta?**
-
-- [ ] Entre as 16h e as 18h
-- [ ] Entre as 18h e as 20h
-- [ ] Entre as 20h e 22h
-- [ ] Eu normalmente pulo o jantar
+**Key salva:** `maus_habitos`
 
 ---
 
-## 🛑 Passo 23: Maus Hábitos
+## 🍩 Step 20 — Alimentação (`Step17_Cravings`)
 
-**Você tem algum dos seguintes maus hábitos?**
+**Tipo:** QuizButtons em 2 etapas
 
-- [ ] Comer por emoção ou tédio
-- [ ] Comer demais
-- [ ] Lanches noturnos
-- [ ] Pular refeições com frequência
-- [ ] Nenhum dos itens acima
+**Perguntas:**
 
-👉 **Botão:** `PRÓXIMO PASSO`
+- `Em qual momento sua alimentação mais pesa contra você?`
+- `Você costuma pular alguma refeição?`
 
----
-
-## 🍩 Passo 24: Vontades e Desejos (Cravings)
-
-**Quais alimentos você mais sente vontade de comer?**
-
-- [ ] Doces
-- [ ] Salgadinhos
-- [ ] Fast food
-- [ ] Refrigerante
-- [ ] Nenhum dos itens acima
-
-👉 **Botão:** `PRÓXIMO PASSO`
+**Keys salvas:** `vontade_comer` + `padrao_refeicoes`
 
 ---
 
-## 📉 Passo 25: Eventos de Ganho de Peso
+## 💥 Step 21 — Impacto Emocional (`Step13_Impact`)
 
-**Algum dos seguintes eventos levou ao ganho de peso nos últimos anos?** _(Escolha todas que se aplicam)_
+**Tipo:** QuizButtons
 
-- [ ] Pressão do trabalho
-- [ ] Vida familiar agitada
-- [ ] Divórcio ou término de relacionamento
-- [ ] Metabolismo mais lento devido ao envelhecimento
-- [ ] Desafios financeiros
-- [ ] Pandemia de Covid-19
-- [ ] Outros eventos estressantes
-- [ ] Nenhum dos itens acima
+**Título:** `Como isso mais impacta sua vida hoje?`
 
-👉 **Botão:** `PRÓXIMO PASSO`
+**Key salva:** `impacto_principal`
 
 ---
 
-## 🏆 Passo 26: Motivação Principal
+## ⚖️ Step 22 — Gatilho de Ganho de Peso (`StepWeightGainTriggers`)
 
-**Qual é o seu principal motivo para entrar em forma?** _(Escolhe uma ou mais opções para avançar)_
+**Tipo:** QuizButtons
 
-- [ ] Me sentir mais confiante com meu corpo
-- [ ] Me sentir mais saudável e com energia
-- [ ] Vestir melhor minhas roupas
-- [ ] Voltar a forma após o parto
-- [ ] Outros
+**Título:** `Algum destes eventos levou ao ganho de peso?`
 
-👉 **Botão:** `CONTINUAR`
+- [ ] 💼 Pressão do trabalho
+- [ ] 👨‍👩‍👧 Vida familiar agitada
+- [ ] ⏳ Metabolismo lento
+- [ ] 🔄 Outro
 
----
-
-## 📏 Passo 27: Altura
-
-**Qual sua altura?**
-_*(Slider / Arraste para ajustar)*_
-
-👉 **Botão:** `PRÓXIMO PASSO`
+**Key salva:** `motivos_ganho_peso`
 
 ---
 
-## ⚖️ Passo 28: Peso Atual
+## 🎯 Step 23 — Motivo Principal (`Step18_MainReason`)
 
-**Qual seu peso?**
-_*(Slider / Arraste para ajustar)*_
+**Tipo:** QuizButtons
 
-👉 **Botão:** `PRÓXIMO PASSO`
+**Título:** `Qual é o seu principal motivo para entrar em forma?`
 
----
-
-## 🎯 Passo 29: Peso Ideal
-
-**E qual é o seu objetivo de peso ideal?**
-_*(Slider / Arraste para ajustar)*_
-
-👉 **Botão:** `PRÓXIMO PASSO`
+**Key salva:** `motivo_entrar_forma`
 
 ---
 
-## ⚙️ Passo 30: Tela de Processamento
+## 💬 Step 24 — Mural do Amor (`Step14_WallOfLove`)
 
-> **Analisando seus dados e finalizando seu plano**
-> Taxa de carregamento 79% _(Animação/Carregamento)_
+**Tipo:** Mural editorial com depoimentos em ticker
 
----
+**Hook:** `Elas começaram do zero. E continuaram.`
 
-## 📊 Passo 31: Análise do Perfil
-
-**Análise do seu perfil**
-
-- Seu peso atual: 84 kg _(Exemplo visual/dinâmico)_
-- Seu objetivo: 96 kg _(Exemplo visual/dinâmico)_
-- Taxa de qualidade de vida
-- Satisfação com o corpo
-- Autoestima
-
-👉 **Botão:** `CONTINUAR`
+👉 **Botão:** `Ok. Quero continuar`
 
 ---
 
-## 🛒 Passo 32: Página de Vendas (Checkout / Oferta Final)
+## 📏 Step 25 — Medidas + Nome (`Step20_Measurements`)
 
-> 🎉 **Seu Plano de Calistenia para perder pochete rápido e ganhar massa magra em até 2 meses está pronto.**
+**Tipo:** Sliders + input leve
 
-**Adquira agora o seu plano**
+**Coleta:**
 
-- ACESSO PARA SEMPRE + ATUALIZAÇÕES
-- PLANO DE AULAS EM VÍDEO
-- **POR APENAS R$ 49,00 à vista**
+- Altura
+- Peso atual
+- Peso ideal
+- Primeiro nome
 
-👉 **Botão:** `OBTER MEU PLANO`
+👉 **Botão:** `VER MINHA ANÁLISE`
 
-### O que você vai transformar em sua vida após iniciar os treinos:
-
-- Perda de peso
-- Alívio de dores nas costas
-- Melhora da postura
-- Alívio de dores nas Pernas e Cãibras
-- Melhora do fluxo sanguíneo
-- Redução de ansiedade
-- Reduz o estresse
-- Reduz a enxaquecas
-- Reduz dores menstruais
-- Melhora da flexibilidade
-- Aumento da autoestima
-
-### � Estatísticas (Social Proof)
-
-- **91% -** DAS ALUNAS PERDE MAIS DE 7 QUILOS DURANTE O PROGRAMA
-- **83% -** DAS ALUNAS ALEGA TER MELHORA NA DISPOSIÇÃO APÓS O PROGRAMA
-- **4.684 -** Alunas foram capazes de emagrecer mais de 5 quilos após 25 dias de aulas
-- **97% -** Das alunas do programa indicam e recomendam as aulas em suas redes sociais e para conhecidos
-- **75% -** Das alunas reduziram as dores corporais
-- _"Mulheres como você obtiveram excelentes resultados utilizando o nosso programa"_
-
-### 🌟 Destaques do seu plano
-
-- Perda de peso e corpo tonificado com treinos fáceis de fazer em casa
-- Rotinas boas para iniciantes para uma barriga mais reta e uma forma modelada
-- Treinos de 10-20 min que se encaixam na sua agenda
-- Sem equipamentos, tudo o que você precisa é do nosso plano
-- Plano de refeições personalizado com receitas rápidas e saborosas
-- Dicas e truques de especialistas para melhorar seu estilo de vida e manter a forma
-
-### 📦 Como irei receber meu acesso a tudo isso?
-
-Logo após finalizar seu cadastro você receberá um email de imediato com seu acesso a nossa área de alunas! Dentro da nossa Área de Alunas você irá receber todas as suas aulas organizadas, uma aula para cada dia da semana, só dar Play e começar!
-
-- Pode ser feito dentro de casa
-- Apenas 15 minutos por dia
-- Pode ser sem aparelhos
-
-### ❓ Perguntas frequentes de nossas alunas
-
-**Posso ver as aulas sempre?**
-Sim, você tem acesso as suas aulas para sempre, pode ver quantas vezes quiser sem limitações e sem nenhuma taxa extra!
-
-**Posso cancelar se eu não gostar?**
-Claro, por se tratar de uma compra online, você tem direito por lei a 7 dias de garantia. Se por qualquer motivo você não ficar satisfeita, devolvemos 100% do seu dinheiro!
-
-**No próximo mês tenho que pagar novamente?**
-Não, você paga apenas essa taxinha e tem acesso às aulas para sempre com direito as atualizações de novas aulas que adicionamos!
+**Keys salvas:** `altura` + `peso_atual` + `peso_ideal` + `nome`
 
 ---
 
-### 🚨 OFERTA FINAL 🚨
+## ⚙️ Step 26 — Processing (`Step21_Processing`)
 
-**ÚLTIMAS 7 VAGAS DISPONÍVEIS!**
+**Tipo:** Loading animado com checklist visual
 
-- PAGAMENTO ÚNICO - ACESSO PARA SEMPRE
-- TREINOS EM VÍDEO TODOS OS DIAS
+**Mensagem:** `Montando seu plano...`
 
-~~De R$ 147,00~~
-**Por apenas R$ 49,00 à vista**
-PAGUE 1 VEZ E TENHA ACESSO PARA SEMPRE
+---
 
-👉 **Botão:** `GARANTIR MEU PLANO DE TREINOS`
+## 📊 Step 27 — Resultado Premium (`Step22_ProfileResult`)
+
+**Tipo:** Tela de diagnóstico premium
+
+Entrega baseada em `buildQuizProfile()`:
+
+- Perfil detectado
+- Score `Consistência`
+- Score `Recuperação e Energia`
+- Score `Direção de Emagrecimento`
+- `Principal trava detectada`
+- `Foco dos próximos 14 dias`
+- Projeção inicial de peso
+
+👉 **Botão sticky:** `VER MEU PLANO COMPLETO`
+
+> 📊 **Tracking:** `sendQuizResultView()`
+> 📊 **Meta Pixel:** `QuizResultViewed`
+
+---
+
+## 🛒 Step 28 — Sales Page (`Step23_SalesPage`)
+
+**Tipo:** Sales Page completa
+
+Lê o mesmo perfil compartilhado do Step 27 para manter coerência até o checkout.
+
+**Oferta atual unificada:**
+
+- Plano passo a passo
+- Pagamento único
+- **R$ 19,90**
+
+👉 **Botões:** `OBTER MEU PLANO AGORA` / `GARANTIR MEU PLANO`
+
+> 📊 **Tracking:** `sendQuizComplete()`
+> 📊 **Meta Pixel:** `QuizSalesPage`
+
+---
+
+## 🗂️ Mapa Técnico do Fluxo
+
+| Step | Componente                   | Tipo                  | Key de dado salvo                                           |
+| ---- | ---------------------------- | --------------------- | ----------------------------------------------------------- |
+| 1    | `step_Hero`                  | Hero                  | —                                                           |
+| 2    | `Step01_Gender`              | Seleção visual        | `genero`                                                    |
+| 3    | `Step02_Age`                 | Seleção visual        | `idade`                                                     |
+| 4    | `Step03_SocialProof`         | Intersticial numérico | —                                                           |
+| 5    | `Step04_Experience`          | Seleção simples       | `experiencia`                                               |
+| 6    | `Step05_Motivation`          | Intersticial          | —                                                           |
+| 7    | `Step06_Objective`           | QuizButtons           | `objetivo_principal` + `mudanca_de_peso`                    |
+| 8    | `Step07_SecondaryGoals`      | QuizButtons           | `objetivos_secundarios` + `flexibilidade`                   |
+| 9    | `Step09_BodyType`            | Grid visual           | `tipo_fisico_atual`                                         |
+| 10   | `Step10_DreamBody`           | Grid visual           | `corpo_dos_sonhos`                                          |
+| 11   | `Step08_SocialProofCarousel` | Carrossel             | —                                                           |
+| 12   | `Step16_Obstacles`           | QuizButtons           | `maior_trava`                                               |
+| 13   | `Step11_FocusAreas`          | Grid visual           | `regioes_foco`                                              |
+| 14   | `Step12_ActivityLevel`       | 2 etapas              | `nível_atividade` → `dia_tipico` + `tempo_disponivel`       |
+| 15   | `StepExerciseFrequency`      | QuizButtons           | `frequencia_exercicios` + `frequencia_caminhadas`           |
+| 16   | `Step13_EnergyLevels`        | QuizButtons           | `nivel_energia`                                             |
+| 17   | `Step19_EnergyBenefit`       | Intersticial          | —                                                           |
+| 18   | `Step15_SleepAndDiet`        | QuizButtons           | `frequencia_sono`                                           |
+| 19   | `StepHabitBlockers`          | QuizButtons           | `maus_habitos`                                              |
+| 20   | `Step17_Cravings`            | 2 etapas              | `alimentacao` → `vontade_comer` + `padrao_refeicoes`        |
+| 21   | `Step13_Impact`              | QuizButtons           | `impacto_principal`                                         |
+| 22   | `StepWeightGainTriggers`     | QuizButtons           | `motivos_ganho_peso`                                        |
+| 23   | `Step18_MainReason`          | QuizButtons           | `motivo_entrar_forma`                                       |
+| 24   | `Step14_WallOfLove`          | Mural editorial       | —                                                           |
+| 25   | `Step20_Measurements`        | Sliders + input       | `medidas` → `altura` + `peso_atual` + `peso_ideal` + `nome` |
+| 26   | `Step21_Processing`          | Loading animado       | —                                                           |
+| 27   | `Step22_ProfileResult`       | Resultado premium     | —                                                           |
+| 28   | `Step23_SalesPage`           | Sales page            | —                                                           |

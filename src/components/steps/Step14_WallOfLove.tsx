@@ -12,6 +12,13 @@ import bgMosaic from "../../assets/images/mosaico_muitas_miniaturas_brasileiras_
 // ─── Design System Tokens ──────────────────────────────
 const DS_TEAL = "#2C7A7B";
 const DS_ROSE = "#ee2b5b";
+const EDITORIAL_HEADLINE = "Elas começaram do zero. E continuaram.";
+const EDITORIAL_SUBCOPY =
+  "Quando o treino respeita o seu nível e dura só 15 minutinhos na sala de casa, a consistência deixa de ser um sacrifício. Olha o que acontece na prática...";
+const EDITORIAL_NAMES = "Fernanda, Carla e Renata";
+const EDITORIAL_FOOTER =
+  "Depoimentos de gente comum. Em casa. Sem equipamento.";
+const EDITORIAL_GUARANTEE = "Garantia de 7 dias — sem burocracia.";
 
 type Review = {
   name: string;
@@ -287,10 +294,13 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
       <div className="relative z-20 flex flex-col py-10 md:py-14 gap-8">
         {/* Cabeçalho — sobre zona branca → cores escuras */}
         <div className="max-w-xl mx-auto px-4 w-full text-center">
-          <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-3 leading-tight">
+          <h2
+            aria-label={EDITORIAL_HEADLINE}
+            className="text-2xl md:text-4xl font-black text-zinc-900 mb-3 leading-tight"
+          >
             Elas{" "}
             <span className="relative inline-block" style={{ color: DS_ROSE }}>
-              começaram do zero
+              começaram do zero.
               <svg
                 className="absolute w-full h-3 -bottom-1 left-0"
                 style={{ color: `${DS_ROSE}88` }}
@@ -304,13 +314,14 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
                   strokeWidth="3"
                 />
               </svg>
-            </span>
-            . E continuaram.
+            </span>{" "}
+            E continuaram.
           </h2>
-          <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-            A cada etapa, você vai entender por que o seu plano precisa ser{" "}
-            <strong>simples</strong>, <strong>curto</strong> e{" "}
-            <strong>progressivo</strong>.
+          <p className="text-zinc-600 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+            {EDITORIAL_SUBCOPY}
+          </p>
+          <p className="mt-3 text-sm font-semibold text-zinc-700">
+            {EDITORIAL_NAMES} são prova disso.
           </p>
         </div>
 
@@ -331,14 +342,14 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
             }}
           >
             <h3 className="text-base md:text-lg font-black text-zinc-900 mb-2">
-              A sacada mais importante:
+              {EDITORIAL_FOOTER}
             </h3>
 
             <p
               className="text-zinc-600 mb-4 text-sm"
               style={{ overflowWrap: "break-word", wordBreak: "break-word" }}
             >
-              Você não precisa de "motivação perfeita".{" "}
+              Você não precisa de motivação perfeita.{" "}
               <span
                 className="font-black"
                 style={{
@@ -347,7 +358,7 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
                   wordBreak: "break-word",
                 }}
               >
-                Você precisa de um plano que caiba na sua vida.
+                Você precisa de um plano que caiba na sua vida real.
               </span>
             </p>
 
@@ -374,8 +385,11 @@ export function Step14_WallOfLove({ onContinue }: { onContinue: () => void }) {
               onClick={onContinue}
               className="group rounded-xl flex items-center gap-2 mx-auto w-full md:w-auto"
             >
-              <span>Ok. Quero continuar →</span>
+              <span>Ok. Quero continuar</span>
             </Button>
+            <p className="mt-3 text-xs font-medium text-zinc-500">
+              {EDITORIAL_GUARANTEE}
+            </p>
           </div>
         </div>
       </div>

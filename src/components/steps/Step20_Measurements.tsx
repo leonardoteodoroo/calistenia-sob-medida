@@ -237,7 +237,7 @@ const RulerSlider: React.FC<RulerSliderProps> = ({
         </div>
       </div>
 
-      {/* Opção B — hint textual que some com interação */}
+      {/* Hint textual fixo para reforçar o gesto mesmo após o primeiro ajuste */}
       <AnimatePresence>
         {showHint && (
           <motion.p
@@ -262,6 +262,7 @@ export const Step20_Measurements: React.FC<{
   const [height, setHeight] = useState(165);
   const [weight, setWeight] = useState(70);
   const [idealWeight, setIdealWeight] = useState(60);
+  const [firstName, setFirstName] = useState("");
   const [hasInteracted, setHasInteracted] = useState(false);
 
   const interact = (setter: (v: number) => void) => (v: number) => {
@@ -294,7 +295,7 @@ export const Step20_Measurements: React.FC<{
           max={220}
           onChange={interact(setHeight)}
           accentColor={DS.teal}
-          showHint={!hasInteracted}
+          showHint
           showGhost={!hasInteracted}
         />
 
@@ -308,7 +309,7 @@ export const Step20_Measurements: React.FC<{
           max={180}
           onChange={interact(setWeight)}
           accentColor={DS.teal}
-          showHint={!hasInteracted}
+          showHint
         />
 
         <div style={{ height: 1, background: DS.border }} />
@@ -321,29 +322,72 @@ export const Step20_Measurements: React.FC<{
           max={150}
           onChange={interact(setIdealWeight)}
           accentColor={DS.rose}
-          showHint={!hasInteracted}
+          showHint
         />
 
         {/* ── BOTÃO sobe aqui — visível sem scroll na maioria dos celulares ── */}
         <button
           type="button"
+          disabled={firstName.trim().length < 2}
           onClick={() =>
             onNext(
               JSON.stringify({
                 altura: height,
                 peso: weight,
                 peso_ideal: idealWeight,
+                nome: firstName.trim(),
               }),
             )
           }
-          className="w-full rounded-2xl font-extrabold px-6 py-4 text-white transition-all shadow-lg"
+          className="w-full rounded-2xl font-extrabold px-6 py-4 text-white transition-all shadow-lg disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 disabled:shadow-none"
+          style={
+            firstName.trim().length >= 2
+              ? {
+                  background: DS.teal,
+                  boxShadow: "0 8px 20px -4px rgba(44,122,123,0.3)",
+                }
+              : undefined
+          }
+        >
+          Ver minha análise
+        </button>
+
+        <div
+          className="rounded-2xl p-4"
           style={{
-            background: DS.teal,
-            boxShadow: "0 8px 20px -4px rgba(44,122,123,0.3)",
+            background: DS.card,
+            border: `1px solid ${DS.border}`,
+            boxShadow: "0 4px 12px rgba(44,122,123,0.07)",
           }}
         >
-          Processar Dados
-        </button>
+          <label
+            htmlFor="first-name"
+            className="mb-2 block text-sm font-bold uppercase tracking-widest"
+            style={{ color: DS.textSecondary }}
+          >
+            Como podemos chamar você?
+          </label>
+          <input
+            id="first-name"
+            type="text"
+            autoComplete="given-name"
+            placeholder="Digite seu primeiro nome"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+            className="w-full rounded-2xl border px-4 py-3 text-base outline-none transition-colors focus:border-teal-700"
+            style={{
+              borderColor: DS.border,
+              color: DS.text,
+            }}
+          />
+          <p
+            className="mt-2 text-xs leading-relaxed"
+            style={{ color: DS.textMuted }}
+          >
+            Seu nome aparece na análise final para deixar o plano com cara de
+            feito para você.
+          </p>
+        </div>
 
         {/* Painel de Projeção — fica abaixo do botão */}
         <motion.div

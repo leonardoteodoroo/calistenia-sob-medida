@@ -12,8 +12,10 @@ test("sticky button renders a fixed bottom cta shell", () => {
   assert.match(source, /export interface StickyButtonProps/);
   assert.match(source, /fixed inset-x-0 bottom-0/);
   assert.match(source, /safe-area-inset-bottom/);
-  assert.match(source, /rounded-t-\[28px\]/);
-  assert.match(source, /border-x-0 border-b-0/);
-  assert.match(source, /sm:max-w-3xl/);
+  assert.match(source, /animate=\{/);
+  assert.match(source, /repeat: Infinity/);
+  assert.doesNotMatch(source, /motion\.div/);
+  assert.doesNotMatch(source, /bg-white\/95/);
+  assert.doesNotMatch(source, /helperText/);
   assert.match(source, /<Button/);
 });

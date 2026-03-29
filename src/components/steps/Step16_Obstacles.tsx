@@ -1,42 +1,20 @@
-import { useState } from "react";
 import { QuizButtons } from "../ui/QuizButtons";
+import type { StepProps } from "../../types";
 
-type Props = { onNext: (val: string) => void };
-
-const habitsOptions = [
-  { id: "emocional", label: "💭  Comer por emoção ou tédio" },
-  { id: "demais", label: "🍽️  Comer demais" },
-  { id: "noturno", label: "🌙  Lanches noturnos" },
-  { id: "outro", label: "🔄  Outro" },
+const options = [
+  { id: "tempo", label: "⏰  Minha rotina é corrida demais" },
+  { id: "constancia", label: "🔁  Eu começo e não consigo manter" },
+  { id: "metodo", label: "🧭  Não sei qual treino realmente seguir" },
+  { id: "cansaco", label: "😮‍💨  Me sinto sem energia para treinar" },
+  { id: "motivacao", label: "🫥  Falta motivação e confiança" },
 ];
 
-const eventsOptions = [
-  { id: "trabalho", label: "💼  Pressão do trabalho" },
-  { id: "familia", label: "👨‍👩‍👧  Vida familiar agitada" },
-  { id: "metabolismo", label: "⏳  Metabolismo lento" },
-  { id: "outro_evento", label: "🔄  Outro" },
-];
-
-export function Step16_Obstacles({ onNext }: Props) {
-  const [habit, setHabit] = useState<string | null>(null);
-
-  if (!habit) {
-    return (
-      <QuizButtons
-        title="Qual hábito mais te atrapalha?"
-        options={habitsOptions}
-        onNext={setHabit}
-      />
-    );
-  }
-
+export function Step16_Obstacles({ onNext }: StepProps) {
   return (
     <QuizButtons
-      title="Algum destes eventos levou ao ganho de peso?"
-      options={eventsOptions}
-      onNext={(ev) =>
-        onNext(JSON.stringify({ maus_habitos: habit, eventos_ganho_peso: ev }))
-      }
+      title="O que mais te trava hoje?"
+      options={options}
+      onNext={onNext}
     />
   );
 }

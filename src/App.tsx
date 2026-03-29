@@ -5,12 +5,22 @@ import {
   captureTrackingParams,
   getVisitorId,
   sendQuizEntry,
+  sendQuizQuarter,
   sendQuizComplete,
+  sendQuizResultView,
 } from "./lib/tracking";
+import {
+  QUIZ_ENTRY_STEP,
+  QUIZ_PROGRESS_STEPS,
+  QUIZ_QUARTER_STEP,
+  QUIZ_RESULT_STEP,
+  QUIZ_SALES_STEP,
+} from "./lib/quizFlow";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { WorkoutPlanPDF } from "./components/WorkoutPlanPDF";
 
+import { StepHero } from "./components/steps/step_Hero";
 import { Step01_Gender } from "./components/steps/Step01_Gender";
 import { Step02_Age } from "./components/steps/Step02_Age";
 import { Step03_SocialProof } from "./components/steps/Step03_SocialProof";
@@ -18,22 +28,28 @@ import { Step04_Experience } from "./components/steps/Step04_Experience";
 import { Step05_Motivation } from "./components/steps/Step05_Motivation";
 import { Step06_Objective } from "./components/steps/Step06_Objective";
 import { Step07_SecondaryGoals } from "./components/steps/Step07_SecondaryGoals";
-import { Step08_SocialProofCarousel } from "./components/steps/Step08_SocialProofCarousel";
 import { Step09_BodyType } from "./components/steps/Step09_BodyType";
 import { Step10_DreamBody } from "./components/steps/Step10_DreamBody";
+import { Step08_SocialProofCarousel } from "./components/steps/Step08_SocialProofCarousel";
+import { Step14_WallOfLove } from "./components/steps/Step14_WallOfLove";
 import { Step11_FocusAreas } from "./components/steps/Step11_FocusAreas";
 import { Step12_ActivityLevel } from "./components/steps/Step12_ActivityLevel";
+import { StepExerciseFrequency } from "./components/steps/StepExerciseFrequency";
 import { Step13_EnergyLevels } from "./components/steps/Step13_EnergyLevels";
-import { Step14_WallOfLove } from "./components/steps/Step14_WallOfLove";
+import { Step13_Impact } from "./components/steps/Step13_Impact";
+import { StepHabitBlockers } from "./components/steps/StepHabitBlockers";
+import { Step19_EnergyBenefit } from "./components/steps/Step19_EnergyBenefit";
 import { Step15_SleepAndDiet } from "./components/steps/Step15_SleepAndDiet";
 import { Step16_Obstacles } from "./components/steps/Step16_Obstacles";
 import { Step17_Cravings } from "./components/steps/Step17_Cravings";
+import { StepWeightGainTriggers } from "./components/steps/StepWeightGainTriggers";
 import { Step18_MainReason } from "./components/steps/Step18_MainReason";
-import { Step19_EnergyBenefit } from "./components/steps/Step19_EnergyBenefit";
 import { Step20_Measurements } from "./components/steps/Step20_Measurements";
 import { Step21_Processing } from "./components/steps/Step21_Processing";
 import { Step22_ProfileResult } from "./components/steps/Step22_ProfileResult";
 import { Step23_SalesPage } from "./components/steps/Step23_SalesPage";
+import { StepTestelab } from "./components/steps/StepTestelab";
+import { StepTestelab2 } from "./components/steps/StepTestelab2";
 import { ProgressBar } from "./components/ui/ProgressBar";
 
 // Tipagem global do Meta Pixel
@@ -99,32 +115,27 @@ function normalizeAnswerUpdate(key: string, value: string): QuizAnswers {
     nextAnswers.flexibilidade = selections.has("flexibilidade") ? "sim" : "nao";
   }
 
+  if (key === "frequencia_exercicios") {
+    nextAnswers.frequencia_caminhadas = value;
+  }
+
   if (key === "nível_atividade") {
     const parsed = parseSerializedRecord(value);
-    if (parsed?.exercicio) {
-      nextAnswers.frequencia_exercicios = parsed.exercicio;
-      nextAnswers.frequencia_caminhadas = parsed.exercicio;
-    }
     if (parsed?.rotina) {
       nextAnswers.dia_tipico = parsed.rotina;
     }
-  }
-
-  if (key === "sono_e_dieta") {
-    const parsed = parseSerializedRecord(value);
-    if (parsed?.sono) {
-      nextAnswers.frequencia_sono = parsed.sono;
+    if (parsed?.tempo) {
+      nextAnswers.tempo_disponivel = parsed.tempo;
     }
   }
 
-  if (key === "obstaculos") {
+  if (key === "alimentacao") {
     const parsed = parseSerializedRecord(value);
-    if (parsed?.maus_habitos) {
-      nextAnswers.maus_habitos = parsed.maus_habitos;
+    if (parsed?.vontade_comer) {
+      nextAnswers.vontade_comer = parsed.vontade_comer;
     }
-    if (parsed?.motivos_ganho_peso || parsed?.eventos_ganho_peso) {
-      nextAnswers.motivos_ganho_peso =
-        parsed.motivos_ganho_peso ?? parsed.eventos_ganho_peso;
+    if (parsed?.padrao_refeicoes) {
+      nextAnswers.padrao_refeicoes = parsed.padrao_refeicoes;
     }
   }
 
@@ -138,6 +149,9 @@ function normalizeAnswerUpdate(key: string, value: string): QuizAnswers {
     }
     if (parsed?.peso_ideal) {
       nextAnswers.peso_ideal = parsed.peso_ideal;
+    }
+    if (parsed?.nome) {
+      nextAnswers.nome = parsed.nome;
     }
   }
 
@@ -186,19 +200,21 @@ function App() {
   useEffect(() => {
     if (typeof window.fbq !== "function") return;
     const eventId = `${getVisitorId()}_${step}_${Date.now()}`;
-    // window.fbq("trackCustom", "QuizStep", { step }, { eventID: eventId }); // Removido para otimizar a inteligência do Pixel
     if (step === 1)
       window.fbq("trackCustom", "QuizStarted", {}, { eventID: eventId });
-    if (step === 11)
-      window.fbq("trackCustom", "QuizHalfway", {}, { eventID: eventId });
-    if (step === 23)
+    if (step === QUIZ_QUARTER_STEP)
+      window.fbq("trackCustom", "QuizQuarter", {}, { eventID: eventId });
+    if (step === QUIZ_RESULT_STEP)
+      window.fbq("trackCustom", "QuizResultViewed", {}, { eventID: eventId });
+    if (step === QUIZ_SALES_STEP)
       window.fbq("trackCustom", "QuizSalesPage", {}, { eventID: eventId });
   }, [step]);
 
-  // Google Sheets — log nos marcos (step 3 = entrada, step 23 = conclusão)
   useEffect(() => {
-    if (step === 3) sendQuizEntry(quizData);
-    if (step === 23) sendQuizComplete(quizData);
+    if (step === QUIZ_ENTRY_STEP) sendQuizEntry(quizData);
+    if (step === QUIZ_QUARTER_STEP) sendQuizQuarter(quizData);
+    if (step === QUIZ_RESULT_STEP) sendQuizResultView(quizData);
+    if (step === QUIZ_SALES_STEP) sendQuizComplete(quizData);
   }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Avança para o próximo step, salvando a resposta se houver
@@ -217,14 +233,13 @@ function App() {
     setStep((prev) => Math.max(1, prev - 1));
   };
 
-  // Barra de progresso baseada em 22 passos
   const getProgress = (currentStep: number) => {
-    return Math.min(Math.round((currentStep / 22) * 100), 100);
+    return Math.min(Math.round((currentStep / QUIZ_PROGRESS_STEPS) * 100), 100);
   };
 
   return (
     <div className="min-h-screen bg-background text-text-primary px-4 pt-2 pb-8 md:pb-12 overflow-x-hidden flex flex-col items-center">
-      {step <= 22 && (
+      {step <= QUIZ_RESULT_STEP && (
         <div className="w-full max-w-3xl flex items-center justify-between gap-2 sm:gap-4 mb-2 md:mb-4 px-4 z-20 sticky top-0 bg-background/90 backdrop-blur-sm py-2">
           <div className="w-8 sm:w-10 flex-shrink-0">
             {step > 1 && (
@@ -248,46 +263,41 @@ function App() {
 
       <main className="w-full max-w-3xl mx-auto flex-1 flex flex-col items-center justify-start relative overflow-x-hidden min-h-[60vh]">
         <AnimatePresence mode="wait">
-          {step === 1 && (
+          {step === 1 && <StepHero key="step1" onNext={() => handleNext()} />}
+          {step === 2 && (
             <Step01_Gender
-              key="step1"
+              key="step2"
               onNext={(val) => handleNext("genero", val)}
             />
           )}
-          {step === 2 && (
+          {step === 3 && (
             <Step02_Age
-              key="step2"
+              key="step3"
               onNext={(val) => handleNext("idade", val)}
             />
           )}
-          {step === 3 && (
-            <Step03_SocialProof key="step3" onNext={() => handleNext()} />
-          )}
           {step === 4 && (
+            <Step03_SocialProof key="step4" onNext={() => handleNext()} />
+          )}
+          {step === 5 && (
             <Step04_Experience
-              key="step4"
+              key="step5"
               onNext={(val) => handleNext("experiencia", val)}
             />
           )}
-          {step === 5 && (
-            <Step05_Motivation key="step5" onNext={() => handleNext()} />
-          )}
           {step === 6 && (
+            <Step05_Motivation key="step6" onNext={() => handleNext()} />
+          )}
+          {step === 7 && (
             <Step06_Objective
-              key="step6"
+              key="step7"
               onNext={(val) => handleNext("objetivo_principal", val)}
             />
           )}
-          {step === 7 && (
-            <Step07_SecondaryGoals
-              key="step7"
-              onNext={(val) => handleNext("objetivos_secundarios", val)}
-            />
-          )}
           {step === 8 && (
-            <Step08_SocialProofCarousel
+            <Step07_SecondaryGoals
               key="step8"
-              onContinue={() => handleNext()}
+              onNext={(val) => handleNext("objetivos_secundarios", val)}
             />
           )}
           {step === 9 && (
@@ -303,78 +313,114 @@ function App() {
             />
           )}
           {step === 11 && (
-            <Step11_FocusAreas
+            <Step08_SocialProofCarousel
               key="step11"
-              onNext={(val: string) => handleNext("regioes_foco", val)}
+              onContinue={() => handleNext()}
             />
           )}
           {step === 12 && (
-            <Step12_ActivityLevel
+            <Step16_Obstacles
               key="step12"
-              onNext={(val) => handleNext("nível_atividade", val)}
+              onNext={(val: string) => handleNext("maior_trava", val)}
             />
           )}
           {step === 13 && (
-            <Step13_EnergyLevels
+            <Step11_FocusAreas
               key="step13"
-              onNext={(val: string) => handleNext("nivel_energia", val)}
+              onNext={(val: string) => handleNext("regioes_foco", val)}
             />
           )}
           {step === 14 && (
-            <Step14_WallOfLove key="step14" onContinue={() => handleNext()} />
+            <Step12_ActivityLevel
+              key="step14"
+              onNext={(val) => handleNext("nível_atividade", val)}
+            />
           )}
           {step === 15 && (
-            <Step15_SleepAndDiet
+            <StepExerciseFrequency
               key="step15"
-              onNext={(val: string) => handleNext("sono_e_dieta", val)}
+              onNext={(val) => handleNext("frequencia_exercicios", val)}
             />
           )}
           {step === 16 && (
-            <Step16_Obstacles
+            <Step13_EnergyLevels
               key="step16"
-              onNext={(val: string) => handleNext("obstaculos", val)}
+              onNext={(val) => handleNext("nivel_energia", val)}
             />
           )}
           {step === 17 && (
-            <Step17_Cravings
-              key="step17"
-              onNext={(val: string) => handleNext("vontade_comer", val)}
-            />
+            <Step19_EnergyBenefit key="step17" onNext={() => handleNext()} />
           )}
           {step === 18 && (
-            <Step18_MainReason
+            <Step15_SleepAndDiet
               key="step18"
-              onNext={(val: string) => handleNext("motivo_entrar_forma", val)}
+              onNext={(val: string) => handleNext("frequencia_sono", val)}
             />
           )}
           {step === 19 && (
-            <Step19_EnergyBenefit key="step19" onNext={() => handleNext()} />
+            <StepHabitBlockers
+              key="step19"
+              onNext={(val) => handleNext("maus_habitos", val)}
+            />
           )}
           {step === 20 && (
-            <Step20_Measurements
+            <Step17_Cravings
               key="step20"
-              onNext={(val) => handleNext("medidas", val)}
+              onNext={(val: string) => handleNext("alimentacao", val)}
             />
           )}
           {step === 21 && (
-            <Step21_Processing key="step21" onNext={() => handleNext()} />
+            <Step13_Impact
+              key="step21"
+              onNext={(val: string) => handleNext("impacto_principal", val)}
+            />
           )}
           {step === 22 && (
+            <StepWeightGainTriggers
+              key="step22"
+              onNext={(val) => handleNext("motivos_ganho_peso", val)}
+            />
+          )}
+          {step === 23 && (
+            <Step18_MainReason
+              key="step23"
+              onNext={(val: string) => handleNext("motivo_entrar_forma", val)}
+            />
+          )}
+          {step === 24 && (
+            <Step14_WallOfLove key="step24" onContinue={() => handleNext()} />
+          )}
+          {step === 25 && (
+            <Step20_Measurements
+              key="step25"
+              onNext={(val) => handleNext("medidas", val)}
+            />
+          )}
+          {step === 26 && (
+            <Step21_Processing key="step26" onNext={() => handleNext()} />
+          )}
+          {step === 27 && (
             <Step22_ProfileResult
-              key="step22-processing-complete"
+              key="step27-processing-complete"
               onNext={() => handleNext()}
               answers={quizData}
             />
           )}
-          {step === 23 && (
+          {step === 28 && (
             <Step23_SalesPage
-              key="step23"
+              key="step28"
               onNext={() => {}}
               answers={quizData}
             />
           )}
+          {step === 998 && (
+            <StepTestelab2 key="step998" onNext={() => handleNext()} />
+          )}
+          {step === 999 && (
+            <StepTestelab key="step999" onNext={() => handleNext()} />
+          )}
 
-          {step > 23 && (
+          {step > QUIZ_SALES_STEP && (
             <motion.div
               key="finish"
               initial={{ opacity: 0, scale: 0.9 }}

@@ -47,10 +47,11 @@ export function Step02_Age({ onNext }: StepProps) {
     >
       <header className="space-y-3 text-center">
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-primary">
-          Desafio específico para sua idade e objetivo:
+          Qual é a sua faixa de idade?
         </h2>
         <p className="text-text-secondary text-base">
-          Escolha uma opção abaixo:
+          Isso nos ajuda a ajustar a intensidade e o ritmo mais inteligente para
+          o seu momento.
         </p>
       </header>
 

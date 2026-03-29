@@ -1,0 +1,9 @@
+feat(quiz): add interactive body map test and shape history step com gatilhos mentais
+
+- `src/App.tsx`: Integrado o `StepTestelab` na posição 19 e `StepTestelab2` na posição 20. O roteamento foi realinhado e as propriedades `maior_trava` e `impacto_principal` adicionadas ao estado global.
+- `src/components/steps/StepTestelab.tsx`: Criado o componente de seleção das áreas de incômodo no corpo, com lógica de multiselection e toggle excludente 'O corpo todo'. Utiliza a imagem cc874f1670ee7ad05a53.webp adaptada.
+- `src/components/steps/StepTestelab2.tsx`: Adicionado questionamento cronológico de forma física prévia, incluindo micro-interações do tipo Accordion para entregar prova social numérica dinamicamente de acordo com a resposta do Lead. Utilizada imagem gerada por IA `antes_depois_shape.webp`.
+- `src/components/steps/Step14_WallOfLove.tsx`: Removido código não utilizado e atualizado visual de sublinhado.
+- `src/lib/quizProfile.ts` & `src/lib/quizFlow.ts`: Implementada infraestrutura para captar analiticamente o campo das travas e o estado da última aprovação física nas conversões de data engineering e webhook.
+- `tests/*`: Adaptado os specs para ignorar classes de framer-motion no StickyButton e mapear corretamente o texto persuasivo do resultado diagnosticado da calistenia, garantindo que o C.I rode limpo.
+- `copy_quiz_calistenia.md`: Consolidado com todo o refinamento da cópia baseado no Scorecard Marketing Framework.

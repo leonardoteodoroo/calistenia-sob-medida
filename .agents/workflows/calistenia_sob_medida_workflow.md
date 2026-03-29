@@ -32,6 +32,7 @@ Ao receber solicitações neste projeto, consulte abaixo as etapas, diretrizes d
 
 - **O Que Fazer:** Incrementar o design do Quiz existente em `/home/leonardotl/Área de trabalho/calistenia-sob-medida/`, validar layout responsivo, rodar análises de mercado para alinhar copy à dor da audiência e refinar anúncios.
 - **Skills Essenciais:**
+  - **[`scorecard-marketing`]** Use primeiro para auditar a estrutura do quiz como funil de diagnóstico premium e venda direta, revisar ordem das perguntas, tiers de resultado, fricção e segmentação do resultado.
   - **[`espionagem-ads`]** Use para escanear a biblioteca da Meta Ads e descobrir copies, promessas e dores de concorrentes fitness antes de refinar os textos do quiz.
   - **[`brainstorming`]** Auxilia a encontrar gatilhos para otimizar os botões CTAs e etapas do quiz (ex: "Qual a sua maior dificuldade: Falta de tempo ou Não sei treinar?").
   - **[`frontend-design`]** e **[`tailwind-design-system`]** Para garantir responsividade top tier móvel e design moderno.

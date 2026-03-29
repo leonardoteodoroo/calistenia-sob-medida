@@ -18,6 +18,7 @@ import {
   PRODUCT_VALUE,
   PRODUCT_CURRENCY,
 } from "../../lib/tracking";
+import { buildQuizProfile } from "../../lib/quizProfile";
 
 // ─── Countdown Timer hook ────────────────────────────────────────────────────
 const PROMO_MINUTES = 17;
@@ -74,6 +75,8 @@ function useCountdown(minutesTotal: number) {
 export const Step23_SalesPage: React.FC<StepProps> = ({ answers }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { m, s, expired } = useCountdown(PROMO_MINUTES);
+  const profile = buildQuizProfile(answers ?? {});
+  const firstName = answers?.nome?.trim();
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -179,8 +182,9 @@ export const Step23_SalesPage: React.FC<StepProps> = ({ answers }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-2xl md:text-3xl font-heading font-extrabold text-text-primary text-center mb-8 leading-tight"
           >
-            Seu Plano de Calistenia para perder pochete rápido e ganhar massa
-            magra em até 2 meses está pronto.
+            {firstName
+              ? `${firstName}, o seu plano de Calistenia Sob Medida está pronto.`
+              : "O seu plano de Calistenia Sob Medida está pronto."}
           </motion.h1>
 
           <div className="flex gap-3 justify-center">
@@ -313,7 +317,13 @@ export const Step23_SalesPage: React.FC<StepProps> = ({ answers }) => {
                 Foco Principal:
               </span>
               <span className="font-bold text-primary text-right">
-                {answers?.objetivo || "Perder peso"}
+                {profile.primaryGoalLabel}
+              </span>
+            </div>
+            <div className="flex items-center justify-between border-b border-border pb-2">
+              <span className="font-medium text-text-primary">Perfil:</span>
+              <span className="font-bold text-primary text-right max-w-[60%]">
+                {profile.profileLabel}
               </span>
             </div>
             {parsedFocos.length > 0 && (
@@ -328,20 +338,61 @@ export const Step23_SalesPage: React.FC<StepProps> = ({ answers }) => {
             )}
             <div className="flex items-center justify-between border-b border-border pb-2">
               <span className="font-medium text-text-primary">
+                Principal Trava:
+              </span>
+              <span className="font-bold text-primary text-right max-w-[60%] line-clamp-2">
+                {profile.mainObstacleLabel}
+              </span>
+            </div>
+            <div className="flex items-center justify-between border-b border-border pb-2">
+              <span className="font-medium text-text-primary">
                 Meta de Peso:
               </span>
               <span className="font-bold text-primary text-right">
                 {ideal} kg
               </span>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between border-b border-border pb-2">
               <span className="font-medium text-text-primary">
-                Frequência Física Ideal:
+                Ritmo Diário:
               </span>
               <span className="font-bold text-primary text-right max-w-[60%]">
-                Treinos constantes com recuperação
+                {profile.dailyTimeLabel}
               </span>
             </div>
+            <div className="flex items-center justify-between">
+              <span className="font-medium text-text-primary">
+                Próximo foco:
+              </span>
+              <span className="font-bold text-primary text-right max-w-[60%] line-clamp-2">
+                14 dias de consistência guiada
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {[
+              ["Consistência", profile.scores.consistency],
+              ["Energia", profile.scores.recovery],
+              ["Direção", profile.scores.fatLossDirection],
+            ].map(([label, score]) => (
+              <div
+                key={label}
+                className="rounded-xl border border-primary/10 bg-white p-3 text-center shadow-sm"
+              >
+                <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-secondary">
+                  {label}
+                </div>
+                <div className="mt-1 text-2xl font-black text-primary">
+                  {score}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-primary/10 bg-white p-4 text-sm leading-relaxed text-text-secondary shadow-sm">
+            <strong className="text-text-primary">Leitura:</strong>{" "}
+            {profile.next14DayFocus}
           </div>
         </section>
 
